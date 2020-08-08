@@ -26,7 +26,7 @@
 				$cosmeticModel = new Cosmetic();
 				$cosmeticList = $cosmeticModel->getCosmeticListForOrder($cosmeticIdList);
 			}
-			echo $cartString;//отладка
+			echo $_COOKIE['user_id'];//отладка
 			
 			include_once('./views/carts/index.php');
 		}
