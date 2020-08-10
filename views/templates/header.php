@@ -8,12 +8,17 @@
 </head>
 
 <body>
-    <nav class="navbar top navbar-expand-sm navbar-dark bg-dark">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-header <?= ($title == 'Enso Cosmetics') ? 'active' : '' ?>">
-                <a class="navbar-brand" href="<?= SITE_ROOT . 'cosmetics/list' ?>">Enso Cosmetics</a>
-            </div>
-            <ul class="navbar-nav mr-auto">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand <?= ($title == 'Enso Cosmetics') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'cosmetics/list' ?>">
+            Enso Cosmetics
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item <?= ($title == 'Каталог') ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= SITE_ROOT . 'categories/list' ?>">Каталог</a>
                 </li>
@@ -41,7 +46,12 @@
                         <a class="dropdown-item <?= ($title == 'Авторизация') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'auth' ?>">Авторизация</a>
                     </div>
                 </li>
-
                 <? endif; ?>
+            </ul>
+<!--    Приклеить функционал к форме!!!        -->
+            <form class="form-inline my-2 my-lg-0" method="POST">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
