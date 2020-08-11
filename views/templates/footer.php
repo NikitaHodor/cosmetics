@@ -20,9 +20,8 @@
 -->
 
 <!-- Решил поменять нижнюю навигацию на футер -->
-
        <!-- Footer -->
-<footer class="page-footer font-small bg-dark text-white pt-4">
+<footer id="Footer" class="page-footer font-small bg-dark text-white pt-4">
 
   <!-- Footer Links -->
   <div class="container-fluid text-center text-md-left">

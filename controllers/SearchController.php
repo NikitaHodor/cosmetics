@@ -6,7 +6,7 @@
 
 			$title = 'Поиск';
             $search = $parameters[0];
-                //isset($_POST['query']);
+                //isset($_POST['search']);
             if(empty($search)){
                 echo 'введите поисковой запрос';
                 exit();

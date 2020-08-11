@@ -48,10 +48,10 @@
                 </li>
                 <? endif; ?>
             </ul>
-<!--    Приклеить функционал к форме!!!        -->
+<!--    Приклеить функционал к форме!!!   доработать ссылку в кнопке, а то костыль     -->
             <form name="search" class="form-inline my-2 my-lg-0" method="POST">
                 <input name="query" class="form-control mr-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit"><a class="<?= ($title == 'Поиск') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'search' ?>">Search</a></button>
             </form>
         </div>
     </nav>

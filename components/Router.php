@@ -27,12 +27,11 @@
 					}
 				}
 			}
-			// TODO: Отобразить страницу с ошибкой => ErrorsController -> index() - отобразить страницу 404
+			// отобразить страницу 404
 //			echo '404 - Page not found!'; 
            $modelPage404 = new ErrorsController();
             $page404 = $modelPage404->index();
             return $page404;
-//            include_once('./views/errors/index.php');
 			exit();
 		}
 	}
