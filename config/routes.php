@@ -33,6 +33,9 @@
 		"OrdersController" => array(
 			"orders/add" => "add"
 		),
+        "SearchController" => array(
+			"search/view/([a-z]+)" => "view/$1" //пока пытаюсь просто через url выполнить поиск
+		),
         "ErrorsController" => array(
 			"error" => "index"
 		)
