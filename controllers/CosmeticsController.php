@@ -4,9 +4,9 @@
 
 		public function index() {
 			//echo 'Вызван action index в CosmeticsController';
-			$title = 'Косметика';
+			$title = 'Главная';
 			$cosmeticModel = new Cosmetic();
-			$cosmetics = $cosmeticModel->getAll();
+			$cosmetics = $cosmeticModel->getRandom();
 			include_once('./views/cosmetics/index.php');
 			return;
 		}

@@ -14,6 +14,18 @@
 			return $cosmetics;
 		}
 
+        public function getRandom() {
+			$db = DB::connect();
+			$query = "
+            SELECT * FROM `cosmetics`
+            ORDER BY RAND()
+            LIMIT 3;
+            ";
+			$result = $db->query($query);
+			$cosmetics = $result->fetchAll();
+			return $cosmetics;
+		}
+
 		public function getCosmeticById($id) {
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))

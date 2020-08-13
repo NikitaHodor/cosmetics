@@ -1,8 +1,8 @@
 <? include_once('./views/templates/header.php'); ?>
 
 <div class="container">
-    <h1> Косметика </h1>
-    <div class="card-deck">
+    <h1> Главная </h1>
+    <div class="card-deck justify-content-center">
         <? foreach ($cosmetics as $cosmetic): ?>
         <!-- Карточка -->
         <a style="color: #272727;" href="<?= SITE_ROOT . 'cosmetics/view/' . $cosmetic['cosmetic_id'] ?>">
