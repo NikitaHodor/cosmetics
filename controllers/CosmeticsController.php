@@ -11,8 +11,49 @@
 			return;
 		}
 
-		public function add() {
-			echo 'Вызван action add в CosmeticsController';
+		public function add() {//добить полный список параметров для добавления!!!
+			$title = 'Добавить косметику';
+            if (isset ($_POST['cosmetic_name'])) {
+                    $helper = new Helper();
+                    $cosmetic_name = $helper->escape($_POST['cosmetic_name']);
+//                    $cosmetic_type = $helper->escape($_POST['cosmetic_type']);
+//                    $cosmetic_category = $helper->escape($_POST['cosmetic_category']);
+                    $cosmetic_brand = $helper->escape($_POST['cosmetic_brand']);
+                    $cosmetic_price = $helper->escape($_POST['cosmetic_price']);
+                    $cosmetic_volume = $helper->escape($_POST['cosmetic_volume']);
+//                    $cosmetic_country = $helper->escape($_POST['cosmetic_country']);
+                    $cosmetic_description = $helper->escape($_POST['cosmetic_description']);
+
+                    $validation = new Validation();
+                    $errors = array();
+                    if(!$validation->checklength($cosmetic_name)){
+                        $errors[] = 'кол-во символов не должно быть меньше 2';
+                    }
+                     if(!$validation->checkNumber($cosmetic_price, 99999, 50)){
+                        $errors[] = 'цена не должна превышать 99999 или быть меньше 100';
+                    }
+                    if(empty($errors)){
+                        $cosmeticModel = new Cosmetic();
+                        $cosmeticArray = array(
+                        'cosmetic_name' => $cosmetic_name,
+//                            'cosmetic_type' => $cosmetic_type,
+//                            'cosmetic_category' => $cosmetic_category,
+                            'cosmetic_brand' => $cosmetic_brand,
+                          'cosmetic_price' => $cosmetic_price,
+                            'cosmetic_volume' => $cosmetic_volume,
+//                            'cosmetic_country' => $cosmetic_country,
+                            'cosmetic_description' => $cosmetic_description
+                        );
+                        $cosmeticModel->addCosmetics($cosmeticArray);
+			            header('Location: ' . SITE_ROOT . 'cosmetics/list');
+			            return;
+                    }
+
+                }
+
+            $brandModel = new Brand();
+            $brands = $brandModel->getAll();
+            include_once('./views/cosmetics/add.php');
 			return;
 		}
 

@@ -13,6 +13,27 @@
 			$cosmetics = $result->fetchAll();
 			return $cosmetics;
 		}
+        public function addCosmetics($cosmeticArray) { //добить полный список параметров для добавления!!!
+			$db = DB::connect();
+			$query = "
+					INSERT INTO `cosmetics`
+					SET `cosmetic_name` = '$cosmeticArray[cosmetic_name]',
+
+
+					`cosmetic_brand_id` = '$cosmeticArray[cosmetic_brand]',
+					`cosmetic_price` = '$cosmeticArray[cosmetic_price]',
+					`cosmetic_volume` = '$cosmeticArray[cosmetic_volume]',
+
+					`cosmetic_description` = '$cosmeticArray[cosmetic_description]';
+				";
+
+//`cosmetic_type_id` = '$cosmeticArray[cosmetic_type]',
+//            `cosmetic_category_id` = '$cosmeticArray[cosmetic_category]',
+//            `cosmetic_country_id` = '$cosmeticArray[cosmetic_country]',
+
+			$db->query($query);
+			return;
+		}
 
         public function getRandom() {
 			$db = DB::connect();

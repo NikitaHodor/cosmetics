@@ -105,7 +105,7 @@
 <!-- Footer -->
         <script src="<?= LIBS; ?>jquery/jquery.js"> </script>
 		<script src="<?= LIBS; ?>bootstrap/js/bootstrap.js"> </script>
-		<script src="<?= JS; ?>footerFixer.js"> </script>
+<!--		<script src="<?= JS; ?>footerFixer.js"> </script>-->
 		<script src="<?= JS; ?>cookie.js"> </script>
 		<script src="<?= JS; ?>index.js"> </script>
 	</body>
