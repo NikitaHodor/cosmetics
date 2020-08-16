@@ -19,7 +19,7 @@
             } else {
                 print_r($id);//для отладки
                 $categoryModel = new Category();
-			    $category = $categoryModel->getCosmeticByCategoryId($id);
+			    $categoryCosm = $categoryModel->getCosmeticByCategoryId($id);
 			    include_once('./views/categories/view.php');
 			 
 //                echo 'Вызван action view с параметром id = $id';

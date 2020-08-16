@@ -22,6 +22,14 @@
 			"services/list" => "index",
 			"services/view/([0-9]+)" => "view/$1"
 		),
+        "TypesController" => array(
+			"types/list" => "index",
+			"types/add" => "add"
+		),
+        "CountriesController" => array(
+			"countries/list" => "index",
+			"countries/add" => "add"
+		),
 		"UsersController" => array(
 			"register" => "reg",
 			"auth" => "auth",

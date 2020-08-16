@@ -17,7 +17,7 @@
 						->where("WHERE `cosmetic_category_id` = $id")
 						->build(); 
 			$result = $db->query($query);
-			$category = $result->fetch();
-			return $category;
+			$categoryCosm = $result->fetchAll();
+			return $categoryCosm;
 		}
 	}

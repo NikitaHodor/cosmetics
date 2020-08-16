@@ -11,17 +11,17 @@
 			return;
 		}
 
-		public function add() {//добить полный список параметров для добавления!!!
+		public function add() {
 			$title = 'Добавить косметику';
             if (isset ($_POST['cosmetic_name'])) {
                     $helper = new Helper();
                     $cosmetic_name = $helper->escape($_POST['cosmetic_name']);
-//                    $cosmetic_type = $helper->escape($_POST['cosmetic_type']);
-//                    $cosmetic_category = $helper->escape($_POST['cosmetic_category']);
+                    $cosmetic_type = $helper->escape($_POST['cosmetic_type']);
+                    $cosmetic_category = $helper->escape($_POST['cosmetic_category']);
                     $cosmetic_brand = $helper->escape($_POST['cosmetic_brand']);
                     $cosmetic_price = $helper->escape($_POST['cosmetic_price']);
                     $cosmetic_volume = $helper->escape($_POST['cosmetic_volume']);
-//                    $cosmetic_country = $helper->escape($_POST['cosmetic_country']);
+                    $cosmetic_country = $helper->escape($_POST['cosmetic_country']);
                     $cosmetic_description = $helper->escape($_POST['cosmetic_description']);
 
                     $validation = new Validation();
@@ -36,12 +36,12 @@
                         $cosmeticModel = new Cosmetic();
                         $cosmeticArray = array(
                         'cosmetic_name' => $cosmetic_name,
-//                            'cosmetic_type' => $cosmetic_type,
-//                            'cosmetic_category' => $cosmetic_category,
+                            'cosmetic_type' => $cosmetic_type,
+                            'cosmetic_category' => $cosmetic_category,
                             'cosmetic_brand' => $cosmetic_brand,
                           'cosmetic_price' => $cosmetic_price,
                             'cosmetic_volume' => $cosmetic_volume,
-//                            'cosmetic_country' => $cosmetic_country,
+                            'cosmetic_country' => $cosmetic_country,
                             'cosmetic_description' => $cosmetic_description
                         );
                         $cosmeticModel->addCosmetics($cosmeticArray);
@@ -53,6 +53,12 @@
 
             $brandModel = new Brand();
             $brands = $brandModel->getAll();
+            $typeModel = new Type();
+            $types = $typeModel->getAll();
+            $categoryModel = new Category();
+            $categories = $categoryModel->getAll();
+            $countryModel = new Country();
+            $countries = $countryModel->getAll();
             include_once('./views/cosmetics/add.php');
 			return;
 		}
