@@ -1,1 +1,8 @@
-@import url('font-awesome.min.css');
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Myriad Pro", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.48; }

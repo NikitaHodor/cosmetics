@@ -3,12 +3,13 @@
 
 <head>
     <title> <?= $title; ?></title>
-    <link rel="stylesheet" href="<?= LIBS ?>bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="<?= CSS ?>main.css">
+    <link rel="stylesheet" href="<?= LIBS; ?>bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="<?= CSS; ?>font-awesome.min.css">
+    <link rel="stylesheet" href="<?= CSS; ?>/main.css">
 </head>
 
 <body>
-
+<header id="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand <?= ($title == 'Enso Cosmetics') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'cosmetics/list' ?>">
             Enso Cosmetics
@@ -55,3 +56,4 @@
             </form>
         </div>
     </nav>
+    </header>
