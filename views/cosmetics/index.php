@@ -16,9 +16,11 @@
             <? foreach ($cosmetics as $cosmetic): ?>
             <div class="card text-center border-dark">
                 <img src="../assets/img/cosmetic.jpg" class="card-img-top" alt="card-img">
-                <div class="card-footer">
+                <div class="card-img-overlay">
                     <span class="card-title">
-                        <a href="<?= SITE_ROOT . 'cosmetics/view/' . $cosmetic['cosmetic_id'] ?>"><?= $cosmetic['cosmetic_name']; ?></a>
+                        <a href="<?= SITE_ROOT . 'cosmetics/view/' . $cosmetic['cosmetic_id'] ?>">
+                            <?= $cosmetic['cosmetic_name']; ?>
+                        </a>
                     </span>
                 </div>
             </div>
