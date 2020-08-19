@@ -35,6 +35,7 @@
 			$db = DB::connect();
 			$query = "
             SELECT * FROM `cosmetics`
+            WHERE `cosmetic_is_deleted` = 0
             ORDER BY RAND()
             LIMIT 3;
             ";

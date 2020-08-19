@@ -2,10 +2,11 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> <?= $title; ?></title>
     <link rel="stylesheet" href="<?= LIBS; ?>bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?= CSS; ?>font-awesome.min.css">
-    <link rel="stylesheet" href="<?= CSS; ?>main.css">
+    <link rel="stylesheet" href="<?= CSS; ?>/main.css">
 </head>
 
 <body>
@@ -50,8 +51,8 @@
                     <? endif; ?>
                 </ul>
                 <form name="query" class="form-inline my-2 my-lg-0 <?= ($title == 'Поиск') ? 'active' : '' ?>" method="POST" action="<?= SITE_ROOT . 'search' ?>">
-                    <input name="inputQ" class="form-control mr-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit">Search</button>
+                    <input name="inputQ" class="form-control mr-sm-2" type="search" placeholder="Поиск">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
         </nav>
