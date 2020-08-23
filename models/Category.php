@@ -14,7 +14,7 @@
         public function getCosmeticByCategoryId($id) {
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))
-						->where("WHERE `cosmetic_category_id` = $id")
+						->where("WHERE `cosmetic_category_id` = $id AND `cosmetic_is_deleted` = 0")
 						->build(); 
 			$result = $db->query($query);
 			$categoryCosm = $result->fetchAll();

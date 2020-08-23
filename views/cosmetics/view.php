@@ -10,7 +10,7 @@
 	    </div>
 	    <? if (User::checkIfUserAuthorized()) : ?>
 		    <a href="<?= SITE_ROOT . 'cosmetics/edit/' . $cosmetic['cosmetic_id']; ?>" class="btn btn-primary">Редактировать</a>
-		    <a href="<?= SITE_ROOT . 'cosmetics/delete/' . $cosmetic['cosmetic_id']; ?>" class="btn btn-danger" onclick="deleteCosmeetic(<?= $cosmetic['cosmetic_id']; ?>, '<?= SITE_ROOT; ?>')">Удалить</a>
+		    <a class="btn btn-danger" onclick="deleteCosmetic(<?= $cosmetic['cosmetic_id']; ?>, '<?= SITE_ROOT; ?>')">Удалить</a>
 		<? endif; ?>
 	  </div>
 	</div>

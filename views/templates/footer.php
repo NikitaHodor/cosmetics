@@ -12,7 +12,7 @@
             </ul>
         </div>
     </nav>
-
+    <div class="copy text-center">Enso cosmetics&copy; <?php echo date("Y");?></div>
 </footer>
 <!-- Footer -->
 <script src="<?= LIBS; ?>jquery/jquery.js"> </script>

@@ -134,9 +134,9 @@
 		
 		setcookie('token', '', 60, '/');
 		setcookie('token_time', '', 60, '/');
-		setcookie('user_name', '', 60, '/');
+//		setcookie('user_name', '', 60, '/');
 		setcookie('user_id', '', 60, '/');
-		setcookie('admin', '', 60, '/');
+//		setcookie('admin', '', 60, '/');
 		setcookie('cart', '', 60, '/');
 		
 		session_destroy();
