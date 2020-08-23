@@ -28,7 +28,8 @@
 			";
 			$result = $db->query($query);
 			$userId = $db->lastInsertId();
-			$this->fullAuthorizedUser($userId);
+            $AdminVal = 0;
+			$this->fullAuthorizedUser($userId, $AdminVal);
 		}
 
 		public function checkIfLoginAndPasswordExists($login, $password) {
@@ -49,35 +50,38 @@
 
 		public function auth($login) {
 			$userId = $this->getUserIdByLogin($login);
-			if ($userId !== 0) {
-				$this->fullAuthorizedUser($userId);
+			if (!empty($userId)) {
+                $Id = $userId['user_id'];
+                $Admin = $userId['user_is_admin'];
+				$this->fullAuthorizedUser($Id, $Admin);
 			}
 		}
 
 		public function getUserIdByLogin($login) {
 			$db = DB::connect();
 			$query = (new Select('users'))
-						->what(['user_id'])
+						->what(['user_id, user_is_admin'])
 						->where("WHERE user_login = '$login'")
 						->build();
 			$result = $db->query($query);
 			$userInfo = $result->fetch();
-			return isset($userInfo['user_id']) ? $userInfo['user_id'] : 0;
+			return $userInfo;
 		}
 
-		private function fullAuthorizedUser($userId) {
+		private function fullAuthorizedUser($Id, $Admin) {
 			session_start();
 			$helper = new Helper();
 			$token = $helper->generateToken();
 			$tokenTime = time() + 60*60; 
 			setcookie('token', $token, time() + 2*24*60*60, '/');
-			setcookie('user_id', $userId, time() + 2*24*60*60, '/');
+			setcookie('user_id', $Id, time() + 2*24*60*60, '/');
+            setcookie('user_is_admin', $Admin, time() + 2*24*60*60, '/');
 			setcookie('token_time', $tokenTime, time() + 2*24*60*60, '/');
 			$db = DB::connect();
 			$query = "
 				INSERT INTO `connects`
 					SET `connect_token` = '$token', 
-						`connect_user_id` = $userId,
+						`connect_user_id` = $Id,
 						`connect_token_time` = FROM_UNIXTIME($tokenTime);
 			";
 			$db->query($query);
@@ -121,6 +125,13 @@
 			
 
 		}
+        public static function checkIfAdminAuthorized() {
+            if(isset($_COOKIE['user_is_admin']) && $_COOKIE['user_is_admin'] == 1){
+                return true;
+            } else {
+                return false;
+            }
+        }
         
         public function exitUser() {
 			if (isset($_COOKIE['token'])) {
@@ -136,7 +147,7 @@
 		setcookie('token_time', '', 60, '/');
 //		setcookie('user_name', '', 60, '/');
 		setcookie('user_id', '', 60, '/');
-//		setcookie('admin', '', 60, '/');
+		setcookie('user_is_admin', '', 60, '/');
 		setcookie('cart', '', 60, '/');
 		
 		session_destroy();
