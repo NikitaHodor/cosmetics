@@ -49,10 +49,10 @@
 		}
 
 		public function auth($login) {
-			$userId = $this->getUserIdByLogin($login);
-			if (!empty($userId)) {
-                $Id = $userId['user_id'];
-                $Admin = $userId['user_is_admin'];
+			$userInfo = $this->getUserIdByLogin($login);
+			if (!empty($userInfo)) {
+                $Id = $userInfo['user_id'];
+                $Admin = $userInfo['user_is_admin'];
 				$this->fullAuthorizedUser($Id, $Admin);
 			}
 		}
@@ -75,7 +75,11 @@
 			$tokenTime = time() + 60*60; 
 			setcookie('token', $token, time() + 2*24*60*60, '/');
 			setcookie('user_id', $Id, time() + 2*24*60*60, '/');
-            setcookie('user_is_admin', $Admin, time() + 2*24*60*60, '/');
+
+            if($Admin){//скрываем куку от глаз не админа
+                setcookie('user_is_admin', $Admin, time() + 2*24*60*60, '/');
+            }
+
 			setcookie('token_time', $tokenTime, time() + 2*24*60*60, '/');
 			$db = DB::connect();
 			$query = "
@@ -126,7 +130,7 @@
 
 		}
         public static function checkIfAdminAuthorized() {
-            if(isset($_COOKIE['user_is_admin']) && $_COOKIE['user_is_admin'] == 1){
+            if(isset($_COOKIE['user_is_admin'])){
                 return true;
             } else {
                 return false;
