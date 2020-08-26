@@ -8,15 +8,16 @@
 
             $search = $_POST["inputQ"];
 //                echo $_POST["inputQ"]; //отладка
-            if(empty($search)){
-                echo 'введите поисковой запрос';
-                exit();
-            }else{
+
+//            if(empty($search)){
+//                echo 'type smth';
+//
+//            }else{
                 $searchModel = new Search();
 			    $searchResults = $searchModel->getAll($search);
-			    include_once('./views/search/view.php');
                 echo $search;
-            }
+//            }
+            include_once('./views/search/view.php');
 
 			return;
 		}

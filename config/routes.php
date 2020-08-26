@@ -41,6 +41,15 @@
 		"OrdersController" => array(
 			"orders/add" => "add"
 		),
+        "FAQsController" => array(
+			"faq" => "index"
+		),
+        "ContactsController" => array(
+			"contact" => "index"
+		),
+        "AboutController" => array(
+			"about" => "index"
+		),
         "SearchController" => array(
 			"search" => "view" //работа над поиском
 		),

@@ -31,7 +31,7 @@
                         <a class="nav-link" href="<?= SITE_ROOT . 'services/list' ?>">Салон</a>
                     </li>
                     <li class="nav-item <?= ($title == 'FAQs') ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= SITE_ROOT . '' ?>">FAQs</a>
+                        <a class="nav-link" href="<?= SITE_ROOT . 'faq' ?>">FAQs</a>
                     </li>
                     <li class="nav-item <?= ($title == 'Корзина') ? 'active' : '' ?>">
                         <a class="nav-link" href="<?= SITE_ROOT . 'cart' ?>"><i class="fa fa-shopping-cart"></i></a>

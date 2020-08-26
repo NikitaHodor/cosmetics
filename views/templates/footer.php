@@ -5,10 +5,10 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item <?= ($title == 'О нас') ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= SITE_ROOT . '' ?>">О нас</a>
+                    <a class="nav-link" href="<?= SITE_ROOT . 'about' ?>">О нас</a>
                 </li>
                 <li class="nav-item <?= ($title == 'Контакты') ? 'active' : '' ?>">
-                    <a class="nav-link" href="<?= SITE_ROOT . '' ?>">Контакты</a>
+                    <a class="nav-link" href="<?= SITE_ROOT . 'contact' ?>">Контакты</a>
             </ul>
         </div>
     </nav>

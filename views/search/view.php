@@ -1,4 +1,7 @@
 <? include_once('./views/templates/header.php'); ?>
+<? if (!$search): ?>
+		<h3> Введите поисковой запрос</h3>
+	<? else: ?>
 <h1> Косметика по запросу </h1>
 <table class="table table-hover">
 	<thead>
@@ -16,4 +19,5 @@
 		<? endforeach; ?>
 	</tbody>
 </table>
+<? endif; ?>
 <? include_once('./views/templates/footer.php'); ?>
