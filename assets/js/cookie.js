@@ -5,16 +5,21 @@ function getCookie(name) {
 	return matches ? decodeURIComponent(matches[1]) : '';
 }
 
-function deleteCookie(name, path) {
-	if (path == undefined) {
-		path = '/';
-	}
+function deleteCookie(name) {
+  setCookie(name, "", {
+    'max-age': -1
+  })
 
-	setCookie(name, "", {
-    	expires: -1,
-		path: path,
-	});
-}
+//function deleteCookie(name, path) {
+//	if (path == undefined) {
+//		path = '/';
+//	}
+//
+//	setCookie(name, "", {
+//    	expires: -1,
+//		path: path,
+//	});
+//}
 
 function setCookie(name, value, options) {
 	options = options || {};

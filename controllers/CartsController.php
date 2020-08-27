@@ -7,7 +7,7 @@
 			$title = 'Корзина';
 			$cartString = isset($_COOKIE['cart']) ? $_COOKIE['cart'] : ""; 
             $cart = "";
-			if ($cartString !== "") {
+			if ($cartString !== "" && $cartString !== "{}") {// добавил проверку куки на "{}"
 				$cart = json_decode($cartString, true);
 				if (isset($_POST['user_name'])) {
 					$helper = new Helper();
@@ -26,7 +26,7 @@
 				$cosmeticModel = new Cosmetic();
 				$cosmeticList = $cosmeticModel->getCosmeticListForOrder($cosmeticIdList);
 			}
-//			echo $_COOKIE['user_id'];//отладка
+			print_r($cart);//отладка
 			
 			include_once('./views/carts/index.php');
 		}

@@ -86,7 +86,7 @@
 						->build();
 
 			$result = $db->query($query); 
-			$cosmetics = $result->fetchAll();
-			return $cosmetics;
+			$cosmeticList = $result->fetchAll();
+			return $cosmeticList;
 		}
 	}

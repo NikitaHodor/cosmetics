@@ -9,7 +9,7 @@
 		}
 
 		public function add() {
-			if (User::checkIfUserAuthorized()) {
+			if (User::checkIfAdminAuthorized()) {
 				$this->controller->add();
 			} else {
 				echo "У вас нет прав";
@@ -18,7 +18,7 @@
 		}
 
 		public function edit($parameters = []) {
-			if (User::checkIfUserAuthorized()) {
+			if (User::checkIfAdminAuthorized()) {
 				$this->controller->edit($parameters);
 			} else {
 				echo "У вас нет прав";
@@ -27,7 +27,7 @@
 		}
 
 		public function delete($parameters = []) {
-			if (User::checkIfUserAuthorized()) {
+			if (User::checkIfAdminAuthorized()) {
 				$this->controller->delete($parameters);
 			} else {
 				echo "У вас нет прав";
