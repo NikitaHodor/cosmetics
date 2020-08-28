@@ -22,20 +22,36 @@ function addToCart(id) {
 
 
 function delFromCart(id, site_root) {
+
+
+
     let cart = (getCookie('cart') === "") ? {} : JSON.parse(getCookie('cart'));
     if (cart.hasOwnProperty(id)) {
-        if (cart[id] > 1){
-             cart[id]--;
+        if (cart[id] > 1) {
+            cart[id]--;
         } else {
-        delete(cart[id]);
-    }
-         setCookie('cart', JSON.stringify(cart), {
-        'expires': 2 * 24 * 60 * 60,
-        'path': '/'
-    });
+            delete(cart[id]);
+        }
+        setCookie('cart', JSON.stringify(cart), {
+            'expires': 2 * 24 * 60 * 60,
+            'path': '/'
+        });
     } else {
         deleteCookie('cart');
     }
 
-    window.location.href = `${site_root}cart`; //пока колхозный вариант обновления корзины
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', `${site_root}cart`);
+    xhr.responseType = 'document';
+    xhr.send();
+    // тело ответа
+    xhr.onload = function () {
+        let responseObj = xhr.response;
+        if (responseObj.getElementById("cartCont")){
+            document.getElementById("cartCont").innerHTML = responseObj.getElementById("cartCont").innerHTML;
+        }else {
+            window.location.href = `${site_root}cart`; //пока колхозный вариант обновления корзины
+        }
+
+    };
 }

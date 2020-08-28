@@ -43,7 +43,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody id="try">
+                <tbody id="cartCont">
                     <? foreach ($cosmeticList as $cosmetic): ?>
                     <tr>
                         <td> <?= $cosmetic['cosmetic_id']; ?></td>
