@@ -1,6 +1,5 @@
 <!-- Footer -->
-<footer id="Footer" class="page-footer font-small bg-dark text-white">
-
+<footer id="Footer" class="page-footer font-small bg-dark text-white fluid">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">

@@ -70,6 +70,7 @@
 
 		private function fullAuthorizedUser($Id, $Admin) {
 			session_start();
+            $sessionId = $_COOKIE['PHPSESSID'];
 			$helper = new Helper();
 			$token = $helper->generateToken();
 			$tokenTime = time() + 60*60; 
@@ -84,7 +85,8 @@
 			$db = DB::connect();
 			$query = "
 				INSERT INTO `connects`
-					SET `connect_token` = '$token', 
+					SET `connect_session_id` = '$sessionId',
+                        `connect_token` = '$token',
 						`connect_user_id` = $Id,
 						`connect_token_time` = FROM_UNIXTIME($tokenTime);
 			";
@@ -120,7 +122,7 @@
 						UPDATE `connects`
 							SET `connect_token` = '$newToken', 
 								`connect_token_time` = FROM_UNIXTIME($newTokenTime)
-							WHERE `connect_id` = ;
+							WHERE `connect_id` = '$connectId';
 					";
 				}
 				return true;
@@ -149,10 +151,10 @@
 		
 		setcookie('token', '', 60, '/');
 		setcookie('token_time', '', 60, '/');
-//		setcookie('user_name', '', 60, '/');
 		setcookie('user_id', '', 60, '/');
 		setcookie('user_is_admin', '', 60, '/');
 		setcookie('cart', '', 60, '/');
+//        setcookie('PHPSESSID', '', 60, '/');
 		
 		session_destroy();
 	}
