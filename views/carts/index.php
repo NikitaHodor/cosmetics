@@ -1,7 +1,9 @@
 <? include_once('./views/templates/header.php'); ?>
 
 
-<div class="container">
+<div id="wrap">
+    <div id="main" class="container clear-top">
+
     <? if (!$cart): ?>
     <h3> Ваша корзина пуста</h3>
     <? else: ?>
@@ -56,13 +58,15 @@
                     <? endforeach; ?>
                 </tbody>
             </table>
-            <div class="row">
+            <div class="container">
                 <button type="submit" class="btn btn-primary">Заказать</button>
             </div>
         </form>
     </div>
 
-</div>
 <? endif; ?>
+
+</div>
+</div>
 
 <? include_once('./views/templates/footer.php'); ?>

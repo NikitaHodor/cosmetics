@@ -6,7 +6,7 @@
     <title> <?= $title; ?></title>
     <link rel="stylesheet" href="<?= LIBS; ?>bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="<?= CSS; ?>font-awesome.min.css">
-    <link rel="stylesheet" href="<?= CSS; ?>/main.css">
+    <link rel="stylesheet" href="<?= CSS; ?>main.css">
 </head>
 
 <body>

@@ -1,4 +1,7 @@
 <? include_once('./views/templates/header.php'); ?>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+
 <? foreach ($categoryCosm as $cosmetic): ?>
 <div class="card" style="width: 18rem;">
     <img src="..." class="card-img-top" alt="...">
@@ -15,4 +18,6 @@
     </div>
 </div>
 <? endforeach; ?>
+</div>
+</div>
 <? include_once('./views/templates/footer.php'); ?>

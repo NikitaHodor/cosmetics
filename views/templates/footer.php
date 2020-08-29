@@ -1,6 +1,6 @@
 <!-- Footer -->
-<footer id="Footer" class="page-footer font-small bg-dark text-white fluid">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<footer id="Footer" class="footer font-small bg-dark text-white">
+    <nav class="navbar navbar-expand-sm navbar-static-bottom navbar-dark bg-dark">
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav">
                 <li class="nav-item <?= ($title == 'О нас') ? 'active' : '' ?>">
@@ -16,7 +16,7 @@
 <!-- Footer -->
 <script src="<?= LIBS; ?>jquery/jquery.js"> </script>
 <script src="<?= LIBS; ?>bootstrap/js/bootstrap.js"> </script>
-<script src="<?= JS; ?>footerFixer.js"></script>
+<!--<script src="<?= JS; ?>footerFixer.js"></script>-->
 <script src="<?= JS; ?>cookie.js"> </script>
 <script src="<?= JS; ?>index.js"> </script>
 </body>

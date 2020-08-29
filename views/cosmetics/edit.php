@@ -1,4 +1,7 @@
 <? include_once('./views/templates/header.php'); ?>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+
 <? if (isset($errors) && !empty($errors)): ?>
 <div>
     <? foreach ($errors as $error): ?>
@@ -31,4 +34,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Отправить</button>
 </form>
+</div>
+</div>
 <? include_once('./views/templates/footer.php'); ?>

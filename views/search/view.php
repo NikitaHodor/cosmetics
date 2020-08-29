@@ -1,4 +1,7 @@
 <? include_once('./views/templates/header.php'); ?>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+
 <? if (!$search): ?>
 		<h3> Введите поисковой запрос</h3>
 	<? else: ?>
@@ -7,7 +10,7 @@
 	<thead>
 		<tr>
 			<th>
-				Косметика
+				Наименование
 			</th>
 		</tr>
 	</thead>
@@ -20,4 +23,6 @@
 	</tbody>
 </table>
 <? endif; ?>
+</div>
+</div>
 <? include_once('./views/templates/footer.php'); ?>
