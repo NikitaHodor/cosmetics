@@ -1,13 +1,12 @@
 <? include_once('./views/templates/header.php'); ?>
-<div id="wrap">
-    <div id="main" class="container clear-top">
+
 
         <h1> Главная </h1>
-        <div class="container">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-4">Банер - заглушка</h1>
-                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repellat officiis, ea esse sunt odit cupiditate ipsum ad, nostrum animi aperiam reprehenderit! Esse quis saepe cum eum quam dicta. Error.</p>
+        <div class="container jumbo-container">
+            <div class="jumbotron jumbo-banner fluid">
+                <div class="container jumbo-text">
+                    <h1>Баннер - заглушка</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repellat officiis, ea esse sunt odit cupiditate ipsum ad, nostrum animi aperiam reprehenderit! Esse quis saepe cum eum quam dicta. Error.</p>
                 </div>
             </div>
         </div>
@@ -28,7 +27,6 @@
                 <? endforeach; ?>
             </div>
         </div>
-    </div>
-</div>
+
 
 <? include_once('./views/templates/footer.php'); ?>

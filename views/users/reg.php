@@ -1,6 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
-<div id="wrap">
-    <div id="main" class="container clear-top">
+
 
 <? if (isset($errors) && !empty($errors)): ?>
 <div>
@@ -9,7 +8,8 @@
     <? endforeach; ?>
 </div>
 <? endif; ?>
-<form method="POST">
+<div class="container reg-container col-md-6">
+<form method="POST" class="reg-form">
   <div class="form-group">
     <label for="user_login">Логин</label>
     <input type="text" class="form-control" name="user_login" 
@@ -26,8 +26,8 @@
     value="<?= isset($_POST['user_password_repeat']) ? $_POST['user_password_repeat'] : ""; ?>">
   </div>
   
-  <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+  <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
 </form>
 </div>
-</div>
+
 <? include_once('./views/templates/footer.php'); ?>

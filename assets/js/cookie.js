@@ -3,12 +3,13 @@ function getCookie(name) {
 		"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
 	));
 	return matches ? decodeURIComponent(matches[1]) : '';
-}
+};
 
 function deleteCookie(name) {
   setCookie(name, "", {
     'max-age': -1
   })
+};
 
 //function deleteCookie(name, path) {
 //	if (path == undefined) {
@@ -48,4 +49,4 @@ function setCookie(name, value, options) {
 	}
 
 	document.cookie = updatedCookie;
-}
+};

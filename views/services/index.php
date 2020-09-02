@@ -1,32 +1,25 @@
 <? include_once('./views/templates/header.php'); ?>
-<div id="wrap">
-    <div id="main" class="container clear-top">
+
 
 <h1> Салон </h1>
-<table class="table table-hover"> 
-	<thead> 
-		<tr> 
-			<th>
-				ID 
-			</th>
-			<th>
-				Услуга  
-			</th>
-		</tr>
-	</thead>
-	<tbody> 
-		<? foreach ($services as $service): ?>
-			<tr> 
-				<td> <?= $service['service_id']; ?></td>
-				<td>
-				<a href="<?= SITE_ROOT . 'services/view/' . $service['service_id'] ?>" >
+ <? foreach ($services as $service): ?>
+  <div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="../assets/img/cosmetic2.jpg" class="card-img" alt="card-img">
+    </div>
+    <div class="col-md-8 my-auto">
+      <div class="card-body">
+        <h5 class="card-title text-center">
+        <a href="<?= SITE_ROOT . 'services/view/' . $service['service_id'] ?>" >
 				 <?= $service['service_name']; ?>
                 </a>
-                </td>
-			</tr>
-		<? endforeach; ?>
-	</tbody>
-</table>
+        </h5>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+    <? endforeach; ?>
+
+
 <? include_once('./views/templates/footer.php'); ?>

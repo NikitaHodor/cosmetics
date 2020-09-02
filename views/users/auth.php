@@ -1,6 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
-<div id="wrap">
-    <div id="main" class="container clear-top">
+
 
 	<? if (isset($errors) && !empty($errors)): ?>
 		<div> 
@@ -9,7 +8,8 @@
 			<? endforeach; ?>
 		</div>
 	<? endif; ?>
-	<form method="POST"> 
+	<div class="container auth-container col-md-6">
+	<form method="POST" class="auth-form">
 		<div class="form-group">
 		    <label>Логин</label>
 		    <input type="text" class="form-control" name="user_login" 
@@ -20,8 +20,8 @@
 		    <input type="password" class="form-control" name="user_password" 
 		    	value="<?= isset($_POST['user_password']) ? $_POST['user_password']: ""; ?>">
 		</div>
-	    <button type="submit" class="btn btn-primary">Авторизироваться</button>
+	    <button type="submit" class="btn btn-secondary">Авторизироваться</button>
 	</form>
 	</div>
-</div>
+
 <? include_once('./views/templates/footer.php'); ?>

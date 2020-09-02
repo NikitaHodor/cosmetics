@@ -9,7 +9,7 @@
             $cart = "";
 			if ($cartString !== "" && $cartString !== "{}") {// добавил проверку куки на "{}"
 				$cart = json_decode($cartString, true);
-				if (isset($_POST['user_name'])) {
+				if (!empty($_POST['user_name']) && !empty($_POST['user_phone']) && !empty($_POST['user_email'])) {
 					$helper = new Helper();
 					$user_name = $helper->escape($_POST['user_name']); 
 					$user_phone = $helper->escape($_POST['user_phone']); 
@@ -26,7 +26,7 @@
 				$cosmeticModel = new Cosmetic();
 				$cosmeticList = $cosmeticModel->getCosmeticListForOrder($cosmeticIdList);
 			}
-			print_r($cart);//отладка
+//			print_r($cart);//отладка
 			
 			include_once('./views/carts/index.php');
 		}

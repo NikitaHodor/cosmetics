@@ -1,14 +1,13 @@
 <? include_once('./views/templates/header.php'); ?>
 
 
-<div id="wrap">
-    <div id="main" class="container clear-top">
 
     <? if (!$cart): ?>
     <h3> Ваша корзина пуста</h3>
     <? else: ?>
     <div class="row">
-        <form method="POST">
+       <div class="container cart-container col-md-6">
+        <form method="POST" class="cart-form">
             <div class="form-group">
                 <label>Имя</label>
                 <input type="text" class="form-control" name="user_name" value="<?= isset($_POST['user_name']) ? $_POST['user_name'] : ""; ?>">
@@ -32,13 +31,13 @@
                             Название
                         </th>
                         <th>
-                            Цена за ед.
+                            Цена
                         </th>
                         <th>
                             Количество
                         </th>
                         <th>
-                            Общая сумма
+                            Сумма
                         </th>
                         <th>
                             Действие
@@ -59,14 +58,13 @@
                 </tbody>
             </table>
             <div class="container">
-                <button type="submit" class="btn btn-primary">Заказать</button>
+                <button type="submit" class="btn btn-secondary">Заказать</button>
             </div>
         </form>
+        </div>
     </div>
 
 <? endif; ?>
 
-</div>
-</div>
 
 <? include_once('./views/templates/footer.php'); ?>

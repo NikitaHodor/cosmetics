@@ -1,7 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
 
-<div id="wrap">
-    <div id="main" class="container clear-top">
 <h1> Каталог </h1>
  <? foreach ($categories as $category): ?>
   <div class="card mb-3">
@@ -21,7 +19,6 @@
   </div>
 </div>
     <? endforeach; ?>
-    </div>
-</div>
+
 
 <? include_once('./views/templates/footer.php'); ?>
