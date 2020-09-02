@@ -6,7 +6,7 @@
     <h3> Ваша корзина пуста</h3>
     <? else: ?>
     <div class="row">
-       <div class="container cart-container col-md-6">
+       <div class="container cart-container col-md-8">
         <form method="POST" class="cart-form">
             <div class="form-group">
                 <label>Имя</label>

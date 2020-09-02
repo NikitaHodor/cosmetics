@@ -14,7 +14,7 @@
         <div class="container">
             <div class="card-deck">
                 <? foreach ($cosmetics as $cosmetic): ?>
-                <div class="card text-center border-dark">
+                <div class="card main_card">
                     <img src="../assets/img/cosmetic.jpg" class="card-img-top" alt="card-img">
                     <div class="card-img-overlay">
                         <span class="card-title">

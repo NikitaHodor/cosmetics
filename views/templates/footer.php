@@ -3,7 +3,7 @@
 <!-- Footer -->
 <footer id="Footer" class="footer font-small bg-dark text-white">
     <nav class="navbar navbar-expand navbar-static-bottom navbar-dark bg-dark">
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-center">
             <ul class="navbar-nav">
                 <li class="nav-item <?= ($title == 'О нас') ? 'active' : '' ?>">
                     <a class="nav-link" href="<?= SITE_ROOT . 'about' ?>">О нас</a>
@@ -16,11 +16,11 @@
     <div class="copy text-center">Enso cosmetics&copy; <?php echo date("Y");?></div>
 </footer>
 <!-- Footer -->
-<script src="<?= LIBS; ?>jquery/jquery.js"> </script>
+<script src="<?= LIBS; ?>jquery/jquery.js"></script>
 <script src="<?= LIBS; ?>bootstrap/js/bootstrap.js"></script>
 <!--<script src="<?= JS; ?>footerFixer.js"></script>-->
-<script src="<?= JS; ?>cookie.js"> </script>
-<script src="<?= JS; ?>index.js"> </script>
+<script src="<?= JS; ?>cookie.js"></script>
+<script src="<?= JS; ?>index.js"></script>
 </body>
 
 </html>

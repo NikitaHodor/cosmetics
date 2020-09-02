@@ -13,19 +13,23 @@ body {
     line-height: 1.48;
 }
 .jumbo-banner {
-    background-image: url(../img/banner%20.jpg);
+    background-image: url(../img/banner.jpg);
     background-size: cover;
     height: 100%;
     min-height: 539px;
     background-position: center;
 }
+.main_card {
+    text-align: center;
+}
 
 #wrap {
   min-height: 100%;
+/*    background-color: darkgray;*/
 }
 
 #main {
-  overflow:auto;
+overflow:auto;
   padding-bottom:150px; /* this needs to be bigger than footer height*/
 }
 
@@ -56,6 +60,6 @@ a:hover {
 .auth-form, .reg-form, .cart-form{
     margin: 0 auto;
     padding: 20px;
-background-color: #fff;
+background-color: darkgray;
     box-shadow: 0 0 10px #ccc;
 }
