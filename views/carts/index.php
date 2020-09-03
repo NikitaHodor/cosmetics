@@ -1,7 +1,9 @@
 <? include_once('./views/templates/header.php'); ?>
 
 
-
+<? if (!User::checkIfUserAuthorized()) : ?>
+   <h3> Пожалуйста авторизуйтесь или зарегистрируйтесь! </h3>
+   <? else: ?>
     <? if (!$cart): ?>
     <h3> Ваша корзина пуста</h3>
     <? else: ?>
@@ -24,9 +26,11 @@
             <table class="table">
                 <thead>
                     <tr>
+<!--
                         <th>
                             ID
                         </th>
+-->
                         <th>
                             Название
                         </th>
@@ -47,24 +51,24 @@
                 <tbody id="cartCont">
                     <? foreach ($cosmeticList as $cosmetic): ?>
                     <tr>
-                        <td> <?= $cosmetic['cosmetic_id']; ?></td>
+<!--                        <td> <?= $cosmetic['cosmetic_id']; ?></td>-->
                         <td> <?= $cosmetic['cosmetic_name']; ?></td>
                         <td> <?= $cosmetic['cosmetic_price']; ?></td>
                         <td> <?= $cart[$cosmetic['cosmetic_id']]; ?></td>
                         <td> <?= $cosmetic['cosmetic_price'] * $cart[$cosmetic['cosmetic_id']]; ?></td>
-                        <td><a class="btn btn-danger" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">Убрать</a></td>
+                        <td><a class="btn btn-outline-danger btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">Убрать</a></td>
                     </tr>
                     <? endforeach; ?>
                 </tbody>
             </table>
-            <div class="container">
+
                 <button type="submit" class="btn btn-secondary">Заказать</button>
-            </div>
+
         </form>
         </div>
     </div>
 
 <? endif; ?>
-
+<? endif; ?>
 
 <? include_once('./views/templates/footer.php'); ?>
