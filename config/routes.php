@@ -15,7 +15,8 @@
 			"categories/view/([0-9]+)" => "view/$1"
 		),
 		"BrandsController" => array(
-			"brands/list" => "index", 
+			"brands/list" => "index",
+            "brands/view/([0-9]+)" => "view/$1",
 			"brands/add" => "add"
 		),
         "ServicesController" => array(

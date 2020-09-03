@@ -11,5 +11,13 @@
 			return $brands;
 		}
 
-
+        public function getCosmeticByBrandId($id) {
+			$db = DB::connect();
+			$query = (new Select('cosmetics'))
+						->where("WHERE `cosmetic_brand_id` = $id AND `cosmetic_is_deleted` = 0")
+						->build();
+			$result = $db->query($query);
+			$brandCosm = $result->fetchAll();
+			return $brandCosm;
+		}
 	}
