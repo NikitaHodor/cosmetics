@@ -36,6 +36,9 @@
 			"auth" => "auth",
             "logout" => "out"
 		),
+        "AdminPanelController" => array(
+			"admin" => "panel"
+		),
 		"CartsController" => array(
 			"cart" => "index"
 		),

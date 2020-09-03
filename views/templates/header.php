@@ -21,6 +21,11 @@
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                  <? if (User::checkIfAdminAuthorized()) : ?>
+                   <li class="nav-item <?= ($title == 'Панель администратора') ? 'active' : '' ?>">
+                        <a class="nav-link" href="<?= SITE_ROOT . 'admin' ?>">Админ</a>
+                    </li>
+                    <? endif; ?>
                     <li class="nav-item <?= ($title == 'Каталог') ? 'active' : '' ?>">
                         <a class="nav-link" href="<?= SITE_ROOT . 'categories/list' ?>">Каталог</a>
                     </li>
