@@ -9,22 +9,22 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="<?= SITE_ROOT . 'admin/cosmetics'; ?>" class="nav-link">
+            <a href="<?= SITE_ROOT . 'admin/cosmetics/'; ?>" class="nav-link">
                 Косметика
             </a>
         </li>
         <li class="nav-item">
-            <a href="<?= SITE_ROOT . 'admin/categories'; ?>" class="nav-link">
+            <a href="<?= SITE_ROOT . 'admin/categories/'; ?>" class="nav-link">
                 Категории каталога
             </a>
         </li>
         <li class="nav-item">
-            <a href="<?= SITE_ROOT . 'admin/brands'; ?>" class="nav-link">
+            <a href="<?= SITE_ROOT . 'admin/brands/'; ?>" class="nav-link">
                 Бренды
             </a>
         </li>
         <li class="nav-item">
-            <a href="<?= SITE_ROOT . 'admin/services'; ?>" class="nav-link">
+            <a href="<?= SITE_ROOT . 'admin/services/'; ?>" class="nav-link">
                 Услуги салона
             </a>
         </li>

@@ -7,11 +7,11 @@
             include_once('./views/admin/panel.php');
             return;
     }
-        public function usersList($parameters = []) {
+        public function usersList($parameters = []) {//read
             $title = 'Список пользователей';
             $id = $parameters[0];
             $usersModel = new AdminPanel();
-			$users = $usersModel->getAll();
+			$users = $usersModel->getUsers();
 
 
 
@@ -43,11 +43,107 @@
                 return;
             } else if (isset($_POST['delete_submit'])) {//delete
                  $userDeleteModel = new AdminPanel();
-			     $userDelete = $userDeleteModel->deleteUser($id);
+			     $userDeleteModel->deleteUser($id);
                  header('Location: ' . SITE_ROOT . 'admin/users/');
                 return;
             }
             include_once('./views/admin/users/index.php');
+    }
+
+         public function cosmeticsList($parameters = []) {
+            $title = 'Список товаров';
+            $id = $parameters[0];
+            $cosmeticsModel = new Cosmetic();
+			$cosmetics = $cosmeticsModel->getAll();
+
+
+
+            if (isset($_POST['add_submit'])) {//add
+                $helper = new Helper();
+                    $cosmetic_name = $helper->escape($_POST['cosmetic_name']);
+                    $cosmetic_type = $helper->escape($_POST['cosmetic_type']);
+                    $cosmetic_category = $helper->escape($_POST['cosmetic_category']);
+                    $cosmetic_brand = $helper->escape($_POST['cosmetic_brand']);
+                    $cosmetic_price = $helper->escape($_POST['cosmetic_price']);
+                    $cosmetic_volume = $helper->escape($_POST['cosmetic_volume']);
+                    $cosmetic_country = $helper->escape($_POST['cosmetic_country']);
+                    $cosmetic_description = $helper->escape($_POST['cosmetic_description']);
+
+               $validation = new Validation();
+                    $errors = array();
+                    if(!$validation->checklength($cosmetic_name)){
+                        $errors[] = 'кол-во символов не должно быть меньше 2';
+                    }
+                     if(!$validation->checkNumber($cosmetic_price, 99999, 50)){
+                        $errors[] = 'цена не должна превышать 99999 или быть меньше 100';
+                    }
+                    if(empty($errors)){
+                        $cosmeticModel = new Cosmetic();
+                        $cosmeticArray = array(
+                        'cosmetic_name' => $cosmetic_name,
+                            'cosmetic_type' => $cosmetic_type,
+                            'cosmetic_category' => $cosmetic_category,
+                            'cosmetic_brand' => $cosmetic_brand,
+                          'cosmetic_price' => $cosmetic_price,
+                            'cosmetic_volume' => $cosmetic_volume,
+                            'cosmetic_country' => $cosmetic_country,
+                            'cosmetic_description' => $cosmetic_description
+                        );
+                        $cosmeticModel->addCosmetics($cosmeticArray);
+			            header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+			            return;
+                    }
+            } else if (isset($_POST['edit-submit'])) {//edit
+                $helper = new Helper();
+                    $cosmetic_name = $helper->escape($_POST['edit_cosmetic_name']);
+                    $cosmetic_type = $helper->escape($_POST['edit_cosmetic_type']);
+                    $cosmetic_category = $helper->escape($_POST['edit_cosmetic_category']);
+                    $cosmetic_brand = $helper->escape($_POST['edit_cosmetic_brand']);
+                    $cosmetic_price = $helper->escape($_POST['edit_cosmetic_price']);
+                    $cosmetic_volume = $helper->escape($_POST['edit_cosmetic_volume']);
+                    $cosmetic_country = $helper->escape($_POST['edit_cosmetic_country']);
+                    $cosmetic_description = $helper->escape($_POST['edit_cosmetic_description']);
+
+                    $validation = new Validation();
+                    $errors = array();
+                    if(!$validation->checklength($cosmetic_name)){
+                        $errors[] = 'кол-во символов не должно быть меньше 2';
+                    }
+                     if(!$validation->checkNumber($cosmetic_price, 99999, 50)){
+                        $errors[] = 'цена не должна превышать 99999 или быть меньше 100';
+                    }
+                    if(empty($errors)){
+                        $cosmeticModel = new Cosmetic();
+                        $cosmetic = array(
+                        'cosmetic_name' => $cosmetic_name,
+                            'cosmetic_type' => $cosmetic_type,
+                            'cosmetic_category' => $cosmetic_category,
+                            'cosmetic_brand' => $cosmetic_brand,
+                          'cosmetic_price' => $cosmetic_price,
+                            'cosmetic_volume' => $cosmetic_volume,
+                            'cosmetic_country' => $cosmetic_country,
+                            'cosmetic_description' => $cosmetic_description,
+                            'cosmetic_id' => $id
+                        );
+                        $cosmeticModel->updateCosmetic($cosmetic);
+                        header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                        return;
+                    }
+            } else if (isset($_POST['delete_submit'])) {//delete
+                 $cosmeticDeleteModel = new Cosmetic();
+			     $cosmeticDeleteModel->deleteCosmeticById($id);
+                 header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                return;
+            }
+             $brandModel = new Brand();
+            $brands = $brandModel->getAll();
+            $typeModel = new Type();
+            $types = $typeModel->getAll();
+            $categoryModel = new Category();
+            $categories = $categoryModel->getAll();
+            $countryModel = new Country();
+            $countries = $countryModel->getAll();
+            include_once('./views/admin/cosmetics/index.php');
     }
 
 }

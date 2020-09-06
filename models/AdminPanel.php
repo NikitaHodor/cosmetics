@@ -2,7 +2,7 @@
 
     class AdminPanel
     {
-        public function getAll() {
+        public function getUsers() {
 			$db = DB::connect();
 			$query = "SELECT * FROM `users`";
 			$result = $db->query($query);

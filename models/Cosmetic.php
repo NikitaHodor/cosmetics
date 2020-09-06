@@ -58,9 +58,13 @@
 			$db = DB::connect(); 
 			$query = "UPDATE `cosmetics`
                         SET `cosmetic_name` = '$cosmetic[cosmetic_name]',
-                            `cosmetic_price` = $cosmetic[cosmetic_price],
-                            `cosmetic_volume` = $cosmetic[cosmetic_volume],
-                            `cosmetic_brand_id` = $cosmetic[cosmetic_brand]
+                    `cosmetic_type_id` = '$cosmetic[cosmetic_type]',
+                    `cosmetic_category_id` = '$cosmetic[cosmetic_category]',
+					`cosmetic_brand_id` = '$cosmetic[cosmetic_brand]',
+					`cosmetic_price` = '$cosmetic[cosmetic_price]',
+					`cosmetic_volume` = '$cosmetic[cosmetic_volume]',
+                    `cosmetic_country_id` = '$cosmetic[cosmetic_country]',
+					`cosmetic_description` = '$cosmetic[cosmetic_description]'
                         WHERE `cosmetic_id` = $cosmetic[cosmetic_id]
             "; 
 			$db->query($query);
