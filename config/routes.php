@@ -36,13 +36,12 @@
 			"auth" => "auth",
             "logout" => "out"
 		),
-        "AdminPanelController" => array(//добить пути!!!
-            "admin/panel" => "panel",
+        "AdminPanelController" => array(
             "admin/users/([0-9]*)" => "usersList/$1",
             "admin/cosmetics/([0-9]*)" => "cosmeticsList/$1",
-            "admin/categories" => "categoriesList",
-            "admin/brands" => "brandsList",
-            "admin/services" => "servicesList"
+            "admin/categories/([0-9]*)" => "categoriesList/$1",
+            "admin/brands/([0-9]*)" => "brandsList/$1",
+            "admin/services/([0-9]*)" => "servicesList/$1"
 
 		),
 		"CartsController" => array(

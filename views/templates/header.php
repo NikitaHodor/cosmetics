@@ -22,8 +22,15 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                   <? if (User::checkIfAdminAuthorized()) : ?>
-                   <li class="nav-item <?= ($title == 'Панель администратора') ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= SITE_ROOT . 'admin/panel' ?>">Админ</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Админ</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item <?= ($title == 'Список пользователей') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/users/'; ?>">Пользователи</a>
+                            <a class="dropdown-item <?= ($title == 'Список товаров') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/cosmetics/'; ?>">Косметика</a>
+                            <a class="dropdown-item <?= ($title == 'Категории каталога') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/categories/'; ?>">Категории каталога</a>
+                            <a class="dropdown-item <?= ($title == 'Список брендов') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/brands/'; ?>">Бренды</a>
+                            <a class="dropdown-item <?= ($title == 'Услуги салона') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/services/'; ?>">Услуги салона</a>
+                        </div>
                     </li>
                     <? endif; ?>
                     <li class="nav-item <?= ($title == 'Каталог') ? 'active' : '' ?>">
