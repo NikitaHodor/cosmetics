@@ -2,11 +2,6 @@
 
     class AdminPanelController
     {
-        public function panel() {
-            $title = 'Панель администратора';
-            include_once('./views/admin/panel.php');
-            return;
-    }
         public function usersList($parameters = []) {//read
             $title = 'Список пользователей';
             $id = $parameters[0];
@@ -146,4 +141,39 @@
             include_once('./views/admin/cosmetics/index.php');
     }
 
+        public function categoriesList($parameters = []) {//read
+            $title = 'Категории каталога';
+            $id = $parameters[0];
+            $categoriesModel = new Category();
+			$categories = $categoriesModel->getAll();
+
+            if (isset($_POST['add_submit'])) {//add
+                $category_name = $_POST['category_name'];
+                $categoryInfo = array(
+                    'category_name' => $category_name
+                    );
+               $categoryModel = new Category();
+			     $category = $categoryModel->addCategory($categoryInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/categories/');
+                return;
+            } else if (isset($_POST['edit-submit'])) {//edit
+                $category_edit_name = $_POST['edit_name'];
+                $category_edit_id = $id;
+                $categoryEditInfo = array(
+                    'category_name' => $category_edit_name,
+                         'category_id' => $category_edit_id
+                    );
+                 $categoryEditModel = new Category();
+			     $categoryEditModel->editCategory($categoryEditInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/categories/');
+                return;
+            } else if (isset($_POST['delete_submit'])) {//delete
+                 $categoryDeleteModel = new Category();
+			     $categoryDeleteModel->deleteCategory($id);
+                 header('Location: ' . SITE_ROOT . 'admin/categories/');
+                return;
+            }
+
+            include_once('./views/admin/categories/index.php');
 }
+    }

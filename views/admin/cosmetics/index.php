@@ -4,7 +4,7 @@
     <div class="container panel-cosmetics-container">
         <div class="row">
             <div class="col mt-1">
-                <button class="btn btn-success mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-user-plus"></i></button>
+                <button class="btn btn-success mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-plus"></i></button>
                 <table class="table shadow ">
                     <thead class="thead-dark">
                         <tr>
