@@ -176,4 +176,74 @@
 
             include_once('./views/admin/categories/index.php');
 }
+        public function brandsList($parameters = []) {//read
+            $title = 'Список брендов';
+            $id = $parameters[0];
+            $brandsModel = new Brand();
+			$brands = $brandsModel->getAll();
+
+            if (isset($_POST['add_submit'])) {//add
+                $brand_name = $_POST['brand_name'];
+                $brandInfo = array(
+                    'brand_name' => $brand_name
+                    );
+               $brandModel = new Brand();
+			     $brand = $brandModel->addBrand($brandInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/brands/');
+                return;
+            } else if (isset($_POST['edit-submit'])) {//edit
+                $brand_edit_name = $_POST['edit_name'];
+                $brand_edit_id = $id;
+                $brandEditInfo = array(
+                    'brand_name' => $brand_edit_name,
+                         'brand_id' => $brand_edit_id
+                    );
+                 $brandEditModel = new Brand();
+			     $brandEditModel->editBrand($brandEditInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/brands/');
+                return;
+            } else if (isset($_POST['delete_submit'])) {//delete
+                 $brandDeleteModel = new Brand();
+			     $brandDeleteModel->deleteBrand($id);
+                 header('Location: ' . SITE_ROOT . 'admin/brands/');
+                return;
+            }
+
+            include_once('./views/admin/brands/index.php');
+}
+        public function servicesList($parameters = []) {//read
+            $title = 'Услуги салона';
+            $id = $parameters[0];
+            $servicesModel = new Service();
+			$services = $servicesModel->getAll();
+
+            if (isset($_POST['add_submit'])) {//add
+                $service_name = $_POST['service_name'];
+                $serviceInfo = array(
+                    'service_name' => $service_name
+                    );
+               $serviceModel = new Service();
+			     $service = $serviceModel->addService($serviceInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/services/');
+                return;
+            } else if (isset($_POST['edit-submit'])) {//edit
+                $service_edit_name = $_POST['edit_name'];
+                $service_edit_id = $id;
+                $serviceEditInfo = array(
+                    'service_name' => $service_edit_name,
+                         'service_id' => $service_edit_id
+                    );
+                 $serviceEditModel = new Service();
+			     $serviceEditModel->editService($serviceEditInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/services/');
+                return;
+            } else if (isset($_POST['delete_submit'])) {//delete
+                 $serviceDeleteModel = new Service();
+			     $serviceDeleteModel->deleteService($id);
+                 header('Location: ' . SITE_ROOT . 'admin/services/');
+                return;
+            }
+
+            include_once('./views/admin/services/index.php');
+}
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Авг 16 2020 г., 16:32
+-- Время создания: Сен 07 2020 г., 13:53
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -34,6 +34,10 @@ CREATE TABLE `adresses` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `adresses`:
+--
+
+--
 -- Дамп данных таблицы `adresses`
 --
 
@@ -53,13 +57,18 @@ CREATE TABLE `brands` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `brands`:
+--
+
+--
 -- Дамп данных таблицы `brands`
 --
 
 INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_is_deleted`) VALUES
 (1, 'Pier Auge', 0),
 (3, 'Metatron', 0),
-(4, 'Tony&guy', 0);
+(4, 'Tony&guy', 0),
+(7, 'Тестируем добавление/обновление в админке.', 0);
 
 -- --------------------------------------------------------
 
@@ -75,12 +84,20 @@ CREATE TABLE `carts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `carts`:
+--   `cart_cosmetic_id`
+--       `cosmetics` -> `cosmetic_id`
+--   `cart_order_id`
+--       `orders` -> `order_id`
+--
+
+--
 -- Дамп данных таблицы `carts`
 --
 
 INSERT INTO `carts` (`cart_id`, `cart_cosmetic_id`, `cart_order_id`, `cart_count`) VALUES
-(8, 4, 12, 1),
-(12, 3, 16, 3);
+(52, 1, 44, 1),
+(53, 1, 45, 1);
 
 -- --------------------------------------------------------
 
@@ -95,6 +112,10 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `categories`:
+--
+
+--
 -- Дамп данных таблицы `categories`
 --
 
@@ -103,7 +124,8 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_is_deleted`)
 (2, 'Тело', 0),
 (3, 'Волосы', 0),
 (4, 'Для мужчин', 0),
-(5, 'Специальные предложения', 0);
+(5, 'Специальные предложения', 0),
+(6, 'Тест на добавление/обновление', 0);
 
 -- --------------------------------------------------------
 
@@ -118,6 +140,12 @@ CREATE TABLE `connects` (
   `connect_user_id` int(10) UNSIGNED NOT NULL,
   `connect_token_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `connects`:
+--   `connect_user_id`
+--       `users` -> `user_id`
+--
 
 -- --------------------------------------------------------
 
@@ -139,6 +167,18 @@ CREATE TABLE `cosmetics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `cosmetics`:
+--   `cosmetic_type_id`
+--       `types` -> `type_id`
+--   `cosmetic_brand_id`
+--       `brands` -> `brand_id`
+--   `cosmetic_category_id`
+--       `categories` -> `category_id`
+--   `cosmetic_country_id`
+--       `countries` -> `country_id`
+--
+
+--
 -- Дамп данных таблицы `cosmetics`
 --
 
@@ -150,7 +190,8 @@ INSERT INTO `cosmetics` (`cosmetic_id`, `cosmetic_name`, `cosmetic_type_id`, `co
 (12, 'ADD CHECK', NULL, NULL, NULL, 1488, 1488, NULL, 'work or not?', 0),
 (13, 'ADD CHECK2', NULL, NULL, NULL, 222, 222, NULL, 'work or not2?', 0),
 (28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 0),
-(29, 'FULL ADD CHECK', 4, 5, 4, 6969, 69, 5, 'Проверка на добавление всех полей.', 0);
+(29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 0),
+(30, 'panel_cosmetics_edit_test', 6, 3, 4, 1000, 220, 5, 'Тестим редактирование в админке.', 0);
 
 -- --------------------------------------------------------
 
@@ -163,6 +204,10 @@ CREATE TABLE `countries` (
   `country_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `country_is_deleted` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `countries`:
+--
 
 --
 -- Дамп данных таблицы `countries`
@@ -188,6 +233,10 @@ CREATE TABLE `genders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `genders`:
+--
+
+--
 -- Дамп данных таблицы `genders`
 --
 
@@ -209,12 +258,20 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `orders`:
+--   `order_user_id`
+--       `users` -> `user_id`
+--   `order_status_id`
+--       `statuses` -> `status_id`
+--
+
+--
 -- Дамп данных таблицы `orders`
 --
 
 INSERT INTO `orders` (`order_id`, `order_user_id`, `order_status_id`, `order_info`) VALUES
-(12, 2, NULL, 'имя: Johnny Sins, телефон: 222222222222222, email: JohnnySins@gmail.com'),
-(16, 2, NULL, 'имя: Volodya, телефон: 89112231488, email: bolt@gmail.com');
+(44, 3, NULL, 'имя: lolkekcheburek, телефон: , email: '),
+(45, 3, NULL, 'имя: , телефон: , email: ');
 
 -- --------------------------------------------------------
 
@@ -229,13 +286,18 @@ CREATE TABLE `services` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `services`:
+--
+
+--
 -- Дамп данных таблицы `services`
 --
 
 INSERT INTO `services` (`service_id`, `service_name`, `service_is_deleted`) VALUES
 (1, 'Услуги косметолога', 0),
 (2, 'Услуги массажиста', 0),
-(3, 'Услуги мастера перманентного макияжа', 0);
+(3, 'Услуги мастера перманентного макияжа', 0),
+(4, 'Тестим добавление/обновление в админке.', 0);
 
 -- --------------------------------------------------------
 
@@ -247,6 +309,10 @@ CREATE TABLE `statuses` (
   `status_id` tinyint(1) UNSIGNED NOT NULL,
   `status_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `statuses`:
+--
 
 --
 -- Дамп данных таблицы `statuses`
@@ -269,6 +335,10 @@ CREATE TABLE `types` (
   `type_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `type_is_deleted` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `types`:
+--
 
 --
 -- Дамп данных таблицы `types`
@@ -301,13 +371,26 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- ССЫЛКИ ТАБЛИЦЫ `users`:
+--   `user_gender_id`
+--       `genders` -> `gender_id`
+--   `user_adress_id`
+--       `adresses` -> `adress_id`
+--
+
+--
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_surname`, `user_login`, `user_password`, `user_phone`, `user_email`, `user_gender_id`, `user_adress_id`, `user_is_admin`) VALUES
 (2, NULL, NULL, 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL, NULL, NULL, NULL, 1),
 (3, NULL, NULL, 'Johnny Sins', '15830c2f3218394a63d70b23d235cc1c', NULL, NULL, NULL, NULL, 0),
-(8, NULL, NULL, 'LoginCheck', '0ba4439ee9a46d9d9f14c60f88f45f87', NULL, NULL, NULL, NULL, 0);
+(8, NULL, NULL, 'LoginCheck', '0ba4439ee9a46d9d9f14c60f88f45f87', NULL, NULL, NULL, NULL, 0),
+(13, NULL, NULL, 'lolkek', '72b539c7a3e2391537445b2b876e2320', NULL, NULL, NULL, NULL, 0),
+(14, NULL, NULL, 'Malahov+', 'f576eb7edb662b8d5eabba2276e1d2bc', NULL, NULL, NULL, NULL, 0),
+(19, NULL, NULL, 'panel check', '3a2f39e05d7ff45c30d07400b4c3f070', NULL, NULL, NULL, NULL, 0),
+(32, NULL, NULL, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, NULL, NULL, NULL, 0),
+(33, NULL, NULL, 'test2', 'ad0234829205b9033196ba818f7a872b', NULL, NULL, NULL, NULL, 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -416,31 +499,31 @@ ALTER TABLE `adresses`
 -- AUTO_INCREMENT для таблицы `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
 --
 ALTER TABLE `cosmetics`
-  MODIFY `cosmetic_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `cosmetic_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT для таблицы `countries`
@@ -458,13 +541,13 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `services`
 --
 ALTER TABLE `services`
-  MODIFY `service_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `service_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses`
@@ -482,7 +565,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
