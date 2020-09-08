@@ -5,11 +5,11 @@
 			"cosmetics/list" => "index",
 			"cosmetics/view/([0-9]+)" => "view/$1"
 		),
-		"CosmeticsProxyController" => array(
-			"cosmetics/add" => "add",
-			"cosmetics/edit/([0-9]+)" => "edit/$1",
-			"cosmetics/delete/([0-9]+)" => "delete/$1"
-		),
+//		"CosmeticsProxyController" => array(
+//			"cosmetics/add" => "add",
+//			"cosmetics/edit/([0-9]+)" => "edit/$1",
+//			"cosmetics/delete/([0-9]+)" => "delete/$1"
+//		),
         "CategoriesController" => array(
 			"categories/list" => "index",
 			"categories/view/([0-9]+)" => "view/$1"
@@ -17,7 +17,7 @@
 		"BrandsController" => array(
 			"brands/list" => "index",
             "brands/view/([0-9]+)" => "view/$1",
-			"brands/add" => "add"
+//			"brands/add" => "add"
 		),
         "ServicesController" => array(
 			"services/list" => "index",
@@ -25,11 +25,11 @@
 		),
         "TypesController" => array(
 			"types/list" => "index",
-			"types/add" => "add"
+//			"types/add" => "add"
 		),
         "CountriesController" => array(
 			"countries/list" => "index",
-			"countries/add" => "add"
+//			"countries/add" => "add"
 		),
 		"UsersController" => array(
 			"register" => "reg",
