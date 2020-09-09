@@ -41,4 +41,14 @@
 			$result = $db->query($query);
             return;
 		}
+        public function addImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				INSERT INTO `images`
+					SET `image_url` = '$imageInfo[image_url]',
+						`image_cosmetic_id` = '$imageInfo[image_cosmetic_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
     }

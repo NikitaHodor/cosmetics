@@ -10,30 +10,38 @@
                         <tr>
                             <th>№</th>
                             <th>Наименование</th>
+<!--
                             <th>Тип</th>
                             <th>Категория</th>
                             <th>Бренд</th>
+-->
                             <th>Цена</th>
                             <th>Объём</th>
-                            <th>Страна</th>
+<!--                            <th>Страна</th>-->
                             <th>Описание</th>
+                            <th>img</th>
                             <th>Действие</th>
                         </tr>
                         <?php foreach ($cosmetics as $cosmetic): ?>
                         <tr>
                             <td><?=$cosmetic['cosmetic_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_name'] ?></td>
+<!--
                             <td><?=$cosmetic['cosmetic_type_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_category_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_brand_id'] ?></td>
+-->
                             <td><?=$cosmetic['cosmetic_price'] ?></td>
                             <td><?=$cosmetic['cosmetic_volume'] ?></td>
-                            <td><?=$cosmetic['cosmetic_country_id'] ?></td>
+<!--                            <td><?=$cosmetic['cosmetic_country_id'] ?></td>-->
                             <td><?=$cosmetic['cosmetic_description'] ?></td>
+                            <td><img style="width: 6rem;" src="<?=$cosmetic['image_url'] ?>" alt=""></td>
                             <td>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-edit"></i></a>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-trash"></i></a>
                                 <?php require 'modal.php'; ?>
+                                <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-image"></i></a>
+                                <?php require 'imageModal.php'; ?>
                             </td>
                         </tr>
                         <? endforeach; ?>

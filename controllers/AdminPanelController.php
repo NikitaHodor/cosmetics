@@ -8,8 +8,6 @@
             $usersModel = new AdminPanel();
 			$users = $usersModel->getUsers();
 
-
-
             if (isset($_POST['add_submit'])) {//add
                 $user_login = $_POST['user_login'];
                 $user_password = $_POST['user_password'];
@@ -51,8 +49,6 @@
             $cosmeticsModel = new Cosmetic();
 			$cosmetics = $cosmeticsModel->getAll();
 
-
-
             if (isset($_POST['add_submit'])) {//add
                 $helper = new Helper();
                     $cosmetic_name = $helper->escape($_POST['cosmetic_name']);
@@ -88,6 +84,58 @@
 			            header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
 			            return;
                     }
+            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            $target_dir =  'assets/img/';
+            $target_file = FILE_ROOT . $target_dir . basename($_FILES["upload_image"]["name"]);// actual image url for upload(local, not http)
+                $imgUrl = IMG . basename($_FILES["upload_image"]["name"]);// url for DB
+            $uploadOk = 1;
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                // Check if image file is a actual image or fake image
+                $check = getimagesize($_FILES["upload_image"]["tmp_name"]);
+                if($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+                // Check if file already exists
+                if (file_exists($target_file)) {
+                echo "Sorry, file already exists.";
+                $uploadOk = 0;
+                }
+                // Check file size
+                if ($_FILES["upload_image"]["size"] > 500000) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+                }
+                // Allow certain file formats
+                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif" ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+                }
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+                // if everything is ok, try to upload file
+                } else {
+                if (move_uploaded_file($_FILES["upload_image"]["tmp_name"], $target_file)) {
+                $image_cosmetic_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_cosmetic_id' => $image_cosmetic_id
+                    );
+                 $cosmeticImageModel = new AdminPanel();
+			     $cosmeticImage = $cosmeticImageModel->addImage($imageInfo);
+
+                    echo "The file ". basename( $_FILES["upload_image"]["name"]). " has been uploaded.";
+                    header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                return;
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+                }
             } else if (isset($_POST['edit-submit'])) {//edit
                 $helper = new Helper();
                     $cosmetic_name = $helper->escape($_POST['edit_cosmetic_name']);
@@ -246,4 +294,65 @@
 
             include_once('./views/admin/services/index.php');
 }
+//        public function images($parameters = []) {
+//            $title = 'Изображения';
+//            $id = $parameters[0];
+//            $cosmeticsModel = new Cosmetic();
+//			$cosmetics = $cosmeticsModel->getAll();
+//            $target_dir = IMG;
+//            $target_file = $target_dir . basename($_FILES["upload_image"]["name"]);//url
+//            $uploadOk = 1;
+//            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+//
+//// Check if image file is a actual image or fake image
+//if(isset($_POST["submit"])) {
+//  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+//  if($check !== false) {
+//    echo "File is an image - " . $check["mime"] . ".";
+//    $uploadOk = 1;
+//  } else {
+//    echo "File is not an image.";
+//    $uploadOk = 0;
+//  }
+//}
+//
+//// Check if file already exists
+//if (file_exists($target_file)) {
+//  echo "Sorry, file already exists.";
+//  $uploadOk = 0;
+//}
+//
+//// Check file size
+//if ($_FILES["fileToUpload"]["size"] > 500000) {
+//  echo "Sorry, your file is too large.";
+//  $uploadOk = 0;
+//}
+//
+//// Allow certain file formats
+//if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+//&& $imageFileType != "gif" ) {
+//  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+//  $uploadOk = 0;
+//}
+//
+//// Check if $uploadOk is set to 0 by an error
+//if ($uploadOk == 0) {
+//  echo "Sorry, your file was not uploaded.";
+//// if everything is ok, try to upload file
+//} else {
+//  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+//      $imageInfo = array(
+//                    'image_url' => $target_file,
+//                         'image_cosmetic_id' => $id
+//                    );
+//                 $serviceEditModel = new Service();
+//			     $serviceEditModel->editService($serviceEditInfo);
+//    echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+//  } else {
+//    echo "Sorry, there was an error uploading your file.";
+//  }
+//}
+//
+//            include_once('./views/admin/images/index.php');
+//        }
     }
