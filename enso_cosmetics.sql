@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 07 2020 г., 13:53
+-- Время создания: Сен 09 2020 г., 18:30
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -147,6 +147,13 @@ CREATE TABLE `connects` (
 --       `users` -> `user_id`
 --
 
+--
+-- Дамп данных таблицы `connects`
+--
+
+INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
+(149, 'kaqfql9jkvaorup6c9qvg029pd', '502f704d654ab025f1cbd66867d621b9', 3, '2020-09-09 17:25:59');
+
 -- --------------------------------------------------------
 
 --
@@ -183,15 +190,15 @@ CREATE TABLE `cosmetics` (
 --
 
 INSERT INTO `cosmetics` (`cosmetic_id`, `cosmetic_name`, `cosmetic_type_id`, `cosmetic_category_id`, `cosmetic_brand_id`, `cosmetic_price`, `cosmetic_volume`, `cosmetic_country_id`, `cosmetic_description`, `cosmetic_is_deleted`) VALUES
-(1, 'Гель - контур вокруг глаз', 1, 1, 1, 3000, 30, 1, 'Высокоэффективный продукт, который усиливает регенерацию кожи и возвращает ей свежесть, разглаживает морщины и осветляет темные круги под глазами. Используется после 30 лет, соответствует любому типу кожи. Наносится утром и вечером легким массажем на глазные веки под крем, соответствующий типу кожи.', 0),
+(1, 'Гель - контур вокруг глаз', 1, 1, 1, 3000, 30, 1, 'Высокоэффективный продукт, который усиливает регенерацию кожи и возвращает ей свежесть, разглаживает морщины и осветляет темные круги под глазами. ', 0),
 (2, 'Шампунь для окрашенных волос', 6, 3, 1, 2000, 400, 1, 'Поддерживает тон волос и предотвращает ломкость.', 0),
-(3, 'delete', 2, 5, 1, 228, 228, 4, 'delete this shit', 0),
+(3, 'delete', 2, 5, 1, 228, 228, 4, 'delete this shit', 1),
 (4, 'Beard lotion', 3, 4, 4, 2500, 30, 5, 'Лосьон для роста бороды', 0),
-(12, 'ADD CHECK', NULL, NULL, NULL, 1488, 1488, NULL, 'work or not?', 0),
-(13, 'ADD CHECK2', NULL, NULL, NULL, 222, 222, NULL, 'work or not2?', 0),
-(28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 0),
-(29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 0),
-(30, 'panel_cosmetics_edit_test', 6, 3, 4, 1000, 220, 5, 'Тестим редактирование в админке.', 0);
+(12, 'ADD CHECK', NULL, NULL, NULL, 1488, 1488, NULL, 'work or not?', 1),
+(13, 'ADD CHECK2', NULL, NULL, NULL, 222, 222, NULL, 'work or not2?', 1),
+(28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 1),
+(29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 1),
+(30, 'admin_test', 1, 6, 7, 5151, 220, 2, 'Тестим редактирование в админке.', 0);
 
 -- --------------------------------------------------------
 
@@ -243,6 +250,34 @@ CREATE TABLE `genders` (
 INSERT INTO `genders` (`gender_id`, `gender_name`, `gender_short_name`) VALUES
 (1, 'Мужской', 'м'),
 (2, 'Женский', 'ж');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `images`
+--
+
+CREATE TABLE `images` (
+  `image_id` int(10) UNSIGNED NOT NULL,
+  `image_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `image_cosmetic_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `images`:
+--   `image_cosmetic_id`
+--       `cosmetics` -> `cosmetic_id`
+--
+
+--
+-- Дамп данных таблицы `images`
+--
+
+INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
+(26, 'http://localhost/enso_cosmetics/assets/img/myriam-masiero-i7OEPqoMC2w-unsplash.jpg', 30),
+(27, 'http://localhost/enso_cosmetics/assets/img/gel.jpg', 1),
+(28, 'http://localhost/enso_cosmetics/assets/img/shampo.jpg', 2),
+(29, 'http://localhost/enso_cosmetics/assets/img/beard.jpg', 4);
 
 -- --------------------------------------------------------
 
@@ -452,6 +487,13 @@ ALTER TABLE `genders`
   ADD PRIMARY KEY (`gender_id`);
 
 --
+-- Индексы таблицы `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD UNIQUE KEY `image_cosmetic_id` (`image_cosmetic_id`);
+
+--
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
@@ -517,7 +559,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
@@ -536,6 +578,12 @@ ALTER TABLE `countries`
 --
 ALTER TABLE `genders`
   MODIFY `gender_id` tinyint(1) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `images`
+--
+ALTER TABLE `images`
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -592,6 +640,12 @@ ALTER TABLE `cosmetics`
   ADD CONSTRAINT `cosmetics_ibfk_2` FOREIGN KEY (`cosmetic_brand_id`) REFERENCES `brands` (`brand_id`),
   ADD CONSTRAINT `cosmetics_ibfk_3` FOREIGN KEY (`cosmetic_category_id`) REFERENCES `categories` (`category_id`),
   ADD CONSTRAINT `cosmetics_ibfk_4` FOREIGN KEY (`cosmetic_country_id`) REFERENCES `countries` (`country_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `images`
+--
+ALTER TABLE `images`
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`image_cosmetic_id`) REFERENCES `cosmetics` (`cosmetic_id`);
 
 --
 -- Ограничения внешнего ключа таблицы `orders`

@@ -3,7 +3,7 @@
 
 <? foreach ($categoryCosm as $cosmetic): ?>
 <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="<?= $cosmetic['image_url']; ?>" class="card-img-top" alt="...">
     <div class="card-body">
         <h5 class="card-title"><?= $cosmetic['cosmetic_name']; ?></h5>
         <p class="card-text"><?= $cosmetic['cosmetic_description']; ?></p>

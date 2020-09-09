@@ -36,6 +36,7 @@
 			$db = DB::connect();
 			$query = "
             SELECT * FROM `cosmetics`
+            LEFT JOIN `images` ON `cosmetic_id` = `image_cosmetic_id`
             WHERE `cosmetic_is_deleted` = 0
             ORDER BY RAND()
             LIMIT 3;
@@ -48,7 +49,7 @@
 		public function getCosmeticById($id) {
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))
-                ->joins([['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id']])
+                        ->joins([['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id']])
 						->where("WHERE `cosmetic_id` = $id")
 						->build(); 
 			$result = $db->query($query);

@@ -14,6 +14,7 @@
         public function getCosmeticByBrandId($id) {
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))
+                        ->joins([['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id']])
 						->where("WHERE `cosmetic_brand_id` = $id AND `cosmetic_is_deleted` = 0")
 						->build();
 			$result = $db->query($query);
