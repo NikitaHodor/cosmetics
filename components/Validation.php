@@ -15,4 +15,30 @@
 			return ($minNumber <= $number) && ($number <= $maxNumber); 
 		}
 
+        public function checkImage($filesArr){
+  // Check if image file is a actual image or fake image
+                return getimagesize($filesArr["tmp_name"]);
+}
+        public function checkImageExist($target_file){
+  // Check if file already exists
+                return file_exists($target_file);
 	}
+
+        public function checkImageSize($filesArr) {
+            // Check file size
+                if ($filesArr["size"] > 500000) {
+                return false;
+                } else {
+                    return true;
+                }
+        }
+
+        public function checkImageType($imageFileType) {
+                            // Allow certain file formats
+                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+                return false;
+                } else {
+                    return true;
+                }
+        }
+    }

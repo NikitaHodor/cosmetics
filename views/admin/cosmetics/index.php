@@ -1,5 +1,12 @@
 <? include_once('./views/templates/header.php'); ?>
 <div class="container">
+    <? if (isset($errors) && !empty($errors)): ?>
+    <div>
+        <? foreach ($errors as $error): ?>
+        <p class="error"> <?= $error; ?> </p>
+        <? endforeach; ?>
+    </div>
+    <? endif; ?>
     <h1> Товары </h1>
     <div class="container panel-cosmetics-container">
         <div class="row">
@@ -10,14 +17,13 @@
                         <tr>
                             <th>№</th>
                             <th>Наименование</th>
-<!--
+                            <!--
                             <th>Тип</th>
                             <th>Категория</th>
-                            <th>Бренд</th>
--->
+                            <th>Бренд</th>-->
                             <th>Цена</th>
                             <th>Объём</th>
-<!--                            <th>Страна</th>-->
+                            <!--<th>Страна</th>-->
                             <th>Описание</th>
                             <th>img</th>
                             <th>Действие</th>
@@ -26,14 +32,14 @@
                         <tr>
                             <td><?=$cosmetic['cosmetic_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_name'] ?></td>
-<!--
+                            <!--
                             <td><?=$cosmetic['cosmetic_type_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_category_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_brand_id'] ?></td>
 -->
                             <td><?=$cosmetic['cosmetic_price'] ?></td>
                             <td><?=$cosmetic['cosmetic_volume'] ?></td>
-<!--                            <td><?=$cosmetic['cosmetic_country_id'] ?></td>-->
+                            <!--                            <td><?=$cosmetic['cosmetic_country_id'] ?></td>-->
                             <td><?=$cosmetic['cosmetic_description'] ?></td>
                             <td><img style="width: 6rem;" src="<?=$cosmetic['image_url'] ?>" alt=""></td>
                             <td>
