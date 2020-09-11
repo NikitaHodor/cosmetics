@@ -2,7 +2,7 @@
 
     class AdminPanelController
     {
-        public function usersList($parameters = []) {//read
+        public function users($parameters = []) {//read
             $title = 'Список пользователей';
             $id = $parameters[0];
             $usersModel = new AdminPanel();
@@ -43,7 +43,7 @@
             include_once('./views/admin/users/index.php');
     }
 
-         public function cosmeticsList($parameters = []) {
+         public function cosmetics($parameters = []) {
             $title = 'Список товаров';
             $id = $parameters[0];
             $cosmeticsModel = new Cosmetic();
@@ -119,6 +119,41 @@
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
+            } else if (isset($_POST['image_update_submit'])) {//IMAGE update
+            $target_dir =  'assets/img/';
+            $filesArr = $_FILES["upload_image"];
+            $target_file = FILE_ROOT . $target_dir . basename($filesArr["name"]);// actual image url for upload(local, not http)
+            $imgUrl = IMG . basename($filesArr["name"]);// url for DB
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if($validation->checkImageExist($target_file)){
+                        $errors[] = 'Файл уже был загружен на сервер!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"], $target_file)){
+                $image_cosmetic_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_cosmetic_id' => $image_cosmetic_id
+                    );
+                 $cosmeticImageModel = new AdminPanel();
+			     $cosmeticImage = $cosmeticImageModel->updateImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
             } else if (isset($_POST['edit-submit'])) {//edit
                 $helper = new Helper();
                     $cosmetic_name = $helper->escape($_POST['edit_cosmetic_name']);
@@ -172,7 +207,7 @@
             include_once('./views/admin/cosmetics/index.php');
     }
 
-        public function categoriesList($parameters = []) {//read
+        public function categories($parameters = []) {//read
             $title = 'Категории каталога';
             $id = $parameters[0];
             $categoriesModel = new Category();
@@ -207,7 +242,7 @@
 
             include_once('./views/admin/categories/index.php');
 }
-        public function brandsList($parameters = []) {//read
+        public function brands($parameters = []) {//read
             $title = 'Список брендов';
             $id = $parameters[0];
             $brandsModel = new Brand();
@@ -242,7 +277,7 @@
 
             include_once('./views/admin/brands/index.php');
 }
-        public function servicesList($parameters = []) {//read
+        public function services($parameters = []) {//read
             $title = 'Услуги салона';
             $id = $parameters[0];
             $servicesModel = new Service();

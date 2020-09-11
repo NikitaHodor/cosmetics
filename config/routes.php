@@ -37,11 +37,11 @@
             "logout" => "out"
 		),
         "AdminPanelController" => array(
-            "admin/users/([0-9]*)" => "usersList/$1",
-            "admin/cosmetics/([0-9]*)" => "cosmeticsList/$1",
-            "admin/categories/([0-9]*)" => "categoriesList/$1",
-            "admin/brands/([0-9]*)" => "brandsList/$1",
-            "admin/services/([0-9]*)" => "servicesList/$1",
+            "admin/users/([0-9]*)" => "users/$1",
+            "admin/cosmetics/([0-9]*)" => "cosmetics/$1",
+            "admin/categories/([0-9]*)" => "categories/$1",
+            "admin/brands/([0-9]*)" => "brands/$1",
+            "admin/services/([0-9]*)" => "services/$1",
              "admin/images/([0-9]*)" => "images/$1"//to do image crud&storage
 		),
 		"CartsController" => array(

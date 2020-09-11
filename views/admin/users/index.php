@@ -10,7 +10,7 @@
 						<tr>
 							<th>№</th>
 							<th>Логин</th>
-							<th>Пароль</th>
+<!--							<th>Пароль</th>-->
 							<th>Админ</th>
 							<th>Действие</th>
 						</tr>
@@ -18,7 +18,7 @@
 						<tr>
 							<td><?=$user['user_id'] ?></td>
 							<td><?=$user['user_login'] ?></td>
-							<td><?=$user['user_password'] ?></td>
+<!--							<td><?=$user['user_password'] ?></td>-->
 							<td><?=$user['user_is_admin'] ?></td>
 							<td>
 								<a href="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$user['user_id'] ?>"><i class="fa fa-edit"></i></a>

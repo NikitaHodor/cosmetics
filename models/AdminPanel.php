@@ -51,4 +51,14 @@
 			$result = $db->query($query);
             return;
 		}
+        public function updateImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `images`
+					SET `image_url` = '$imageInfo[image_url]'
+						WHERE `image_cosmetic_id` = '$imageInfo[image_cosmetic_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
     }

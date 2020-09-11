@@ -9,7 +9,7 @@
         <p class="card-text"><?= $cosmetic['cosmetic_description']; ?></p>
 	    <? if (User::checkIfUserAuthorized()) : ?>
         <div class="row">
-            <a class="btn btn-primary" onclick="addToCart(<?= $cosmetic['cosmetic_id']; ?>)">Добавить в корзину </a>
+            <a class="btn btn-secondary" onclick="addToCart(<?= $cosmetic['cosmetic_id']; ?>)">Добавить в корзину </a>
         </div>
         <? endif; ?>
 <!--
