@@ -85,20 +85,21 @@
 			            return;
                     }
             } else if (isset($_POST['image_add_submit'])) {//IMAGE
-            $target_dir =  'assets/img/';
+            $target_dir = FILE_ROOT . 'assets/img/cosmetics/';
             $filesArr = $_FILES["upload_image"];
-            $target_file = FILE_ROOT . $target_dir . basename($filesArr["name"]);// actual image url for upload(local, not http)
-            $imgUrl = IMG . basename($filesArr["name"]);// url for DB
+            $target_file =  $target_dir . basename($filesArr["name"]);// actual image url for upload(local, not http)
+
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+                 $imgUrl = IMG . 'cosmetics/' . $id . '.' . $imageFileType;// url for DB
 
                 $validation = new Validation();
                     $errors = array();
                 if(!$validation->checkImage($filesArr)){
                         $errors[] = 'Файл не является изображением!';
                     }
-                if($validation->checkImageExist($target_file)){
-                        $errors[] = 'Файл уже был загружен на сервер!';
-                    }
+//                if($validation->checkImageExist($target_file)){
+//                        $errors[] = 'Файл уже был загружен на сервер!';
+//                    }
                 if(!$validation->checkImageSize($filesArr)){
                         $errors[] = 'Файл слишком большой!';
                     }
@@ -106,7 +107,7 @@
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
                 // Check  error
-                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"], $target_file)){
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $id .'.'. $imageFileType)){
                 $image_cosmetic_id = $id;
                 $imageInfo = array(
                         'image_url' => $imgUrl,
@@ -114,41 +115,6 @@
                     );
                  $cosmeticImageModel = new AdminPanel();
 			     $cosmeticImage = $cosmeticImageModel->addImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
-                    return;
-                } else {
-                    $errors[] = 'Произошла ошибка при загрузке файла!';
-                }
-            } else if (isset($_POST['image_update_submit'])) {//IMAGE update
-            $target_dir =  'assets/img/';
-            $filesArr = $_FILES["upload_image"];
-            $target_file = FILE_ROOT . $target_dir . basename($filesArr["name"]);// actual image url for upload(local, not http)
-            $imgUrl = IMG . basename($filesArr["name"]);// url for DB
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-                $validation = new Validation();
-                    $errors = array();
-                if(!$validation->checkImage($filesArr)){
-                        $errors[] = 'Файл не является изображением!';
-                    }
-                if($validation->checkImageExist($target_file)){
-                        $errors[] = 'Файл уже был загружен на сервер!';
-                    }
-                if(!$validation->checkImageSize($filesArr)){
-                        $errors[] = 'Файл слишком большой!';
-                    }
-                if(!$validation->checkImageType($imageFileType)){
-                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
-                    }
-                // Check  error
-                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"], $target_file)){
-                $image_cosmetic_id = $id;
-                $imageInfo = array(
-                        'image_url' => $imgUrl,
-                         'image_cosmetic_id' => $image_cosmetic_id
-                    );
-                 $cosmeticImageModel = new AdminPanel();
-			     $cosmeticImage = $cosmeticImageModel->updateImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
                     return;
                 } else {

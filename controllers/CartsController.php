@@ -19,7 +19,7 @@
 					$cartModel = new Cart();
 					$cartModel->addNewOrder($cart, $orderInfo); 
 					setcookie('cart', '', 1, '/');
-					header('Location: ' . SITE_ROOT . 'cosmetics/list');
+					header('Location: ' . SITE_ROOT . 'home');
 				}
 				
 				$cosmeticIdList = array_keys($cart);

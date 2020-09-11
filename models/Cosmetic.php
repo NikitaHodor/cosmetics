@@ -32,20 +32,6 @@
 			return;
 		}
 
-        public function getRandom() {
-			$db = DB::connect();
-			$query = "
-            SELECT * FROM `cosmetics`
-            LEFT JOIN `images` ON `cosmetic_id` = `image_cosmetic_id`
-            WHERE `cosmetic_is_deleted` = 0
-            ORDER BY RAND()
-            LIMIT 3;
-            ";
-			$result = $db->query($query);
-			$cosmetics = $result->fetchAll();
-			return $cosmetics;
-		}
-
 		public function getCosmeticById($id) {
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))

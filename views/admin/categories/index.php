@@ -10,15 +10,18 @@
 						<tr>
 							<th>№</th>
 							<th>Название</th>
+							<th>img</th>
 							<th>Действие</th>
 						</tr>
 						<?php foreach ($categories as $category): ?>
 						<tr>
 							<td><?=$category['category_id'] ?></td>
 							<td><?=$category['category_name'] ?></td>
+							<td><img style="width: 6rem;" src="<?=$category['image_url'] ?>" alt=""></td>
 							<td>
 								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$category['category_id'] ?>"><i class="fa fa-edit"></i></a>
 								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$category['category_id'] ?>"><i class="fa fa-trash"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$category['category_id'] ?>"><i class="fa fa-image"></i></a>
 								<?php require 'modal.php'; ?>
 							</td>
 						</tr>

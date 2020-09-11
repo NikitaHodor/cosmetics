@@ -1,8 +1,11 @@
 <?php
 
 	$routes = array(
+        "MainPageController" => array(
+            "home" => "index"
+        ),
 		"CosmeticsController" => array(
-			"cosmetics/list" => "index",
+//			"cosmetics/list" => "index",
 			"cosmetics/view/([0-9]+)" => "view/$1"
 		),
 //		"CosmeticsProxyController" => array(

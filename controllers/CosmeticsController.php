@@ -2,15 +2,6 @@
 
 	class CosmeticsController {
 
-		public function index() {
-			//echo 'Вызван action index в CosmeticsController';
-			$title = 'Главная';
-			$cosmeticModel = new Cosmetic();
-			$cosmetics = $cosmeticModel->getRandom();
-			include_once('./views/cosmetics/index.php');
-			return;
-		}
-
 		public function add() {
 			$title = 'Добавить косметику';
             if (isset ($_POST['cosmetic_name'])) {
@@ -45,7 +36,7 @@
                             'cosmetic_description' => $cosmetic_description
                         );
                         $cosmeticModel->addCosmetics($cosmeticArray);
-			            header('Location: ' . SITE_ROOT . 'cosmetics/list');
+			            header('Location: ' . SITE_ROOT . 'home');
 			            return;
                     }
 
@@ -113,7 +104,7 @@
                             'cosmetic_id' => $id
                         );
                         $cosmeticModel->updateCosmetic($cosmetic);
-                        header('Location: ' . SITE_ROOT . 'cosmetics/list');
+                        header('Location: ' . SITE_ROOT . 'home');
                     }
                     
                 }
@@ -141,7 +132,7 @@
 			}
 			$cosmeticModel = new Cosmetic();
 			$cosmeticModel->deleteCosmeticById($id);
-			header('Location: ' . SITE_ROOT . 'cosmetics/list');
+			header('Location: ' . SITE_ROOT . 'home');
 		}
 
 

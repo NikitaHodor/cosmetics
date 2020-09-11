@@ -31,7 +31,7 @@
                         'user_password' => $user_password
                     );
                     $user->register($userInfo);
-                    header('Location: ' . SITE_ROOT . 'cosmetics/list');
+                    header('Location: ' . SITE_ROOT . 'home');
                 }
             } 
 			
@@ -57,7 +57,7 @@
 
 				if (empty($errors)) {
 					$user->auth($user_login);
-					header('Location: ' . SITE_ROOT . 'cosmetics/list');
+					header('Location: ' . SITE_ROOT . 'home');
 				}
 
 
@@ -69,6 +69,6 @@
         public function out() {
             $user = new User();
             $user->exitUser();
-            header('Location: ' . SITE_ROOT . 'cosmetics/list');
+            header('Location: ' . SITE_ROOT . 'home');
 		}
 	}

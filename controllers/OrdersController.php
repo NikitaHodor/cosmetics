@@ -9,7 +9,7 @@
 				$cart = json_decode($cartString, true);
 				
 			} else {
-				header('Location: ' . SITE_ROOT . 'cosmetics/list');
+				header('Location: ' . SITE_ROOT . 'home');
 			}
 
 		}
