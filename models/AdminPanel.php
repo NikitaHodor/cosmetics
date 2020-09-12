@@ -41,7 +41,7 @@
 			$result = $db->query($query);
             return;
 		}
-        public function addImage($imageInfo) {
+        public function addCosmeticImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
 				INSERT INTO `images`
@@ -51,12 +51,12 @@
 			$result = $db->query($query);
             return;
 		}
-        public function updateImage($imageInfo) {
+        public function addCategoryImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
-				UPDATE `images`
-					SET `image_url` = '$imageInfo[image_url]'
-						WHERE `image_cosmetic_id` = '$imageInfo[image_cosmetic_id]'
+				INSERT INTO `category_images`
+					SET `image_url` = '$imageInfo[image_url]',
+						`image_category_id` = '$imageInfo[image_category_id]'
 			";
 			$result = $db->query($query);
             return;

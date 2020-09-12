@@ -114,7 +114,7 @@
                          'image_cosmetic_id' => $image_cosmetic_id
                     );
                  $cosmeticImageModel = new AdminPanel();
-			     $cosmeticImage = $cosmeticImageModel->addImage($imageInfo);
+			     $cosmeticImage = $cosmeticImageModel->addCosmeticImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
                     return;
                 } else {
@@ -188,6 +188,42 @@
 			     $category = $categoryModel->addCategory($categoryInfo);
                  header('Location: ' . SITE_ROOT . 'admin/categories/');
                 return;
+            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            $target_dir = FILE_ROOT . 'assets/img/categories/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+                $new_file_name = "{$id}.{$imageFileType}";
+            $imgUrl = IMG . 'categories/' . $new_file_name;// url for DB
+
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+//                if($validation->checkImageExist($target_file)){
+//                        $errors[] = 'Файл уже был загружен на сервер!';
+//                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
+                $image_category_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_category_id' => $image_category_id
+                    );
+                 $categoryImageModel = new AdminPanel();
+			     $categoryImage = $categoryImageModel->addCategoryImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/categories/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
             } else if (isset($_POST['edit-submit'])) {//edit
                 $category_edit_name = $_POST['edit_name'];
                 $category_edit_id = $id;

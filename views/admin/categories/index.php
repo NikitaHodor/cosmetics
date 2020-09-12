@@ -1,5 +1,12 @@
 <? include_once('./views/templates/header.php'); ?>
 <div class="container">
+   <? if (isset($errors) && !empty($errors)): ?>
+    <div>
+        <? foreach ($errors as $error): ?>
+        <p class="error"> <?= $error; ?> </p>
+        <? endforeach; ?>
+    </div>
+    <? endif; ?>
     <h1> Категории каталога </h1>
     <div class="container panel-categories-container">
         <div class="row">

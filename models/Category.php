@@ -6,6 +6,7 @@
 		public function getAll() { 
 			$db = DB::connect();
 			$query = (new Select('categories'))
+                ->joins([['LEFT', 'category_images', 'category_id', 'image_category_id']])
                         ->where("WHERE `category_is_deleted` = 0")
 						->build(); 
 			$result = $db->query($query); 
