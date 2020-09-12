@@ -5,7 +5,10 @@
 
 		public function getAll() {
 			$db = DB::connect();
-			$query = "SELECT * FROM `brands` WHERE `brand_is_deleted` = 0";  
+			$query = (new Select('brands'))
+                ->joins([['LEFT', 'brand_images', 'brand_id', 'image_brand_id']])
+                ->where("WHERE `brand_is_deleted` = 0")
+                ->build();
 			$result = $db->query($query); 
 			$brands = $result->fetchAll();
 			return $brands;

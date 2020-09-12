@@ -10,15 +10,18 @@
 						<tr>
 							<th>№</th>
 							<th>Бренд</th>
+							<th>img</th>
 							<th>Действие</th>
 						</tr>
 						<?php foreach ($brands as $brand): ?>
 						<tr>
 							<td><?=$brand['brand_id'] ?></td>
 							<td><?=$brand['brand_name'] ?></td>
+							<td><img style="width: 6rem;" src="<?= $brand['image_url'] ?>" alt=""></td>
 							<td>
 								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$brand['brand_id'] ?>"><i class="fa fa-edit"></i></a>
 								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$brand['brand_id'] ?>"><i class="fa fa-trash"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
 								<?php require 'modal.php'; ?>
 							</td>
 						</tr>

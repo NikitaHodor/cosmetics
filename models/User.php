@@ -154,9 +154,7 @@
 		setcookie('user_id', '', 60, '/');
 		setcookie('user_is_admin', '', 60, '/');
 		setcookie('cart', '', 60, '/');
-//        setcookie('PHPSESSID', '', 60, '/');
-		
-		session_destroy();
+
 	}
 		}
 

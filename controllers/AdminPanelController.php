@@ -85,21 +85,18 @@
 			            return;
                     }
             } else if (isset($_POST['image_add_submit'])) {//IMAGE
-            $target_dir = FILE_ROOT . 'assets/img/cosmetics/';
+            $target_dir = 'assets/img/cosmetics/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-                $new_file_name = "{$id}.{$imageFileType}";
-            $imgUrl = IMG . 'cosmetics/' . $new_file_name;// url for DB
+            $new_file_name = "{$id}.{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
                     $errors = array();
                 if(!$validation->checkImage($filesArr)){
                         $errors[] = 'Файл не является изображением!';
                     }
-//                if($validation->checkImageExist($target_file)){
-//                        $errors[] = 'Файл уже был загружен на сервер!';
-//                    }
                 if(!$validation->checkImageSize($filesArr)){
                         $errors[] = 'Файл слишком большой!';
                     }
@@ -107,7 +104,7 @@
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
                 // Check  error
-                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
                 $image_cosmetic_id = $id;
                 $imageInfo = array(
                         'image_url' => $imgUrl,
@@ -189,21 +186,18 @@
                  header('Location: ' . SITE_ROOT . 'admin/categories/');
                 return;
             } else if (isset($_POST['image_add_submit'])) {//IMAGE
-            $target_dir = FILE_ROOT . 'assets/img/categories/';
+            $target_dir = 'assets/img/categories/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-                $new_file_name = "{$id}.{$imageFileType}";
-            $imgUrl = IMG . 'categories/' . $new_file_name;// url for DB
+            $new_file_name = "{$id}.{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
                     $errors = array();
                 if(!$validation->checkImage($filesArr)){
                         $errors[] = 'Файл не является изображением!';
                     }
-//                if($validation->checkImageExist($target_file)){
-//                        $errors[] = 'Файл уже был загружен на сервер!';
-//                    }
                 if(!$validation->checkImageSize($filesArr)){
                         $errors[] = 'Файл слишком большой!';
                     }
@@ -259,6 +253,39 @@
 			     $brand = $brandModel->addBrand($brandInfo);
                  header('Location: ' . SITE_ROOT . 'admin/brands/');
                 return;
+            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            $target_dir = 'assets/img/brands/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = "{$id}.{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
+                $image_brand_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_brand_id' => $image_brand_id
+                    );
+                 $brandImageModel = new AdminPanel();
+			     $brandImage = $brandImageModel->addBrandImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/brands/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
             } else if (isset($_POST['edit-submit'])) {//edit
                 $brand_edit_name = $_POST['edit_name'];
                 $brand_edit_id = $id;

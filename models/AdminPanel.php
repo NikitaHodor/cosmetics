@@ -61,4 +61,14 @@
 			$result = $db->query($query);
             return;
 		}
+        public function addBrandImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				INSERT INTO `brand_images`
+					SET `image_url` = '$imageInfo[image_url]',
+						`image_brand_id` = '$imageInfo[image_brand_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
     }

@@ -41,7 +41,7 @@
                             <td><?=$cosmetic['cosmetic_volume'] ?></td>
                             <!--                            <td><?=$cosmetic['cosmetic_country_id'] ?></td>-->
                             <td><?=$cosmetic['cosmetic_description'] ?></td>
-                            <td><img style="width: 6rem;" src="<?=$cosmetic['image_url'] ?>" alt=""></td>
+                            <td><img style="width: 6rem;" src="<?= $cosmetic['image_url'] ?>" alt=""></td>
                             <td>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-edit"></i></a>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-trash"></i></a>
