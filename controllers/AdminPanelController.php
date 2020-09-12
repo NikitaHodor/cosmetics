@@ -87,10 +87,10 @@
             } else if (isset($_POST['image_add_submit'])) {//IMAGE
             $target_dir = FILE_ROOT . 'assets/img/cosmetics/';
             $filesArr = $_FILES["upload_image"];
-            $target_file =  $target_dir . basename($filesArr["name"]);// actual image url for upload(local, not http)
-
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-                 $imgUrl = IMG . 'cosmetics/' . $id . '.' . $imageFileType;// url for DB
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+                $new_file_name = "{$id}.{$imageFileType}";
+            $imgUrl = IMG . 'cosmetics/' . $new_file_name;// url for DB
 
                 $validation = new Validation();
                     $errors = array();
@@ -107,7 +107,7 @@
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
                 // Check  error
-                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $id .'.'. $imageFileType)){
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
                 $image_cosmetic_id = $id;
                 $imageInfo = array(
                         'image_url' => $imgUrl,

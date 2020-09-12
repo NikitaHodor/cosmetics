@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 09 2020 г., 18:30
+-- Время создания: Сен 12 2020 г., 08:41
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -152,7 +152,7 @@ CREATE TABLE `connects` (
 --
 
 INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
-(149, 'kaqfql9jkvaorup6c9qvg029pd', '502f704d654ab025f1cbd66867d621b9', 3, '2020-09-09 17:25:59');
+(161, 'l8ojh8d375gv151c1j8vi4m81c', 'b790b8312c7f22c679c8670bdc7c6c31', 36, '2020-09-12 07:34:11');
 
 -- --------------------------------------------------------
 
@@ -196,8 +196,8 @@ INSERT INTO `cosmetics` (`cosmetic_id`, `cosmetic_name`, `cosmetic_type_id`, `co
 (4, 'Beard lotion', 3, 4, 4, 2500, 30, 5, 'Лосьон для роста бороды', 0),
 (12, 'ADD CHECK', NULL, NULL, NULL, 1488, 1488, NULL, 'work or not?', 1),
 (13, 'ADD CHECK2', NULL, NULL, NULL, 222, 222, NULL, 'work or not2?', 1),
-(28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 1),
-(29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 1),
+(28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 0),
+(29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 0),
 (30, 'admin_test', 1, 6, 7, 5151, 220, 2, 'Тестим редактирование в админке.', 0);
 
 -- --------------------------------------------------------
@@ -274,10 +274,12 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
-(26, 'http://localhost/enso_cosmetics/assets/img/myriam-masiero-i7OEPqoMC2w-unsplash.jpg', 30),
-(27, 'http://localhost/enso_cosmetics/assets/img/gel.jpg', 1),
-(28, 'http://localhost/enso_cosmetics/assets/img/shampo.jpg', 2),
-(29, 'http://localhost/enso_cosmetics/assets/img/beard.jpg', 4);
+(60, 'http://localhost/enso_cosmetics/assets/img/cosmetics/30.jpg', 30),
+(65, 'http://localhost/enso_cosmetics/assets/img/cosmetics/1.jpg', 1),
+(66, 'http://localhost/enso_cosmetics/assets/img/cosmetics/2.jpg', 2),
+(67, 'http://localhost/enso_cosmetics/assets/img/cosmetics/4.jpg', 4),
+(68, 'http://localhost/enso_cosmetics/assets/img/cosmetics/28.jpg', 28),
+(69, 'http://localhost/enso_cosmetics/assets/img/cosmetics/29.jpg', 29);
 
 -- --------------------------------------------------------
 
@@ -425,7 +427,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_surname`, `user_login`, `user
 (14, NULL, NULL, 'Malahov+', 'f576eb7edb662b8d5eabba2276e1d2bc', NULL, NULL, NULL, NULL, 0),
 (19, NULL, NULL, 'panel check', '3a2f39e05d7ff45c30d07400b4c3f070', NULL, NULL, NULL, NULL, 0),
 (32, NULL, NULL, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, NULL, NULL, NULL, 0),
-(33, NULL, NULL, 'test2', 'ad0234829205b9033196ba818f7a872b', NULL, NULL, NULL, NULL, 0);
+(33, NULL, NULL, 'test2', 'ad0234829205b9033196ba818f7a872b', NULL, NULL, NULL, NULL, 0),
+(36, NULL, NULL, 'darth Bane', '2d96f82c7001328a8caab444cc26c335', NULL, NULL, NULL, NULL, 1);
 
 --
 -- Индексы сохранённых таблиц
@@ -559,7 +562,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
@@ -583,7 +586,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -613,7 +616,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

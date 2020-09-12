@@ -45,9 +45,8 @@
                             <td>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-edit"></i></a>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-trash"></i></a>
-                                <?php require 'modal.php'; ?>
                                 <a href="<?= SITE_ROOT . 'admin/cosmetics/' . $cosmetic['cosmetic_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$cosmetic['cosmetic_id'] ?>"><i class="fa fa-image"></i></a>
-                                <?php require 'imageModal.php'; ?>
+                                <?php require 'modal.php'; ?>
                             </td>
                         </tr>
                         <? endforeach; ?>
