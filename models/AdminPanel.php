@@ -71,4 +71,14 @@
 			$result = $db->query($query);
             return;
 		}
+        public function addServiceImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				INSERT INTO `service_images`
+					SET `image_url` = '$imageInfo[image_url]',
+						`image_service_id` = '$imageInfo[image_service_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
     }

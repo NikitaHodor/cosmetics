@@ -6,6 +6,7 @@
 		public function getAll() { 
 			$db = DB::connect();
 			$query = (new Select('services'))
+                        ->joins([['LEFT', 'service_images', 'service_id', 'image_service_id']])
                         ->where("WHERE `service_is_deleted` = 0")
 						->build(); 
 			$result = $db->query($query); 
