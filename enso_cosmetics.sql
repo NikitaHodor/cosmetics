@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 12 2020 г., 08:41
+-- Время создания: Сен 13 2020 г., 09:05
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -73,6 +73,33 @@ INSERT INTO `brands` (`brand_id`, `brand_name`, `brand_is_deleted`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `brand_images`
+--
+
+CREATE TABLE `brand_images` (
+  `image_id` int(10) UNSIGNED NOT NULL,
+  `image_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `image_brand_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `brand_images`:
+--   `image_brand_id`
+--       `brands` -> `brand_id`
+--
+
+--
+-- Дамп данных таблицы `brand_images`
+--
+
+INSERT INTO `brand_images` (`image_id`, `image_url`, `image_brand_id`) VALUES
+(1, '/enso_cosmetics/assets/img/brands/1.jpg', 1),
+(4, '/enso_cosmetics/assets/img/brands/3.jpg', 3),
+(5, '/enso_cosmetics/assets/img/brands/4.png', 4);
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `carts`
 --
 
@@ -125,7 +152,36 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_is_deleted`)
 (3, 'Волосы', 0),
 (4, 'Для мужчин', 0),
 (5, 'Специальные предложения', 0),
-(6, 'Тест на добавление/обновление', 0);
+(6, 'Тест на добавление/обновление', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category_images`
+--
+
+CREATE TABLE `category_images` (
+  `image_id` int(10) UNSIGNED NOT NULL,
+  `image_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `image_category_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `category_images`:
+--   `image_category_id`
+--       `categories` -> `category_id`
+--
+
+--
+-- Дамп данных таблицы `category_images`
+--
+
+INSERT INTO `category_images` (`image_id`, `image_url`, `image_category_id`) VALUES
+(15, '/enso_cosmetics/assets/img/categories/5.jpg', 5),
+(18, '/enso_cosmetics/assets/img/categories/4.jpg', 4),
+(19, '/enso_cosmetics/assets/img/categories/3.jpg', 3),
+(20, '/enso_cosmetics/assets/img/categories/2.jpg', 2),
+(21, '/enso_cosmetics/assets/img/categories/1.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -152,7 +208,7 @@ CREATE TABLE `connects` (
 --
 
 INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
-(161, 'l8ojh8d375gv151c1j8vi4m81c', 'b790b8312c7f22c679c8670bdc7c6c31', 36, '2020-09-12 07:34:11');
+(201, '', 'eec131691a898a86d5af4575f1a6f1a9', 2, '2020-09-13 07:23:30');
 
 -- --------------------------------------------------------
 
@@ -274,12 +330,12 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
-(60, 'http://localhost/enso_cosmetics/assets/img/cosmetics/30.jpg', 30),
-(65, 'http://localhost/enso_cosmetics/assets/img/cosmetics/1.jpg', 1),
-(66, 'http://localhost/enso_cosmetics/assets/img/cosmetics/2.jpg', 2),
-(67, 'http://localhost/enso_cosmetics/assets/img/cosmetics/4.jpg', 4),
-(68, 'http://localhost/enso_cosmetics/assets/img/cosmetics/28.jpg', 28),
-(69, 'http://localhost/enso_cosmetics/assets/img/cosmetics/29.jpg', 29);
+(129, '/enso_cosmetics/assets/img/cosmetics/30.jpg', 30),
+(134, '/enso_cosmetics/assets/img/cosmetics/1.jpg', 1),
+(135, '/enso_cosmetics/assets/img/cosmetics/2.jpg', 2),
+(136, '/enso_cosmetics/assets/img/cosmetics/4.jpg', 4),
+(137, '/enso_cosmetics/assets/img/cosmetics/28.jpg', 28),
+(138, '/enso_cosmetics/assets/img/cosmetics/29.jpg', 29);
 
 -- --------------------------------------------------------
 
@@ -335,6 +391,33 @@ INSERT INTO `services` (`service_id`, `service_name`, `service_is_deleted`) VALU
 (2, 'Услуги массажиста', 0),
 (3, 'Услуги мастера перманентного макияжа', 0),
 (4, 'Тестим добавление/обновление в админке.', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `service_images`
+--
+
+CREATE TABLE `service_images` (
+  `image_id` int(10) UNSIGNED NOT NULL,
+  `image_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `image_service_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `service_images`:
+--   `image_service_id`
+--       `services` -> `service_id`
+--
+
+--
+-- Дамп данных таблицы `service_images`
+--
+
+INSERT INTO `service_images` (`image_id`, `image_url`, `image_service_id`) VALUES
+(1, '/enso_cosmetics/assets/img/services/1.jpg', 1),
+(2, '/enso_cosmetics/assets/img/services/2.jpg', 2),
+(3, '/enso_cosmetics/assets/img/services/3.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -447,6 +530,13 @@ ALTER TABLE `brands`
   ADD PRIMARY KEY (`brand_id`);
 
 --
+-- Индексы таблицы `brand_images`
+--
+ALTER TABLE `brand_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD UNIQUE KEY `image_brand_id` (`image_brand_id`);
+
+--
 -- Индексы таблицы `carts`
 --
 ALTER TABLE `carts`
@@ -459,6 +549,13 @@ ALTER TABLE `carts`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
+
+--
+-- Индексы таблицы `category_images`
+--
+ALTER TABLE `category_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD UNIQUE KEY `image_category_id` (`image_category_id`);
 
 --
 -- Индексы таблицы `connects`
@@ -511,6 +608,13 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`service_id`);
 
 --
+-- Индексы таблицы `service_images`
+--
+ALTER TABLE `service_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD UNIQUE KEY `image_service_id` (`image_service_id`);
+
+--
 -- Индексы таблицы `statuses`
 --
 ALTER TABLE `statuses`
@@ -547,6 +651,12 @@ ALTER TABLE `brands`
   MODIFY `brand_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT для таблицы `brand_images`
+--
+ALTER TABLE `brand_images`
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT для таблицы `carts`
 --
 ALTER TABLE `carts`
@@ -559,10 +669,16 @@ ALTER TABLE `categories`
   MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT для таблицы `category_images`
+--
+ALTER TABLE `category_images`
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
@@ -586,7 +702,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -599,6 +715,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `services`
   MODIFY `service_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `service_images`
+--
+ALTER TABLE `service_images`
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses`
@@ -623,11 +745,23 @@ ALTER TABLE `users`
 --
 
 --
+-- Ограничения внешнего ключа таблицы `brand_images`
+--
+ALTER TABLE `brand_images`
+  ADD CONSTRAINT `brand_images_ibfk_1` FOREIGN KEY (`image_brand_id`) REFERENCES `brands` (`brand_id`);
+
+--
 -- Ограничения внешнего ключа таблицы `carts`
 --
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`cart_cosmetic_id`) REFERENCES `cosmetics` (`cosmetic_id`),
   ADD CONSTRAINT `carts_ibfk_2` FOREIGN KEY (`cart_order_id`) REFERENCES `orders` (`order_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `category_images`
+--
+ALTER TABLE `category_images`
+  ADD CONSTRAINT `category_images_ibfk_1` FOREIGN KEY (`image_category_id`) REFERENCES `categories` (`category_id`);
 
 --
 -- Ограничения внешнего ключа таблицы `connects`
@@ -656,6 +790,12 @@ ALTER TABLE `images`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`order_user_id`) REFERENCES `users` (`user_id`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`order_status_id`) REFERENCES `statuses` (`status_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `service_images`
+--
+ALTER TABLE `service_images`
+  ADD CONSTRAINT `service_images_ibfk_1` FOREIGN KEY (`image_service_id`) REFERENCES `services` (`service_id`);
 
 --
 -- Ограничения внешнего ключа таблицы `users`
