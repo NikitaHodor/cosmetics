@@ -81,4 +81,12 @@
 			$result = $db->query($query);
             return;
 		}
+        public function getImages() {
+			$db = DB::connect();
+			$query = (new Select('images'))
+						->build();
+			$result = $db->query($query);
+			$images = $result->fetchAll();
+			return $images;
+		}
     }

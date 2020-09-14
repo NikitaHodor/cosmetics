@@ -2,6 +2,13 @@
 
 	class Validation 
 	{
+        public function checkEmptyness($smth) {
+			if(empty($smth)){
+                return false;
+            } else{
+                return true;
+            }
+		}
 
 		public function checkLength($str, $length = 2) {
 			return strlen($str) >= $length; 

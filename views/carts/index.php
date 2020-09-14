@@ -7,6 +7,13 @@
     <? if (!$cart): ?>
     <h3> Ваша корзина пуста</h3>
     <? else: ?>
+    <? if (isset($errors) && !empty($errors)): ?>
+    <div>
+        <? foreach ($errors as $error): ?>
+        <p class="error"> <?= $error; ?> </p>
+        <? endforeach; ?>
+    </div>
+    <? endif; ?>
     <div class="row">
        <div class="container cart-container col-md-8">
         <form method="POST" class="cart-form">
@@ -26,11 +33,6 @@
             <table class="table">
                 <thead>
                     <tr>
-<!--
-                        <th>
-                            ID
-                        </th>
--->
                         <th>
                             Название
                         </th>
@@ -43,26 +45,26 @@
                         <th>
                             Сумма
                         </th>
+<!--
                         <th>
                             Действие
                         </th>
+-->
                     </tr>
                 </thead>
                 <tbody id="cartCont">
                     <? foreach ($cosmeticList as $cosmetic): ?>
                     <tr>
-<!--                        <td> <?= $cosmetic['cosmetic_id']; ?></td>-->
                         <td> <?= $cosmetic['cosmetic_name']; ?></td>
                         <td> <?= $cosmetic['cosmetic_price']; ?></td>
-                        <td> <?= $cart[$cosmetic['cosmetic_id']]; ?></td>
+                        <td><a class="btn btn-outline-secondary btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">-</a> <?= $cart[$cosmetic['cosmetic_id']]; ?> <a class="btn btn-outline-secondary btn-sm" onclick="addToCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">+</a></td>
                         <td> <?= $cosmetic['cosmetic_price'] * $cart[$cosmetic['cosmetic_id']]; ?></td>
-                        <td><a class="btn btn-outline-danger btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">Убрать</a></td>
                     </tr>
                     <? endforeach; ?>
                 </tbody>
             </table>
 
-                <button type="submit" class="btn btn-secondary">Заказать</button>
+                <button name="submit" type="submit" class="btn btn-secondary">Заказать</button>
 
         </form>
         </div>

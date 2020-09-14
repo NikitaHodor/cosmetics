@@ -374,5 +374,12 @@
 
             include_once('./views/admin/services/index.php');
 }
+        public function images($parameters = []) {//read
+            $title = 'Изображения';
+            $id = $parameters[0];
+            $imagesModel = new AdminPanel();
+			$images = $imagesModel->getImages();
 
+            include_once('./views/admin/images/index.php');
+}
     }
