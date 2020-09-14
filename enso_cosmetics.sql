@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 13 2020 г., 09:05
+-- Время создания: Сен 14 2020 г., 20:25
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -93,9 +93,9 @@ CREATE TABLE `brand_images` (
 --
 
 INSERT INTO `brand_images` (`image_id`, `image_url`, `image_brand_id`) VALUES
-(1, '/enso_cosmetics/assets/img/brands/1.jpg', 1),
-(4, '/enso_cosmetics/assets/img/brands/3.jpg', 3),
-(5, '/enso_cosmetics/assets/img/brands/4.png', 4);
+(6, '/enso_cosmetics/assets/img/brands/11832.jpg', 1),
+(7, '/enso_cosmetics/assets/img/brands/31470.jpg', 3),
+(8, '/enso_cosmetics/assets/img/brands/55609.png', 4);
 
 -- --------------------------------------------------------
 
@@ -123,8 +123,7 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`cart_id`, `cart_cosmetic_id`, `cart_order_id`, `cart_count`) VALUES
-(52, 1, 44, 1),
-(53, 1, 45, 1);
+(57, 2, 49, 66);
 
 -- --------------------------------------------------------
 
@@ -177,11 +176,11 @@ CREATE TABLE `category_images` (
 --
 
 INSERT INTO `category_images` (`image_id`, `image_url`, `image_category_id`) VALUES
-(15, '/enso_cosmetics/assets/img/categories/5.jpg', 5),
-(18, '/enso_cosmetics/assets/img/categories/4.jpg', 4),
-(19, '/enso_cosmetics/assets/img/categories/3.jpg', 3),
-(20, '/enso_cosmetics/assets/img/categories/2.jpg', 2),
-(21, '/enso_cosmetics/assets/img/categories/1.jpg', 1);
+(28, '/enso_cosmetics/assets/img/categories/41398.jpg', 1),
+(29, '/enso_cosmetics/assets/img/categories/48059.jpg', 2),
+(30, '/enso_cosmetics/assets/img/categories/29968.jpg', 3),
+(31, '/enso_cosmetics/assets/img/categories/68859.jpg', 4),
+(32, '/enso_cosmetics/assets/img/categories/92045.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -208,7 +207,7 @@ CREATE TABLE `connects` (
 --
 
 INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
-(201, '', 'eec131691a898a86d5af4575f1a6f1a9', 2, '2020-09-13 07:23:30');
+(226, '', '47655409ca331321c69855d4ec2fbbda', 2, '2020-09-14 19:14:24');
 
 -- --------------------------------------------------------
 
@@ -330,12 +329,12 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
-(129, '/enso_cosmetics/assets/img/cosmetics/30.jpg', 30),
-(134, '/enso_cosmetics/assets/img/cosmetics/1.jpg', 1),
-(135, '/enso_cosmetics/assets/img/cosmetics/2.jpg', 2),
-(136, '/enso_cosmetics/assets/img/cosmetics/4.jpg', 4),
-(137, '/enso_cosmetics/assets/img/cosmetics/28.jpg', 28),
-(138, '/enso_cosmetics/assets/img/cosmetics/29.jpg', 29);
+(233, '/enso_cosmetics/assets/img/cosmetics/15637.jpg', 1),
+(234, '/enso_cosmetics/assets/img/cosmetics/40111.jpg', 2),
+(235, '/enso_cosmetics/assets/img/cosmetics/22907.jpg', 4),
+(236, '/enso_cosmetics/assets/img/cosmetics/25414.jpg', 28),
+(237, '/enso_cosmetics/assets/img/cosmetics/82851.jpg', 29),
+(238, '/enso_cosmetics/assets/img/cosmetics/60212.jpg', 30);
 
 -- --------------------------------------------------------
 
@@ -363,8 +362,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_user_id`, `order_status_id`, `order_info`) VALUES
-(44, 3, NULL, 'имя: lolkekcheburek, телефон: , email: '),
-(45, 3, NULL, 'имя: , телефон: , email: ');
+(49, 36, NULL, 'имя: Johnny Sins, телефон: 222222222222222, email: brazzers@mail.com');
 
 -- --------------------------------------------------------
 
@@ -415,9 +413,9 @@ CREATE TABLE `service_images` (
 --
 
 INSERT INTO `service_images` (`image_id`, `image_url`, `image_service_id`) VALUES
-(1, '/enso_cosmetics/assets/img/services/1.jpg', 1),
-(2, '/enso_cosmetics/assets/img/services/2.jpg', 2),
-(3, '/enso_cosmetics/assets/img/services/3.jpg', 3);
+(6, '/enso_cosmetics/assets/img/services/65547.jpg', 1),
+(7, '/enso_cosmetics/assets/img/services/24845.jpg', 2),
+(8, '/enso_cosmetics/assets/img/services/66604.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -654,13 +652,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT для таблицы `brand_images`
 --
 ALTER TABLE `brand_images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
@@ -672,13 +670,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `category_images`
 --
 ALTER TABLE `category_images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
@@ -702,13 +700,13 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT для таблицы `services`
@@ -720,7 +718,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT для таблицы `service_images`
 --
 ALTER TABLE `service_images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `statuses`

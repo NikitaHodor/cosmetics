@@ -21,8 +21,12 @@
 							<td>
 								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$brand['brand_id'] ?>"><i class="fa fa-edit"></i></a>
 								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$brand['brand_id'] ?>"><i class="fa fa-trash"></i></a>
-								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
-								<?php require 'modal.php'; ?>
+								<? if(!$brand['image_url']): ?>
+                                <a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
+                                <? else : ?>
+                                <a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageEditModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
+                                <? endif; ?>
+                                <?php require 'modal.php'; ?>
 							</td>
 						</tr>
 						<? endforeach; ?>

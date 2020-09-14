@@ -26,9 +26,9 @@
   // Check if image file is a actual image or fake image
                 return getimagesize($filesArr["tmp_name"]);
 }
-        public function checkImageExist($target_file){
+        public function checkImageExist($imgUrl){
   // Check if file already exists
-                return file_exists($target_file);
+                return file_exists($imgUrl);
 	}
 
         public function checkImageSize($filesArr) {

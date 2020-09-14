@@ -89,9 +89,9 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = "{$id}.{$imageFileType}";
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
-
+//$delUrl = 'C:/xampp/htdocs'.$imgUrl;
                 $validation = new Validation();
                     $errors = array();
                 if(!$validation->checkImage($filesArr)){
@@ -103,6 +103,9 @@
                 if(!$validation->checkImageType($imageFileType)){
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
+//                if($validation->checkImageExist($delUrl)){
+//                        unlink($delUrl);
+//                    }
                 // Check  error
                 if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
                 $image_cosmetic_id = $id;
@@ -112,6 +115,42 @@
                     );
                  $cosmeticImageModel = new AdminPanel();
 			     $cosmeticImage = $cosmeticImageModel->addCosmeticImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
+            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            $target_dir = 'assets/img/cosmetics/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+//$delUrl = 'C:/xampp/htdocs'.$imgUrl;
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+//                if($validation->checkImageExist($delUrl)){
+//                        unlink($delUrl);
+//                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
+                $image_cosmetic_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_cosmetic_id' => $image_cosmetic_id
+                    );
+                 $cosmeticImageModel = new AdminPanel();
+			     $cosmeticImage = $cosmeticImageModel->editCosmeticImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
                     return;
                 } else {
@@ -190,7 +229,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = "{$id}.{$imageFileType}";
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
@@ -213,6 +252,42 @@
                     );
                  $categoryImageModel = new AdminPanel();
 			     $categoryImage = $categoryImageModel->addCategoryImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/categories/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
+            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            $target_dir = 'assets/img/categories/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+//$delUrl = 'C:/xampp/htdocs'.$imgUrl;
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+//                if($validation->checkImageExist($delUrl)){
+//                        unlink($delUrl);
+//                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
+                $image_category_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_category_id' => $image_category_id
+                    );
+                 $categoryImageModel = new AdminPanel();
+			     $categoryImage = $categoryImageModel->editCategoryImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/categories/');
                     return;
                 } else {
@@ -258,7 +333,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = "{$id}.{$imageFileType}";
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
@@ -281,6 +356,42 @@
                     );
                  $brandImageModel = new AdminPanel();
 			     $brandImage = $brandImageModel->addBrandImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/brands/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
+            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            $target_dir = 'assets/img/brands/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+//$delUrl = 'C:/xampp/htdocs'.$imgUrl;
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+//                if($validation->checkImageExist($delUrl)){
+//                        unlink($delUrl);
+//                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
+                $image_brand_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_brand_id' => $image_brand_id
+                    );
+                 $brandImageModel = new AdminPanel();
+			     $brandImage = $brandImageModel->editBrandImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/brands/');
                     return;
                 } else {
@@ -326,7 +437,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = "{$id}.{$imageFileType}";
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
@@ -349,6 +460,42 @@
                     );
                  $serviceImageModel = new AdminPanel();
 			     $serviceImage = $serviceImageModel->addServiceImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/services/');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
+            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            $target_dir = 'assets/img/services/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+//$delUrl = 'C:/xampp/htdocs'.$imgUrl;
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+//                if($validation->checkImageExist($delUrl)){
+//                        unlink($delUrl);
+//                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
+                $image_service_id = $id;
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'image_service_id' => $image_service_id
+                    );
+                $serviceImageModel = new AdminPanel();
+			     $serviceImage = $serviceImageModel->editServiceImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/services/');
                     return;
                 } else {

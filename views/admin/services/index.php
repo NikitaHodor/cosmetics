@@ -21,8 +21,12 @@
 							<td>
 								<a href="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$service['service_id'] ?>"><i class="fa fa-edit"></i></a>
 								<a href="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$service['service_id'] ?>"><i class="fa fa-trash"></i></a>
-								<a href="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$service['service_id'] ?>"><i class="fa fa-image"></i></a>
-								<?php require 'modal.php'; ?>
+								<? if(!$service['image_url']): ?>
+                                <a href="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$service['service_id'] ?>"><i class="fa fa-image"></i></a>
+                                <? else : ?>
+                                <a href="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageEditModal<?=$service['service_id'] ?>"><i class="fa fa-image"></i></a>
+                                <? endif; ?>
+                                <?php require 'modal.php'; ?>
 							</td>
 						</tr>
 						<? endforeach; ?>

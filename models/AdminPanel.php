@@ -51,12 +51,32 @@
 			$result = $db->query($query);
             return;
 		}
+        public function editCosmeticImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `images`
+					SET `image_url` = '$imageInfo[image_url]'
+					WHERE `image_cosmetic_id` = '$imageInfo[image_cosmetic_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
         public function addCategoryImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
 				INSERT INTO `category_images`
 					SET `image_url` = '$imageInfo[image_url]',
 						`image_category_id` = '$imageInfo[image_category_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
+        public function editCategoryImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `category_images`
+					SET `image_url` = '$imageInfo[image_url]'
+					WHERE `image_category_id` = '$imageInfo[image_category_id]'
 			";
 			$result = $db->query($query);
             return;
@@ -71,12 +91,32 @@
 			$result = $db->query($query);
             return;
 		}
+        public function editBrandImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `brand_images`
+					SET `image_url` = '$imageInfo[image_url]'
+					WHERE `image_brand_id` = '$imageInfo[image_brand_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
         public function addServiceImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
 				INSERT INTO `service_images`
 					SET `image_url` = '$imageInfo[image_url]',
 						`image_service_id` = '$imageInfo[image_service_id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
+        public function editServiceImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `service_images`
+					SET `image_url` = '$imageInfo[image_url]'
+					WHERE `image_service_id` = '$imageInfo[image_service_id]'
 			";
 			$result = $db->query($query);
             return;
