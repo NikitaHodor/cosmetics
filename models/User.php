@@ -70,7 +70,8 @@
 
 		private function fullAuthorizedUser($Id, $Admin) {
 			session_start();
-            $sessionId = $_COOKIE['PHPSESSID'];
+//            $sessionId = $_COOKIE['PHPSESSID'];
+            $sessionId = session_id();
 			$helper = new Helper();
 			$token = $helper->generateToken();
 			$tokenTime = time() + 60*60; 
@@ -154,7 +155,7 @@
 		setcookie('user_id', '', 60, '/');
 		setcookie('user_is_admin', '', 60, '/');
 		setcookie('cart', '', 60, '/');
-
+        session_destroy();
 	}
 		}
 
