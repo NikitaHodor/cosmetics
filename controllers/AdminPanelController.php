@@ -521,12 +521,29 @@
 
             include_once('./views/admin/services/index.php');
 }
-        public function images($parameters = []) {//read
+        public function images($parameters = []) {//read img from folder
             $title = 'Изображения';
             $id = $parameters[0];
-            $imagesModel = new AdminPanel();
-			$images = $imagesModel->getImages();
+            $dirname = FILE_ROOT . "assets/img";
+            $len = strlen(FILE_ROOT);
+            $fileRootItems = glob($dirname.'/*');
+            $images = array();
 
+            foreach($fileRootItems as $fileRootItem) {//переписать под рекурсию!
+                if(is_file($fileRootItem)){
+                    $siteRootImages = substr_replace($fileRootItem, SITE_ROOT, 0, $len);
+                    $images[] = $siteRootImages;
+//                    echo $fileRootItem;
+                } elseif(!is_file($fileRootItem)) {
+//                    echo $fileRootItem;
+                    $fileRootItems2 = glob($fileRootItem.'/*');
+//                    print_r($fileRootItems2);
+                    foreach($fileRootItems2 as $fileRootItem2){
+                        $siteRootImages2 = substr_replace($fileRootItem2, SITE_ROOT, 0, $len);
+                    $images[] = $siteRootImages2;
+                    }
+                  }
+            }
             include_once('./views/admin/images/index.php');
-}
+        }
     }

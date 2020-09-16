@@ -11,7 +11,7 @@
 							<th>№</th>
 							<th>Логин</th>
 <!--							<th>Пароль</th>-->
-							<th>Админ</th>
+							<th>Доступ</th>
 							<th>Действие</th>
 						</tr>
 						<?php foreach ($users as $user): ?>
@@ -19,7 +19,7 @@
 							<td><?=$user['user_id'] ?></td>
 							<td><?=$user['user_login'] ?></td>
 <!--							<td><?=$user['user_password'] ?></td>-->
-							<td><?=$user['user_is_admin'] ?></td>
+							<td><?= $user['user_is_admin'] ? 'администратор':'пользователь'; ?></td>
 							<td>
 								<a href="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$user['user_id'] ?>"><i class="fa fa-edit"></i></a>
 								<a href="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$user['user_id'] ?>"><i class="fa fa-trash"></i></a>

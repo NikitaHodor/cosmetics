@@ -129,4 +129,28 @@
 			$images = $result->fetchAll();
 			return $images;
 		}
+        public function getBrandImages() {
+			$db = DB::connect();
+			$query = (new Select('brand_images'))
+						->build();
+			$result = $db->query($query);
+			$images = $result->fetchAll();
+			return $images;
+		}
+        public function getCategoryImages() {
+			$db = DB::connect();
+			$query = (new Select('category_images'))
+						->build();
+			$result = $db->query($query);
+			$images = $result->fetchAll();
+			return $images;
+		}
+        public function getServiceImages() {
+			$db = DB::connect();
+			$query = (new Select('service_images'))
+						->build();
+			$result = $db->query($query);
+			$images = $result->fetchAll();
+			return $images;
+		}
     }

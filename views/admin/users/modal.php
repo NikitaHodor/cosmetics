@@ -14,7 +14,14 @@
         		<input type="text" class="form-control" name="edit_login" value="<?=$user['user_login'] ?>" placeholder="логин">
         	</div>
         	<div class="form-group">
-        		<input type="text" class="form-control" name="edit_is_admin" value="<?=$user['user_is_admin'] ?>" placeholder="админ">
+           <select class="form-control" name="edit_is_admin">
+                            <option value="1">
+                                администратор
+                            </option>
+                            <option value="0">
+                                пользователь
+                            </option>
+                        </select>
         	</div>
         	<div class="modal-footer">
         		<button type="submit" name="edit-submit" class="btn btn-primary">Обновить</button>
