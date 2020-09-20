@@ -1,6 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
 
-<h1> Бренды </h1>
  <? foreach ($brands as $brand): ?>
   <div class="card mb-3">
   <div class="row no-gutters">

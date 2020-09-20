@@ -63,7 +63,8 @@
 			"about" => "index"
 		),
         "SearchController" => array(
-			"search" => "view" //работа над поиском
+			"search/list" => "index", //работа над поиском
+            "search/view/([0-9]+)" => "view/$1"
 		),
         "ErrorsController" => array(
 			"error" => "index"

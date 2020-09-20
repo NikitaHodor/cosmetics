@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 14 2020 г., 20:25
+-- Время создания: Сен 20 2020 г., 11:22
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -202,13 +202,6 @@ CREATE TABLE `connects` (
 --       `users` -> `user_id`
 --
 
---
--- Дамп данных таблицы `connects`
---
-
-INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
-(226, '', '47655409ca331321c69855d4ec2fbbda', 2, '2020-09-14 19:14:24');
-
 -- --------------------------------------------------------
 
 --
@@ -329,12 +322,12 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
-(233, '/enso_cosmetics/assets/img/cosmetics/15637.jpg', 1),
-(234, '/enso_cosmetics/assets/img/cosmetics/40111.jpg', 2),
-(235, '/enso_cosmetics/assets/img/cosmetics/22907.jpg', 4),
-(236, '/enso_cosmetics/assets/img/cosmetics/25414.jpg', 28),
-(237, '/enso_cosmetics/assets/img/cosmetics/82851.jpg', 29),
-(238, '/enso_cosmetics/assets/img/cosmetics/60212.jpg', 30);
+(239, '/enso_cosmetics/assets/img/cosmetics/1600454426.jpg', 1),
+(240, '/enso_cosmetics/assets/img/cosmetics/1600454457.jpg', 2),
+(241, '/enso_cosmetics/assets/img/cosmetics/1600454465.jpg', 4),
+(242, '/enso_cosmetics/assets/img/cosmetics/1600454476.jpg', 28),
+(243, '/enso_cosmetics/assets/img/cosmetics/1600454484.jpg', 29),
+(244, '/enso_cosmetics/assets/img/cosmetics/1600458608.jpg', 30);
 
 -- --------------------------------------------------------
 
@@ -676,7 +669,7 @@ ALTER TABLE `category_images`
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
@@ -700,7 +693,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=239;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -736,7 +729,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

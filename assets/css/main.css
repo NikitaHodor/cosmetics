@@ -13,7 +13,7 @@ body {
     line-height: 1.48;
 }
 .jumbo-banner {
-    background-image: url(../img/banner.jpg);
+    background-image: url('../img/banner.jpg?82938952');
     background-size: cover;
     height: 100%;
     min-height: 539px;
@@ -30,7 +30,8 @@ body {
 
 #main {
 overflow:auto;
-  padding-bottom:150px; /* this needs to be bigger than footer height*/
+  padding-bottom:10em; /* this needs to be bigger than footer height*/
+    padding-top: 4em;
 }
 
 .footer {

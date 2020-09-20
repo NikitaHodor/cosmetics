@@ -1,7 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
 
-
-        <h1> Главная </h1>
         <div class="container jumbo-container">
             <div class="jumbotron jumbo-banner fluid">
                 <div class="container jumbo-text">
@@ -11,10 +9,18 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="card-deck">
-                <? foreach ($cosmetics as $cosmetic): ?>
-                <div class="card main_card">
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+   <? foreach($rowArr as $cos): ?>
+   <? if ($cos == $rowArr[0]): ?>
+    <div class="carousel-item  active col-md-12">
+    <? else: ?>
+    <div class="carousel-item col-md-12">
+    <? endif; ?>
+    <div class="card-deck">
+       <? foreach($cos as $cosmetic): ?>
+        <div class="card main_card">
                     <img src="<?= $cosmetic['image_url'] ?>" class="card-img-top main_card_img" alt="card-img">
                     <div class="card-body">
                         <span class="card-text">
@@ -24,9 +30,19 @@
                         </span>
                     </div>
                 </div>
-                <? endforeach; ?>
-            </div>
-        </div>
-
+                  <? endforeach; ?>
+    </div>
+    </div>
+    <? endforeach; ?>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
 <? include_once('./views/templates/footer.php'); ?>

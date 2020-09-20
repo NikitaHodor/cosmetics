@@ -1,7 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
 
-
-<h1> Типы </h1>
 <table class="table table-hover">
 	<thead>
 		<tr>

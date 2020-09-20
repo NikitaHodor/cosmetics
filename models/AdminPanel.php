@@ -121,13 +121,15 @@
 			$result = $db->query($query);
             return;
 		}
-        public function getImages() {
+        public function getImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('images'))
+                        ->what(['image_url'])
+                        ->where("WHERE `image_cosmetic_id` = '$id'")
 						->build();
 			$result = $db->query($query);
-			$images = $result->fetchAll();
-			return $images;
+			$url = $result->fetchAll();
+			return $url;
 		}
         public function getBrandImages() {
 			$db = DB::connect();

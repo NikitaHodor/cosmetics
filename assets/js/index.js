@@ -66,3 +66,32 @@ function delFromCart(id, site_root) {
 
     };
 }
+
+function sendAjax(event, categoryName) {
+    event.preventDefault();
+    let formData = new FormData();
+    //let elements = document.querySelector('.form-control');
+    let elements = $('.modal-form .form-control');
+    let dataForSend = {};
+    elements.each((index, element) => {
+        //console.log(element.getAttribute('name'));
+        let formDataKey = element.getAttribute('name');
+        let formDataValue = element.value;
+        console.log(formDataValue);
+        //formData.append(formDataKey, formDataValue);
+        dataForSend[formDataKey] = formDataValue;
+    });
+
+    $.ajax({
+        method: 'POST',
+        data: dataForSend,
+        url: 'http://localhost/enso_cosmetics/admin/users/',
+        success: function(res) {
+            // console.log(res);
+            // TODO: close window and show alert;
+        }
+    })
+    console.log(formData);
+    url = 'http:?//brands/add',
+        data = {}
+}

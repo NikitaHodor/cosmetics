@@ -1,7 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
 
-
-<h1> Салон </h1>
  <? foreach ($services as $service): ?>
   <div class="card mb-3">
   <div class="row no-gutters">

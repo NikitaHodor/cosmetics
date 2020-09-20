@@ -63,7 +63,7 @@
                     </li>
                     <? endif; ?>
                 </ul>
-                <form name="query" class="form-inline my-2 my-lg-0 <?= ($title == 'Поиск') ? 'active' : '' ?>" method="POST" action="<?= SITE_ROOT . 'search' ?>">
+                <form name="query" class="form-inline my-2 my-lg-0 <?= ($title == 'Поиск') ? 'active' : '' ?>" method="POST" action="<?= SITE_ROOT . 'search/list' ?>">
                     <input name="inputQ" class="form-control mr-sm-2" type="search" placeholder="Поиск">
                     <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit"><i class="fa fa-search"></i></button>
                 </form>

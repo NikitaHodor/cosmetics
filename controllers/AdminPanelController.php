@@ -89,7 +89,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 //$delUrl = 'C:/xampp/htdocs'.$imgUrl;
                 $validation = new Validation();
@@ -125,7 +125,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 //$delUrl = 'C:/xampp/htdocs'.$imgUrl;
                 $validation = new Validation();
@@ -139,9 +139,15 @@
                 if(!$validation->checkImageType($imageFileType)){
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
-//                if($validation->checkImageExist($delUrl)){
-//                        unlink($delUrl);
-//                    }
+
+                $delUrlModel = new AdminPanel();
+			    $delUrl = $delUrlModel->getImagesUrlById($id);
+
+                if(file_exists('C:/xampp/htdocs' . $delUrl[0]['image_url'])){//delete old file(TODO:make it clean, not shit-code)
+                        unlink('C:/xampp/htdocs' . $delUrl[0]['image_url']);
+//                    $errors[] = $delUrl[0]['image_url'];
+                    }
+
                 // Check  error
                 if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
                 $image_cosmetic_id = $id;
@@ -149,6 +155,7 @@
                         'image_url' => $imgUrl,
                          'image_cosmetic_id' => $image_cosmetic_id
                     );
+
                  $cosmeticImageModel = new AdminPanel();
 			     $cosmeticImage = $cosmeticImageModel->editCosmeticImage($imageInfo);
                     header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
@@ -229,7 +236,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
@@ -262,7 +269,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 //$delUrl = 'C:/xampp/htdocs'.$imgUrl;
                 $validation = new Validation();
@@ -333,7 +340,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
@@ -366,7 +373,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 //$delUrl = 'C:/xampp/htdocs'.$imgUrl;
                 $validation = new Validation();
@@ -437,7 +444,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 
                 $validation = new Validation();
@@ -470,7 +477,7 @@
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
             $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
-            $new_file_name = mt_rand(10000,99999) . ".{$imageFileType}";
+            $new_file_name = time() . ".{$imageFileType}";
             $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
 //$delUrl = 'C:/xampp/htdocs'.$imgUrl;
                 $validation = new Validation();

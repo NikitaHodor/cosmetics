@@ -1,10 +1,9 @@
 <? include_once('./views/templates/header.php'); ?>
 <div class="container">
-    <h1> Бренды </h1>
     <div class="container panel-brands-container">
         <div class="row">
 			<div class="col mt-1">
-				<button class="btn btn-success mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-plus"></i></button>
+				<button class="btn btn-dark mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-plus"></i></button>
 				<table class="table shadow ">
 					<thead class="thead-dark">
 						<tr>
@@ -19,12 +18,12 @@
 							<td><?=$brand['brand_name'] ?></td>
 							<td><img style="width: 6rem;" src="<?= $brand['image_url'] ?>" alt=""></td>
 							<td>
-								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$brand['brand_id'] ?>"><i class="fa fa-edit"></i></a>
-								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$brand['brand_id'] ?>"><i class="fa fa-trash"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal<?=$brand['brand_id'] ?>"><i class="fa fa-edit"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#deleteModal<?=$brand['brand_id'] ?>"><i class="fa fa-trash"></i></a>
 								<? if(!$brand['image_url']): ?>
-                                <a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
+                                <a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#ImageModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
                                 <? else : ?>
-                                <a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageEditModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
+                                <a href="<?= SITE_ROOT . 'admin/brands/' . $brand['brand_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#ImageEditModal<?=$brand['brand_id'] ?>"><i class="fa fa-image"></i></a>
                                 <? endif; ?>
                                 <?php require 'modal.php'; ?>
 							</td>

@@ -7,7 +7,6 @@
         <? endforeach; ?>
     </div>
     <? endif; ?>
-    <h1> Изображения на сервере</h1>
     <div class="container panel-images-container">
         <div class="row">
             <div class="col mt-1">

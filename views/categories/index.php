@@ -1,6 +1,5 @@
 <? include_once('./views/templates/header.php'); ?>
 
-<h1> Каталог </h1>
  <? foreach ($categories as $category): ?>
   <div class="card mb-3">
   <div class="row no-gutters">

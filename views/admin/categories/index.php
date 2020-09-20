@@ -7,11 +7,10 @@
         <? endforeach; ?>
     </div>
     <? endif; ?>
-    <h1> Категории каталога </h1>
     <div class="container panel-categories-container">
         <div class="row">
 			<div class="col mt-1">
-				<button class="btn btn-success mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-plus"></i></button>
+				<button class="btn btn-dark mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-plus"></i></button>
 				<table class="table shadow ">
 					<thead class="thead-dark">
 						<tr>
@@ -26,12 +25,12 @@
 							<td><?=$category['category_name'] ?></td>
 							<td><img style="width: 6rem;" src="<?=$category['image_url'] ?>" alt=""></td>
 							<td>
-								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?=$category['category_id'] ?>"><i class="fa fa-edit"></i></a>
-								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?=$category['category_id'] ?>"><i class="fa fa-trash"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal<?=$category['category_id'] ?>"><i class="fa fa-edit"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#deleteModal<?=$category['category_id'] ?>"><i class="fa fa-trash"></i></a>
 								<? if(!$category['image_url']): ?>
-                                <a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageModal<?=$category['category_id'] ?>"><i class="fa fa-image"></i></a>
+                                <a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#ImageModal<?=$category['category_id'] ?>"><i class="fa fa-image"></i></a>
                                 <? else : ?>
-                                <a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-success btn-sm" data-toggle="modal" data-target="#ImageEditModal<?=$category['category_id'] ?>"><i class="fa fa-image"></i></a>
+                                <a href="<?= SITE_ROOT . 'admin/categories/' . $category['category_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#ImageEditModal<?=$category['category_id'] ?>"><i class="fa fa-image"></i></a>
                                 <? endif; ?>
                                 <?php require 'modal.php'; ?>
 							</td>

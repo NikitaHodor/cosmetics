@@ -45,11 +45,6 @@
                         <th>
                             Сумма
                         </th>
-<!--
-                        <th>
-                            Действие
-                        </th>
--->
                     </tr>
                 </thead>
                 <tbody id="cartCont">
@@ -57,7 +52,7 @@
                     <tr>
                         <td> <?= $cosmetic['cosmetic_name']; ?></td>
                         <td> <?= $cosmetic['cosmetic_price']; ?></td>
-                        <td><a class="btn btn-outline-secondary btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">-</a> <?= $cart[$cosmetic['cosmetic_id']]; ?> <a class="btn btn-outline-secondary btn-sm" onclick="addToCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">+</a></td>
+                        <td><a class="btn btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">-</a> <?= $cart[$cosmetic['cosmetic_id']]; ?> <a class="btn btn-sm" onclick="addToCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">+</a></td>
                         <td> <?= $cosmetic['cosmetic_price'] * $cart[$cosmetic['cosmetic_id']]; ?></td>
                     </tr>
                     <? endforeach; ?>
