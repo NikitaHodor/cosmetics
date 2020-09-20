@@ -283,9 +283,14 @@
                 if(!$validation->checkImageType($imageFileType)){
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
-//                if($validation->checkImageExist($delUrl)){
-//                        unlink($delUrl);
-//                    }
+                $delUrlModel = new AdminPanel();
+			    $delUrl = $delUrlModel->getCategoryImagesUrlById($id);
+
+                if(file_exists('C:/xampp/htdocs' . $delUrl[0]['image_url'])){//delete old file(TODO:make it clean, not shit-code)
+                        unlink('C:/xampp/htdocs' . $delUrl[0]['image_url']);
+//                    $errors[] = $delUrl[0]['image_url'];
+                    }
+
                 // Check  error
                 if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
                 $image_category_id = $id;
@@ -387,9 +392,13 @@
                 if(!$validation->checkImageType($imageFileType)){
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
-//                if($validation->checkImageExist($delUrl)){
-//                        unlink($delUrl);
-//                    }
+                $delUrlModel = new AdminPanel();
+			    $delUrl = $delUrlModel->getBrandImagesUrlById($id);
+
+                if(file_exists('C:/xampp/htdocs' . $delUrl[0]['image_url'])){//delete old file(TODO:make it clean, not shit-code)
+                        unlink('C:/xampp/htdocs' . $delUrl[0]['image_url']);
+//                    $errors[] = $delUrl[0]['image_url'];
+                    }
                 // Check  error
                 if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],FILE_ROOT . $target_dir . $new_file_name)){
                 $image_brand_id = $id;
@@ -491,9 +500,13 @@
                 if(!$validation->checkImageType($imageFileType)){
                         $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
                     }
-//                if($validation->checkImageExist($delUrl)){
-//                        unlink($delUrl);
-//                    }
+                $delUrlModel = new AdminPanel();
+			    $delUrl = $delUrlModel->getServiceImagesUrlById($id);
+
+                if(file_exists('C:/xampp/htdocs' . $delUrl[0]['image_url'])){//delete old file(TODO:make it clean, not shit-code)
+                        unlink('C:/xampp/htdocs' . $delUrl[0]['image_url']);
+//                    $errors[] = $delUrl[0]['image_url'];
+                    }
                 // Check  error
                 if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
                 $image_service_id = $id;

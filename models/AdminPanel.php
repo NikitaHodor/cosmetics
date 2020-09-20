@@ -131,25 +131,31 @@
 			$url = $result->fetchAll();
 			return $url;
 		}
-        public function getBrandImages() {
+        public function getBrandImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('brand_images'))
+                        ->what(['image_url'])
+                        ->where("WHERE `image_brand_id` = '$id'")
 						->build();
 			$result = $db->query($query);
 			$images = $result->fetchAll();
 			return $images;
 		}
-        public function getCategoryImages() {
+        public function getCategoryImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('category_images'))
+                        ->what(['image_url'])
+                        ->where("WHERE `image_category_id` = '$id'")
 						->build();
 			$result = $db->query($query);
 			$images = $result->fetchAll();
 			return $images;
 		}
-        public function getServiceImages() {
+        public function getServiceImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('service_images'))
+                        ->what(['image_url'])
+                        ->where("WHERE `image_service_id` = '$id'")
 						->build();
 			$result = $db->query($query);
 			$images = $result->fetchAll();
