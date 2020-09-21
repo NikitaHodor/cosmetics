@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 20 2020 г., 11:22
+-- Время создания: Сен 21 2020 г., 08:46
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -180,7 +180,7 @@ INSERT INTO `category_images` (`image_id`, `image_url`, `image_category_id`) VAL
 (29, '/enso_cosmetics/assets/img/categories/48059.jpg', 2),
 (30, '/enso_cosmetics/assets/img/categories/29968.jpg', 3),
 (31, '/enso_cosmetics/assets/img/categories/68859.jpg', 4),
-(32, '/enso_cosmetics/assets/img/categories/92045.jpg', 5);
+(32, '/enso_cosmetics/assets/img/categories/1600603749.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -201,6 +201,13 @@ CREATE TABLE `connects` (
 --   `connect_user_id`
 --       `users` -> `user_id`
 --
+
+--
+-- Дамп данных таблицы `connects`
+--
+
+INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
+(254, 'gcmk98suh4qlomukavk7bjb243', '8879b2361e4d22b5d0b11f5a62bdc3ce', 36, '2020-09-21 06:40:29');
 
 -- --------------------------------------------------------
 
@@ -246,7 +253,8 @@ INSERT INTO `cosmetics` (`cosmetic_id`, `cosmetic_name`, `cosmetic_type_id`, `co
 (13, 'ADD CHECK2', NULL, NULL, NULL, 222, 222, NULL, 'work or not2?', 1),
 (28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 0),
 (29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 0),
-(30, 'admin_test', 1, 6, 7, 5151, 220, 2, 'Тестим редактирование в админке.', 0);
+(30, 'admin_test', 1, 6, 7, 5151, 220, 2, 'Тестим редактирование в админке.', 0),
+(31, 'Butthole cream', 2, 1, 7, 455, 455, 4, 'Cream for your butthole', 0);
 
 -- --------------------------------------------------------
 
@@ -327,7 +335,8 @@ INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
 (241, '/enso_cosmetics/assets/img/cosmetics/1600454465.jpg', 4),
 (242, '/enso_cosmetics/assets/img/cosmetics/1600454476.jpg', 28),
 (243, '/enso_cosmetics/assets/img/cosmetics/1600454484.jpg', 29),
-(244, '/enso_cosmetics/assets/img/cosmetics/1600458608.jpg', 30);
+(244, '/enso_cosmetics/assets/img/cosmetics/1600458608.jpg', 30),
+(245, '/enso_cosmetics/assets/img/cosmetics/1600666933.jpg', 31);
 
 -- --------------------------------------------------------
 
@@ -502,7 +511,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_surname`, `user_login`, `user
 (19, NULL, NULL, 'panel check', '3a2f39e05d7ff45c30d07400b4c3f070', NULL, NULL, NULL, NULL, 0),
 (32, NULL, NULL, 'test', '098f6bcd4621d373cade4e832627b4f6', NULL, NULL, NULL, NULL, 0),
 (33, NULL, NULL, 'test2', 'ad0234829205b9033196ba818f7a872b', NULL, NULL, NULL, NULL, 0),
-(36, NULL, NULL, 'darth Bane', '2d96f82c7001328a8caab444cc26c335', NULL, NULL, NULL, NULL, 1);
+(36, NULL, NULL, 'darth Bane', '2d96f82c7001328a8caab444cc26c335', NULL, NULL, NULL, NULL, 1),
+(43, NULL, NULL, 'Butthead', 'acdf11f13df3520b2accef73bc97476e', NULL, NULL, NULL, NULL, 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -669,13 +679,13 @@ ALTER TABLE `category_images`
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
 --
 ALTER TABLE `cosmetics`
-  MODIFY `cosmetic_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `cosmetic_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT для таблицы `countries`
@@ -693,7 +703,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -729,7 +739,7 @@ ALTER TABLE `types`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

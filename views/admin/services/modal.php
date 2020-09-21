@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" method="post">
+        <form action="<?= SITE_ROOT . 'admin/servicesEdit/' . $service['service_id'] ?>" method="post">
         	<div class="form-group">
         		<input type="text" class="form-control" name="edit_name" value="<?=$service['service_name'] ?>" placeholder="название">
         	</div>
@@ -34,7 +34,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-        <form action="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" method="post">
+        <form action="<?= SITE_ROOT . 'admin/servicesDelete/' . $service['service_id'] ?>" method="post">
         	<button type="submit" name="delete_submit" class="btn btn-danger">Удалить</button>
     	</form>
       </div>
@@ -52,7 +52,7 @@
                 </button>
             </div>
             <div class="modal-body">
-	        <form enctype="multipart/form-data" action="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" method="post">
+	        <form enctype="multipart/form-data" action="<?= SITE_ROOT . 'admin/servicesAddImg/' . $service['service_id'] ?>" method="post">
 	        	<div class="form-group">
 	        		<input type="file" class="form-control" name="upload_image">
 	        	</div>
@@ -77,7 +77,7 @@
                 </button>
             </div>
             <div class="modal-body">
-	        <form enctype="multipart/form-data" action="<?= SITE_ROOT . 'admin/services/' . $service['service_id'] ?>" method="post">
+	        <form enctype="multipart/form-data" action="<?= SITE_ROOT . 'admin/servicesEditImg/' . $service['service_id'] ?>" method="post">
 	        	<div class="form-group">
 	        		<input type="file" class="form-control" name="upload_image">
 	        	</div>

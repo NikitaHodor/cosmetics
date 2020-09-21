@@ -2,12 +2,14 @@
 
     class AdminPanelController
     {
-        public function users($parameters = []) {//read
+        public function users() {//read
             $title = 'Список пользователей';
-            $id = $parameters[0];
             $usersModel = new AdminPanel();
 			$users = $usersModel->getUsers();
 
+            include_once('./views/admin/users/index.php');
+    }
+        public function usersAdd() {
             if (isset($_POST['add_submit'])) {//add
                 $user_login = $_POST['user_login'];
                 $user_password = $_POST['user_password'];
@@ -19,9 +21,13 @@
                     );
                $userModel = new AdminPanel();
 			     $user = $userModel->addUser($userInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/users/');
+                 header('Location: ' . SITE_ROOT . 'admin/users');
                 return;
-            } else if (isset($_POST['edit-submit'])) {//edit
+            }
+        }
+        public function usersEdit($parameters = []) {
+            $id = $parameters[0];
+            if (isset($_POST['edit-submit'])) {//edit
                 $user_edit_login = $_POST['edit_login'];
                 $user_edit_is_admin = $_POST['edit_is_admin'];
                 $user_edit_id = $id;
@@ -32,23 +38,36 @@
                     );
                  $userEditModel = new AdminPanel();
 			     $userEdit = $userEditModel->editUser($userEditInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/users/');
-                return;
-            } else if (isset($_POST['delete_submit'])) {//delete
-                 $userDeleteModel = new AdminPanel();
-			     $userDeleteModel->deleteUser($id);
-                 header('Location: ' . SITE_ROOT . 'admin/users/');
+                 header('Location: ' . SITE_ROOT . 'admin/users');
                 return;
             }
-            include_once('./views/admin/users/index.php');
-    }
-
-         public function cosmetics($parameters = []) {
-            $title = 'Список товаров';
+        }
+        public function usersDelete($parameters = []) {
             $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
+                 $userDeleteModel = new AdminPanel();
+			     $userDeleteModel->deleteUser($id);
+                 header('Location: ' . SITE_ROOT . 'admin/users');
+                return;
+            }
+        }
+
+        public function cosmetics() {
+            $title = 'Список товаров';
             $cosmeticsModel = new Cosmetic();
 			$cosmetics = $cosmeticsModel->getAll();
 
+            $brandModel = new Brand();
+            $brands = $brandModel->getAll();
+            $typeModel = new Type();
+            $types = $typeModel->getAll();
+            $categoryModel = new Category();
+            $categories = $categoryModel->getAll();
+            $countryModel = new Country();
+            $countries = $countryModel->getAll();
+            include_once('./views/admin/cosmetics/index.php');
+    }
+        public function cosmeticsAdd() {
             if (isset($_POST['add_submit'])) {//add
                 $helper = new Helper();
                     $cosmetic_name = $helper->escape($_POST['cosmetic_name']);
@@ -81,10 +100,54 @@
                             'cosmetic_description' => $cosmetic_description
                         );
                         $cosmeticModel->addCosmetics($cosmeticArray);
-			            header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+			            header('Location: ' . SITE_ROOT . 'admin/cosmetics');
 			            return;
                     }
-            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            }
+        }
+        public function cosmeticsEdit($parameters = []) {
+            $id = $parameters[0];
+             if (isset($_POST['edit-submit'])) {//edit
+                $helper = new Helper();
+                    $cosmetic_name = $helper->escape($_POST['edit_cosmetic_name']);
+                    $cosmetic_type = $helper->escape($_POST['edit_cosmetic_type']);
+                    $cosmetic_category = $helper->escape($_POST['edit_cosmetic_category']);
+                    $cosmetic_brand = $helper->escape($_POST['edit_cosmetic_brand']);
+                    $cosmetic_price = $helper->escape($_POST['edit_cosmetic_price']);
+                    $cosmetic_volume = $helper->escape($_POST['edit_cosmetic_volume']);
+                    $cosmetic_country = $helper->escape($_POST['edit_cosmetic_country']);
+                    $cosmetic_description = $helper->escape($_POST['edit_cosmetic_description']);
+
+                    $validation = new Validation();
+                    $errors = array();
+                    if(!$validation->checklength($cosmetic_name)){
+                        $errors[] = 'кол-во символов не должно быть меньше 2';
+                    }
+                     if(!$validation->checkNumber($cosmetic_price, 99999, 50)){
+                        $errors[] = 'цена не должна превышать 99999 или быть меньше 100';
+                    }
+                    if(empty($errors)){
+                        $cosmeticModel = new Cosmetic();
+                        $cosmetic = array(
+                        'cosmetic_name' => $cosmetic_name,
+                            'cosmetic_type' => $cosmetic_type,
+                            'cosmetic_category' => $cosmetic_category,
+                            'cosmetic_brand' => $cosmetic_brand,
+                          'cosmetic_price' => $cosmetic_price,
+                            'cosmetic_volume' => $cosmetic_volume,
+                            'cosmetic_country' => $cosmetic_country,
+                            'cosmetic_description' => $cosmetic_description,
+                            'cosmetic_id' => $id
+                        );
+                        $cosmeticModel->updateCosmetic($cosmetic);
+                        header('Location: ' . SITE_ROOT . 'admin/cosmetics');
+                        return;
+                    }
+            }
+        }
+        public function cosmeticsAddImg($parameters = []) {
+            $id = $parameters[0];
+            if (isset($_POST['image_add_submit'])) {//IMAGE
             $target_dir = 'assets/img/cosmetics/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -115,12 +178,16 @@
                     );
                  $cosmeticImageModel = new AdminPanel();
 			     $cosmeticImage = $cosmeticImageModel->addCosmeticImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                    header('Location: ' . SITE_ROOT . 'admin/cosmetics');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            }
+        }
+        public function cosmeticsEditImg($parameters = []) {
+            $id = $parameters[0];
+            if (isset($_POST['image_edit_submit'])) {//IMAGE
             $target_dir = 'assets/img/cosmetics/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -158,70 +225,31 @@
 
                  $cosmeticImageModel = new AdminPanel();
 			     $cosmeticImage = $cosmeticImageModel->editCosmeticImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                    header('Location: ' . SITE_ROOT . 'admin/cosmetics');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['edit-submit'])) {//edit
-                $helper = new Helper();
-                    $cosmetic_name = $helper->escape($_POST['edit_cosmetic_name']);
-                    $cosmetic_type = $helper->escape($_POST['edit_cosmetic_type']);
-                    $cosmetic_category = $helper->escape($_POST['edit_cosmetic_category']);
-                    $cosmetic_brand = $helper->escape($_POST['edit_cosmetic_brand']);
-                    $cosmetic_price = $helper->escape($_POST['edit_cosmetic_price']);
-                    $cosmetic_volume = $helper->escape($_POST['edit_cosmetic_volume']);
-                    $cosmetic_country = $helper->escape($_POST['edit_cosmetic_country']);
-                    $cosmetic_description = $helper->escape($_POST['edit_cosmetic_description']);
-
-                    $validation = new Validation();
-                    $errors = array();
-                    if(!$validation->checklength($cosmetic_name)){
-                        $errors[] = 'кол-во символов не должно быть меньше 2';
-                    }
-                     if(!$validation->checkNumber($cosmetic_price, 99999, 50)){
-                        $errors[] = 'цена не должна превышать 99999 или быть меньше 100';
-                    }
-                    if(empty($errors)){
-                        $cosmeticModel = new Cosmetic();
-                        $cosmetic = array(
-                        'cosmetic_name' => $cosmetic_name,
-                            'cosmetic_type' => $cosmetic_type,
-                            'cosmetic_category' => $cosmetic_category,
-                            'cosmetic_brand' => $cosmetic_brand,
-                          'cosmetic_price' => $cosmetic_price,
-                            'cosmetic_volume' => $cosmetic_volume,
-                            'cosmetic_country' => $cosmetic_country,
-                            'cosmetic_description' => $cosmetic_description,
-                            'cosmetic_id' => $id
-                        );
-                        $cosmeticModel->updateCosmetic($cosmetic);
-                        header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
-                        return;
-                    }
-            } else if (isset($_POST['delete_submit'])) {//delete
+            }
+        }
+        public function cosmeticsDelete($parameters = []) {
+            $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
                  $cosmeticDeleteModel = new Cosmetic();
 			     $cosmeticDeleteModel->deleteCosmeticById($id);
-                 header('Location: ' . SITE_ROOT . 'admin/cosmetics/');
+                 header('Location: ' . SITE_ROOT . 'admin/cosmetics');
                 return;
             }
-             $brandModel = new Brand();
-            $brands = $brandModel->getAll();
-            $typeModel = new Type();
-            $types = $typeModel->getAll();
-            $categoryModel = new Category();
-            $categories = $categoryModel->getAll();
-            $countryModel = new Country();
-            $countries = $countryModel->getAll();
-            include_once('./views/admin/cosmetics/index.php');
-    }
+        }
 
-        public function categories($parameters = []) {//read
+        public function categories() {//read
             $title = 'Категории каталога';
-            $id = $parameters[0];
             $categoriesModel = new Category();
 			$categories = $categoriesModel->getAll();
 
+            include_once('./views/admin/categories/index.php');
+}
+        public function categoriesAdd(){
             if (isset($_POST['add_submit'])) {//add
                 $category_name = $_POST['category_name'];
                 $categoryInfo = array(
@@ -229,9 +257,28 @@
                     );
                $categoryModel = new Category();
 			     $category = $categoryModel->addCategory($categoryInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/categories/');
+                 header('Location: ' . SITE_ROOT . 'admin/categories');
                 return;
-            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            }
+        }
+        public function categoriesEdit($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['edit-submit'])) {//edit
+                $category_edit_name = $_POST['edit_name'];
+                $category_edit_id = $id;
+                $categoryEditInfo = array(
+                    'category_name' => $category_edit_name,
+                         'category_id' => $category_edit_id
+                    );
+                 $categoryEditModel = new Category();
+			     $categoryEditModel->editCategory($categoryEditInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/categories');
+                return;
+            }
+        }
+        public function categoriesAddImg($parameters = []){
+            $id = $parameters[0];
+            if (isset($_POST['image_add_submit'])) {//IMAGE
             $target_dir = 'assets/img/categories/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -259,12 +306,16 @@
                     );
                  $categoryImageModel = new AdminPanel();
 			     $categoryImage = $categoryImageModel->addCategoryImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/categories/');
+                    header('Location: ' . SITE_ROOT . 'admin/categories');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            }
+        }
+        public function categoriesEditImg($parameters = []){
+            $id = $parameters[0];
+            if (isset($_POST['image_edit_submit'])) {//IMAGE
             $target_dir = 'assets/img/categories/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -300,37 +351,32 @@
                     );
                  $categoryImageModel = new AdminPanel();
 			     $categoryImage = $categoryImageModel->editCategoryImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/categories/');
+                    header('Location: ' . SITE_ROOT . 'admin/categories');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['edit-submit'])) {//edit
-                $category_edit_name = $_POST['edit_name'];
-                $category_edit_id = $id;
-                $categoryEditInfo = array(
-                    'category_name' => $category_edit_name,
-                         'category_id' => $category_edit_id
-                    );
-                 $categoryEditModel = new Category();
-			     $categoryEditModel->editCategory($categoryEditInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/categories/');
-                return;
-            } else if (isset($_POST['delete_submit'])) {//delete
+            }
+        }
+        public function categoriesDelete($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
                  $categoryDeleteModel = new Category();
 			     $categoryDeleteModel->deleteCategory($id);
-                 header('Location: ' . SITE_ROOT . 'admin/categories/');
+                 header('Location: ' . SITE_ROOT . 'admin/categories');
                 return;
             }
+        }
 
-            include_once('./views/admin/categories/index.php');
-}
-        public function brands($parameters = []) {//read
+        public function brands() {//read
             $title = 'Список брендов';
-            $id = $parameters[0];
+
             $brandsModel = new Brand();
 			$brands = $brandsModel->getAll();
 
+            include_once('./views/admin/brands/index.php');
+}
+        public function brandsAdd(){
             if (isset($_POST['add_submit'])) {//add
                 $brand_name = $_POST['brand_name'];
                 $brandInfo = array(
@@ -338,9 +384,28 @@
                     );
                $brandModel = new Brand();
 			     $brand = $brandModel->addBrand($brandInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/brands/');
+                 header('Location: ' . SITE_ROOT . 'admin/brands');
                 return;
-            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            }
+        }
+        public function brandsEdit($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['edit-submit'])) {//edit
+                $brand_edit_name = $_POST['edit_name'];
+                $brand_edit_id = $id;
+                $brandEditInfo = array(
+                    'brand_name' => $brand_edit_name,
+                         'brand_id' => $brand_edit_id
+                    );
+                 $brandEditModel = new Brand();
+			     $brandEditModel->editBrand($brandEditInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/brands');
+                return;
+            }
+        }
+        public function brandsAddImg($parameters = []){
+            $id = $parameters[0];
+            if (isset($_POST['image_add_submit'])) {//IMAGE
             $target_dir = 'assets/img/brands/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -368,12 +433,16 @@
                     );
                  $brandImageModel = new AdminPanel();
 			     $brandImage = $brandImageModel->addBrandImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/brands/');
+                    header('Location: ' . SITE_ROOT . 'admin/brands');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            }
+        }
+        public function brandsEditImg($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['image_edit_submit'])) {//IMAGE
             $target_dir = 'assets/img/brands/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -408,37 +477,31 @@
                     );
                  $brandImageModel = new AdminPanel();
 			     $brandImage = $brandImageModel->editBrandImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/brands/');
+                    header('Location: ' . SITE_ROOT . 'admin/brands');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['edit-submit'])) {//edit
-                $brand_edit_name = $_POST['edit_name'];
-                $brand_edit_id = $id;
-                $brandEditInfo = array(
-                    'brand_name' => $brand_edit_name,
-                         'brand_id' => $brand_edit_id
-                    );
-                 $brandEditModel = new Brand();
-			     $brandEditModel->editBrand($brandEditInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/brands/');
-                return;
-            } else if (isset($_POST['delete_submit'])) {//delete
+            }
+        }
+        public function brandsDelete($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
                  $brandDeleteModel = new Brand();
 			     $brandDeleteModel->deleteBrand($id);
-                 header('Location: ' . SITE_ROOT . 'admin/brands/');
+                 header('Location: ' . SITE_ROOT . 'admin/brands');
                 return;
             }
+        }
 
-            include_once('./views/admin/brands/index.php');
-}
-        public function services($parameters = []) {//read
+        public function services() {//read
             $title = 'Услуги салона';
-            $id = $parameters[0];
             $servicesModel = new Service();
 			$services = $servicesModel->getAll();
 
+            include_once('./views/admin/services/index.php');
+}
+        public function servicesAdd(){
             if (isset($_POST['add_submit'])) {//add
                 $service_name = $_POST['service_name'];
                 $serviceInfo = array(
@@ -446,9 +509,28 @@
                     );
                $serviceModel = new Service();
 			     $service = $serviceModel->addService($serviceInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/services/');
+                 header('Location: ' . SITE_ROOT . 'admin/services');
                 return;
-            } else if (isset($_POST['image_add_submit'])) {//IMAGE
+            }
+        }
+        public function servicesEdit($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['edit-submit'])) {//edit
+                $service_edit_name = $_POST['edit_name'];
+                $service_edit_id = $id;
+                $serviceEditInfo = array(
+                    'service_name' => $service_edit_name,
+                         'service_id' => $service_edit_id
+                    );
+                 $serviceEditModel = new Service();
+			     $serviceEditModel->editService($serviceEditInfo);
+                 header('Location: ' . SITE_ROOT . 'admin/services');
+                return;
+            }
+        }
+        public function servicesAddImg($parameters = []){
+            $id = $parameters[0];
+            if (isset($_POST['image_add_submit'])) {//IMAGE
             $target_dir = 'assets/img/services/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -476,12 +558,16 @@
                     );
                  $serviceImageModel = new AdminPanel();
 			     $serviceImage = $serviceImageModel->addServiceImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/services/');
+                    header('Location: ' . SITE_ROOT . 'admin/services');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['image_edit_submit'])) {//IMAGE
+            }
+        }
+        public function servicesEditImg($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['image_edit_submit'])) {//IMAGE
             $target_dir = 'assets/img/services/';
             $filesArr = $_FILES["upload_image"];
             $upload_file_name =  basename($filesArr["name"]);// upload name
@@ -516,34 +602,26 @@
                     );
                 $serviceImageModel = new AdminPanel();
 			     $serviceImage = $serviceImageModel->editServiceImage($imageInfo);
-                    header('Location: ' . SITE_ROOT . 'admin/services/');
+                    header('Location: ' . SITE_ROOT . 'admin/services');
                     return;
                 } else {
                     $errors[] = 'Произошла ошибка при загрузке файла!';
                 }
-            } else if (isset($_POST['edit-submit'])) {//edit
-                $service_edit_name = $_POST['edit_name'];
-                $service_edit_id = $id;
-                $serviceEditInfo = array(
-                    'service_name' => $service_edit_name,
-                         'service_id' => $service_edit_id
-                    );
-                 $serviceEditModel = new Service();
-			     $serviceEditModel->editService($serviceEditInfo);
-                 header('Location: ' . SITE_ROOT . 'admin/services/');
-                return;
-            } else if (isset($_POST['delete_submit'])) {//delete
+            }
+        }
+        public function servicesDelete($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
                  $serviceDeleteModel = new Service();
 			     $serviceDeleteModel->deleteService($id);
-                 header('Location: ' . SITE_ROOT . 'admin/services/');
+                 header('Location: ' . SITE_ROOT . 'admin/services');
                 return;
             }
+        }
 
-            include_once('./views/admin/services/index.php');
-}
-        public function images($parameters = []) {//read img from folder
+        public function images() {//read img from folder
             $title = 'Изображения';
-            $id = $parameters[0];
+
             $dirname = FILE_ROOT . "assets/img";
             $len = strlen(FILE_ROOT);
             $fileRootItems = glob($dirname.'/*');

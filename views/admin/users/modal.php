@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" method="post">
+        <form action="<?= SITE_ROOT . 'admin/usersEdit/' . $user['user_id'] ?>" method="post">
         	<div class="form-group">
         		<input type="text" class="form-control" name="edit_login" value="<?=$user['user_login'] ?>" placeholder="логин">
         	</div>
@@ -44,7 +44,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-        <form action="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" method="post">
+        <form action="<?= SITE_ROOT . 'admin/usersDelete/' . $user['user_id'] ?>" method="post">
         	<button type="submit" name="delete_submit" class="btn btn-danger">Удалить</button>
     	</form>
       </div>

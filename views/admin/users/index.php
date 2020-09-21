@@ -3,7 +3,7 @@
     <div class="container panel-users-container">
         <div class="row">
 			<div class="col mt-1">
-				<button class="btn btn-dark mb-1" data-toggle="modal" data-target="#Modal"><i class="fa fa-user-plus"></i></button>
+				<a class="btn btn-dark mb-1" href="<?= SITE_ROOT . 'admin/usersAdd' ?>" data-toggle="modal" data-target="#Modal"><i class="fa fa-user-plus"></i></a>
 				<table class="table shadow ">
 					<thead class="thead-dark">
 						<tr>
@@ -18,8 +18,8 @@
 							<td><?=$user['user_login'] ?></td>
 							<td><?= $user['user_is_admin'] ? 'администратор':'пользователь'; ?></td>
 							<td>
-								<a href="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal<?=$user['user_id'] ?>"><i class="fa fa-edit"></i></a>
-								<a href="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#deleteModal<?=$user['user_id'] ?>"><i class="fa fa-trash"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/usersEdit/' . $user['user_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal<?=$user['user_id'] ?>"><i class="fa fa-edit"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/usersDelete/' . $user['user_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#deleteModal<?=$user['user_id'] ?>"><i class="fa fa-trash"></i></a>
 								<?php require 'modal.php'; ?>
 							</td>
 						</tr>
@@ -41,7 +41,7 @@
 	      </div>
 	      <div class="modal-body modal-form">
 <!-- delete! form action -->
-	        <form action="<?= SITE_ROOT . 'admin/users/' . $user['user_id'] ?>" method="post">
+	        <form action="<?= SITE_ROOT . 'admin/usersAdd' ?>" method="post">
 	        	<div class="form-group">
 	        		<input type="text" class="form-control" name="user_login" value="" placeholder="Логин">
 	        	</div>
@@ -61,7 +61,8 @@
 
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-	        <button onclick="sendAjax(event, 'user')" name="add_submit" class="btn btn-primary">Добавить</button>
+	        <button name="add_submit" class="btn btn-primary">Добавить</button>
+<!-- onclick="sendAjax(event, 'user')"  -->
 	      </div>
 	  		</form>
 	    </div>
