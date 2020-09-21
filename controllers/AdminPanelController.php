@@ -644,4 +644,13 @@
             }
             include_once('./views/admin/images/index.php');
         }
+
+        public function orders() {
+            $title = 'Заказы';
+
+            $ordersModel = new AdminPanel();
+			$orders = $ordersModel->getOrders();
+
+            include_once('./views/admin/orders/index.php');
+        }
     }

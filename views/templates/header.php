@@ -31,6 +31,7 @@
                             <a class="dropdown-item <?= ($title == 'Список брендов') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/brands'; ?>">Бренды</a>
                             <a class="dropdown-item <?= ($title == 'Услуги салона') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/services'; ?>">Услуги салона</a>
                             <a class="dropdown-item <?= ($title == 'Изображения') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/images'; ?>">Изображения</a>
+                            <a class="dropdown-item <?= ($title == 'Заказы') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/orders'; ?>">Заказы</a>
                         </div>
                     </li>
                     <? endif; ?>

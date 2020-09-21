@@ -73,7 +73,9 @@
             "admin/servicesEditImg/([0-9]+)" => "servicesEditImg/$1",
             "admin/servicesDelete/([0-9]+)" => "servicesDelete/$1",
 
-             "admin/images" => "images"//to do image crud&storage
+             "admin/images" => "images",//to do image crud&storage
+
+            "admin/orders" => "orders"
 		),
 		"CartsController" => array(
 			"cart" => "index"

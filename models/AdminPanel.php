@@ -161,4 +161,14 @@
 			$images = $result->fetchAll();
 			return $images;
 		}
+
+        public function getOrders() {
+            $db = DB::connect();
+			$query = (new Select('carts'))
+						->joins([['LEFT', 'orders', 'cart_order_id', 'order_id'], ['LEFT', 'cosmetics', 'cart_cosmetic_id', 'cosmetic_id']])
+						->build();
+			$result = $db->query($query);
+			$orders = $result->fetchAll();
+			return $orders;
+        }
     }
