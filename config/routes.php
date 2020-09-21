@@ -91,8 +91,8 @@
 			"about" => "index"
 		),
         "SearchController" => array(
-			"search/list" => "index", //работа над поиском
-            "search/view/([0-9]+)" => "view/$1"
+			"search/list" => "index", //TODO: validation & filters
+//            "search/view/([0-9]+)" => "view/$1"
 		),
         "ErrorsController" => array(
 			"error" => "index"
