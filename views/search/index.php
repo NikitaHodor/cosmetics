@@ -21,7 +21,7 @@
         <? foreach ($searchResults as $searchResult): ?>
         <tr>
             <td>
-            <a href="<?= SITE_ROOT . 'search/view/' . $searchResult['cosmetic_id'] ?>">
+            <a href="<?= SITE_ROOT . 'cosmetics/view/' . $searchResult['cosmetic_id'] ?>">
             <?= $searchResult['cosmetic_name']; ?>
             </a>
             </td>
