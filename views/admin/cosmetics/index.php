@@ -16,6 +16,7 @@
                         <tr>
                             <th>№</th>
                             <th>Наименование</th>
+                            <th>Бренд</th>
                             <!--
                             <th>Тип</th>
                             <th>Категория</th>
@@ -31,11 +32,13 @@
                         <tr>
                             <td><?=$cosmetic['cosmetic_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_name'] ?></td>
-                            <!--
+
+<!--
                             <td><?=$cosmetic['cosmetic_type_id'] ?></td>
                             <td><?=$cosmetic['cosmetic_category_id'] ?></td>
-                            <td><?=$cosmetic['cosmetic_brand_id'] ?></td>
 -->
+                            <td><?=$cosmetic['brand_name'] ?></td>
+
                             <td><?=$cosmetic['cosmetic_price'] ?></td>
                             <td><?=$cosmetic['cosmetic_volume'] ?></td>
                             <!--                            <td><?=$cosmetic['cosmetic_country_id'] ?></td>-->

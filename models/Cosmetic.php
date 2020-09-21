@@ -6,8 +6,7 @@
 		public function getAll() { 
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))
-						->joins([['LEFT', 'brands', 'cosmetic_brand_id', 'brand_id']])
-                        ->joins([['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id']])
+						->joins([['LEFT', 'brands', 'cosmetic_brand_id', 'brand_id'], ['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id']])
 						->where('WHERE `cosmetic_is_deleted` = 0')
 						->build(); 
 			$result = $db->query($query); 
@@ -35,7 +34,7 @@
 		public function getCosmeticById($id) {
 			$db = DB::connect();
 			$query = (new Select('cosmetics'))
-                        ->joins([['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id']])
+                        ->joins([['LEFT', 'brands', 'cosmetic_brand_id', 'brand_id'], ['LEFT', 'images', 'cosmetic_id', 'image_cosmetic_id'], ['LEFT', 'countries', 'cosmetic_country_id', 'country_id']])
 						->where("WHERE `cosmetic_id` = $id")
 						->build(); 
 			$result = $db->query($query);

@@ -61,11 +61,11 @@
                 echo 'некорректный id';
                 exit();
             } else {
-                print_r($id);//для отладки
+//                print_r($id);//для отладки
                 $cosmeticModel = new Cosmetic();
 			    $cosmetic = $cosmeticModel->getCosmeticById($id);
 			    include_once('./views/cosmetics/view.php');
-			 
+//			 print_r($cosmetic);
 //                echo 'Вызван action view с параметром id = $id';
             }
 			return;
