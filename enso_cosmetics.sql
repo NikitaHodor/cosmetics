@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 21 2020 г., 08:46
+-- Время создания: Сен 23 2020 г., 09:40
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -180,7 +180,7 @@ INSERT INTO `category_images` (`image_id`, `image_url`, `image_category_id`) VAL
 (29, '/enso_cosmetics/assets/img/categories/48059.jpg', 2),
 (30, '/enso_cosmetics/assets/img/categories/29968.jpg', 3),
 (31, '/enso_cosmetics/assets/img/categories/68859.jpg', 4),
-(32, '/enso_cosmetics/assets/img/categories/1600603749.jpg', 5);
+(32, '/enso_cosmetics/assets/img/categories/1600844246.jpg', 5);
 
 -- --------------------------------------------------------
 
@@ -201,13 +201,6 @@ CREATE TABLE `connects` (
 --   `connect_user_id`
 --       `users` -> `user_id`
 --
-
---
--- Дамп данных таблицы `connects`
---
-
-INSERT INTO `connects` (`connect_id`, `connect_session_id`, `connect_token`, `connect_user_id`, `connect_token_time`) VALUES
-(254, 'gcmk98suh4qlomukavk7bjb243', '8879b2361e4d22b5d0b11f5a62bdc3ce', 36, '2020-09-21 06:40:29');
 
 -- --------------------------------------------------------
 
@@ -251,10 +244,17 @@ INSERT INTO `cosmetics` (`cosmetic_id`, `cosmetic_name`, `cosmetic_type_id`, `co
 (4, 'Beard lotion', 3, 4, 4, 2500, 30, 5, 'Лосьон для роста бороды', 0),
 (12, 'ADD CHECK', NULL, NULL, NULL, 1488, 1488, NULL, 'work or not?', 1),
 (13, 'ADD CHECK2', NULL, NULL, NULL, 222, 222, NULL, 'work or not2?', 1),
-(28, 'ADD CHECK3', NULL, NULL, 3, 666, 66, NULL, 'work or not3?', 0),
+(28, 'ADD CHECK3', 3, 2, 3, 666, 66, 3, 'work or not3?', 0),
 (29, 'FULL ADD CHECK', 4, 5, 4, 6666, 66, 5, 'Проверка на добавление всех полей.', 0),
 (30, 'admin_test', 1, 6, 7, 5151, 220, 2, 'Тестим редактирование в админке.', 0),
-(31, 'Butthole cream', 2, 1, 7, 455, 455, 4, 'Cream for your butthole', 0);
+(31, 'Butthole cream', 2, 1, 7, 455, 455, 4, 'Cream for your butthole', 0),
+(32, 'Gel', 1, 4, 1, 3333, 333, 2, 'gel for men', 0),
+(33, 'Lotion', 3, 2, 1, 4444, 444, 1, 'Body lotion', 0),
+(34, 'Oil', 6, 1, 3, 5555, 555, 3, 'Skin oil', 0),
+(35, 'Shampoo', 6, 3, 4, 6666, 666, 5, 'Men shampoo', 0),
+(44, 'Problem', 2, 5, 1, 7777, 40, 1, 'Problem?', 0),
+(47, 'Cream', 2, 1, 1, 5665, 65, 1, 'Skin cream', 0),
+(48, 'Body oil', 4, 2, 3, 2344, 234, 3, 'oil for body', 0);
 
 -- --------------------------------------------------------
 
@@ -336,7 +336,14 @@ INSERT INTO `images` (`image_id`, `image_url`, `image_cosmetic_id`) VALUES
 (242, '/enso_cosmetics/assets/img/cosmetics/1600454476.jpg', 28),
 (243, '/enso_cosmetics/assets/img/cosmetics/1600454484.jpg', 29),
 (244, '/enso_cosmetics/assets/img/cosmetics/1600458608.jpg', 30),
-(245, '/enso_cosmetics/assets/img/cosmetics/1600666933.jpg', 31);
+(245, '/enso_cosmetics/assets/img/cosmetics/1600666933.jpg', 31),
+(246, '/enso_cosmetics/assets/img/cosmetics/1600842984.jpg', 32),
+(247, '/enso_cosmetics/assets/img/cosmetics/1600843058.jpg', 33),
+(248, '/enso_cosmetics/assets/img/cosmetics/1600843128.jpg', 34),
+(249, '/enso_cosmetics/assets/img/cosmetics/1600843181.jpg', 35),
+(250, '/enso_cosmetics/assets/img/cosmetics/1600844697.jpg', 44),
+(251, '/enso_cosmetics/assets/img/cosmetics/1600846601.jpg', 47),
+(252, '/enso_cosmetics/assets/img/cosmetics/1600846616.jpg', 48);
 
 -- --------------------------------------------------------
 
@@ -443,6 +450,24 @@ INSERT INTO `statuses` (`status_id`, `status_name`) VALUES
 (2, 'В обработке'),
 (3, 'В пути'),
 (4, 'Доставлен');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `timetable`
+--
+
+CREATE TABLE `timetable` (
+  `timetable_id` int(10) UNSIGNED NOT NULL,
+  `timetable_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `timetable_time` datetime NOT NULL,
+  `timetable_status` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `timetable_specialist` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `timetable`:
+--
 
 -- --------------------------------------------------------
 
@@ -570,10 +595,10 @@ ALTER TABLE `connects`
 --
 ALTER TABLE `cosmetics`
   ADD PRIMARY KEY (`cosmetic_id`),
-  ADD UNIQUE KEY `cosmetic_category_id` (`cosmetic_category_id`,`cosmetic_brand_id`,`cosmetic_country_id`),
   ADD KEY `cosmetic_type_id` (`cosmetic_type_id`) USING BTREE,
   ADD KEY `cosmetic_brand_id` (`cosmetic_brand_id`),
-  ADD KEY `cosmetic_country_id` (`cosmetic_country_id`);
+  ADD KEY `cosmetic_country_id` (`cosmetic_country_id`),
+  ADD KEY `cosmetic_category_id` (`cosmetic_category_id`) USING BTREE;
 
 --
 -- Индексы таблицы `countries`
@@ -620,6 +645,12 @@ ALTER TABLE `service_images`
 --
 ALTER TABLE `statuses`
   ADD PRIMARY KEY (`status_id`);
+
+--
+-- Индексы таблицы `timetable`
+--
+ALTER TABLE `timetable`
+  ADD PRIMARY KEY (`timetable_id`);
 
 --
 -- Индексы таблицы `types`
@@ -679,13 +710,13 @@ ALTER TABLE `category_images`
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
 --
 ALTER TABLE `cosmetics`
-  MODIFY `cosmetic_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `cosmetic_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT для таблицы `countries`
@@ -703,7 +734,7 @@ ALTER TABLE `genders`
 -- AUTO_INCREMENT для таблицы `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=246;
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -728,6 +759,12 @@ ALTER TABLE `service_images`
 --
 ALTER TABLE `statuses`
   MODIFY `status_id` tinyint(1) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `timetable`
+--
+ALTER TABLE `timetable`
+  MODIFY `timetable_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `types`

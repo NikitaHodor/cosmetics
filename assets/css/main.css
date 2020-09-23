@@ -19,6 +19,9 @@ body {
     min-height: 539px;
     background-position: center;
 }
+.jumbo-text {
+    color: white;
+}
 .main_card {
     text-align: center;
 }

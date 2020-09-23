@@ -5,8 +5,8 @@ public function index() {
 			$mainPageModel = new MainPage();
 			$cosmetics = $mainPageModel->getRandomCosmetic();
 //         print_r($cosmetics);
-            $rowLen = 3;
-            $rowArr = array_chunk($cosmetics, $rowLen);
+//            $rowLen = 3;
+//            $rowArr = array_chunk($cosmetics, $rowLen);
 //    echo("<pre>");
 //    print_r($rowArr);
 //    echo("</pre>");

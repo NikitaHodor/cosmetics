@@ -1,9 +1,10 @@
 <? include_once('./views/templates/header.php'); ?>
 
-<div class="container">
-   <div class="row">
+<div class="container mt-4">
+    <div class="row">
        <? foreach ($categoryCosm as $cosmetic): ?>
-<div class="card main_card">
+        <div class="col-auto mb-3">
+              <div class="card main_card">
                     <img src="<?= $cosmetic['image_url'] ?>" class="card-img-top main_card_img" alt="card-img">
                     <div class="card-body">
                         <span class="card-text">
@@ -13,10 +14,9 @@
                         </span>
                     </div>
                 </div>
-<? endforeach; ?>
-   </div>
-
+        </div>
+        <? endforeach; ?>
+    </div>
 </div>
-
 
 <? include_once('./views/templates/footer.php'); ?>

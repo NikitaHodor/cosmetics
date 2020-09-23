@@ -1,5 +1,6 @@
 <?php
-
+//TODO timetable js
+//image -statics
 	$routes = array(
         "MainPageController" => array(
             "home" => "index"
