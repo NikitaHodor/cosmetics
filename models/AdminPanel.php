@@ -41,6 +41,7 @@
 			$result = $db->query($query);
             return;
 		}
+
         public function addCosmeticImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
@@ -61,6 +62,7 @@
 			$result = $db->query($query);
             return;
 		}
+
         public function addCategoryImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
@@ -81,6 +83,7 @@
 			$result = $db->query($query);
             return;
 		}
+
         public function addBrandImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
@@ -101,6 +104,7 @@
 			$result = $db->query($query);
             return;
 		}
+
         public function addServiceImage($imageInfo) {
 			$db = DB::connect();
 			$query = "
@@ -121,6 +125,7 @@
 			$result = $db->query($query);
             return;
 		}
+
         public function getImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('images'))
@@ -131,6 +136,7 @@
 			$url = $result->fetchAll();
 			return $url;
 		}
+
         public function getBrandImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('brand_images'))
@@ -141,6 +147,7 @@
 			$images = $result->fetchAll();
 			return $images;
 		}
+
         public function getCategoryImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('category_images'))
@@ -151,6 +158,7 @@
 			$images = $result->fetchAll();
 			return $images;
 		}
+
         public function getServiceImagesUrlById($id) {
 			$db = DB::connect();
 			$query = (new Select('service_images'))
@@ -162,6 +170,84 @@
 			return $images;
 		}
 
+        public function getServiceItemImagesUrlById($id) {
+			$db = DB::connect();
+			$query = (new Select('service_items_images'))
+                        ->what(['image_url'])
+                        ->where("WHERE `image_service_item_id` = '$id'")
+						->build();
+			$result = $db->query($query);
+			$images = $result->fetchAll();
+			return $images;
+		}
+
+        public function getServiceItems() {
+            $db = DB::connect();
+			$query = (new Select('service_items'))
+                        ->joins([['LEFT', 'services', 'services_service_id', 'service_id'], ['LEFT', 'service_items_images', 'id', 'image_service_item_id']])
+						->where('WHERE `is_deleted` = 0')
+						->build();
+			$result = $db->query($query);
+			$serviceItems = $result->fetchAll();
+			return $serviceItems;
+        }
+        public function addServiceItem($Info) {
+			$db = DB::connect();
+			$query = "
+					INSERT INTO `service_items`
+					SET `name` = '$Info[name]',
+                    `services_service_id` = '$Info[service]',
+                    `price` = '$Info[price]',
+					`description` = '$Info[description]';
+				";
+
+			$db->query($query);
+			return;
+		}
+        public function editServiceItem($Info) {
+            $db = DB::connect();
+			$query = "
+				UPDATE `service_items`
+					SET `name` = '$Info[name]',
+                    `services_service_id` = '$Info[service]',
+                    `price` = '$Info[price]',
+					`description` = '$Info[description]'
+                    WHERE `id` = '$Info[id]'
+			";
+			$result = $db->query($query);
+            return;
+        }
+        public function deleteServiceItem($id) {
+            $db = DB::connect();
+			$query = "
+				UPDATE `service_items`
+					SET `is_deleted` = 1
+                    WHERE `id` = '$id'
+			";
+			$result = $db->query($query);
+            return;
+        }
+        public function addServiceItemImage($imageInfo) {
+            $db = DB::connect();
+			$query = "
+				INSERT INTO `service_items_images`
+					SET `image_url` = '$imageInfo[image_url]',
+						`image_service_item_id` = '$imageInfo[id]'
+			";
+			$result = $db->query($query);
+            return;
+        }
+        public function editServiceItemImage($imageInfo) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `service_items_images`
+					SET `image_url` = '$imageInfo[image_url]'
+					WHERE `image_service_item_id` = '$imageInfo[id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
+
         public function getOrders() {
             $db = DB::connect();
 			$query = (new Select('carts'))
@@ -171,4 +257,20 @@
 			$orders = $result->fetchAll();
 			return $orders;
         }
+
+         public function getTimetable() {
+			$db = DB::connect();
+			$query = "SELECT * FROM `timetable`";
+			$result = $db->query($query);
+			$timetable = $result->fetchAll();
+			return $timetable;
+		}
+        public function addTimetable($Info) {
+            $db = DB::connect();
+			$query = "
+
+			";
+			$result = $db->query($query);
+            return;
+		}
     }

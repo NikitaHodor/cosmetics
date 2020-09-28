@@ -7,6 +7,7 @@
     <? if (!$cart): ?>
     <h3> Ваша корзина пуста</h3>
     <? else: ?>
+<!--
     <? if (isset($errors) && !empty($errors)): ?>
     <div>
         <? foreach ($errors as $error): ?>
@@ -14,23 +15,25 @@
         <? endforeach; ?>
     </div>
     <? endif; ?>
+-->
     <div class="row">
        <div class="container cart-container col-md-8">
         <form method="POST" class="cart-form">
             <div class="form-group">
                 <label>Имя</label>
-                <input type="text" class="form-control" name="user_name" value="<?= isset($_POST['user_name']) ? $_POST['user_name'] : ""; ?>">
+                <input required type="text" class="form-control" name="user_name" value="<?= isset($_POST['user_name']) ? $_POST['user_name'] : ""; ?>">
             </div>
             <div class="form-group">
                 <label>Телефон</label>
-                <input type="text" class="form-control" name="user_phone" value="<?= isset($_POST['user_phone']) ? $_POST['user_phone']: ""; ?>">
+                <input required type="text" class="form-control" name="user_phone" value="<?= isset($_POST['user_phone']) ? $_POST['user_phone']: ""; ?>">
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" class="form-control" name="user_email" value="<?= isset($_POST['user_email']) ? $_POST['user_email']: ""; ?>">
+                <input required type="email" class="form-control" name="user_email" value="<?= isset($_POST['user_email']) ? $_POST['user_email']: ""; ?>">
             </div>
-            <h3> Детали заказа: </h3>
-            <table class="table">
+            <div class="scroll">
+               <h3> Детали заказа: </h3>
+            <table class="table table-sm">
                 <thead>
                     <tr>
                         <th>
@@ -58,6 +61,8 @@
                     <? endforeach; ?>
                 </tbody>
             </table>
+            </div>
+
 
                 <button name="submit" type="submit" class="btn btn-secondary">Заказать</button>
 

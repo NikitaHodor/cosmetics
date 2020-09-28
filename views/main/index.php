@@ -1,13 +1,39 @@
 <? include_once('./views/templates/header.php'); ?>
 
-        <div class="container jumbo-container">
-            <div class="jumbotron jumbo-banner fluid">
-                <div class="container jumbo-text">
-                    <h1>Баннер - заглушка</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta repellat officiis, ea esse sunt odit cupiditate ipsum ad, nostrum animi aperiam reprehenderit! Esse quis saepe cum eum quam dicta. Error.</p>
-                </div>
-            </div>
-        </div>
+        <div id="carouselMainControls" class="carousel slide container" data-ride="carousel">
+  <div class="carousel-inner bdr">
+    <div class="carousel-item active">
+      <img class="d-block w-100 item-image carousel_img" src="./assets/img/banner1.jpg" alt="First slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5>Lorem</h5>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores maxime aut fugit, deserunt porro eius natus quaerat recusandae reprehenderit eaque accusantium dicta voluptas similique adipisci quos eligendi blanditiis dignissimos quo.</p>
+  </div>
+    </div>
+    <div class="carousel-item">
+     <img class="d-block w-100 item-image carousel_img" src="./assets/img/banner2.jpg" alt="Second slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5>Lorem</h5>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores maxime aut fugit, deserunt porro eius natus quaerat recusandae reprehenderit eaque accusantium dicta voluptas similique adipisci quos eligendi blanditiis dignissimos quo.</p>
+  </div>
+
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100 item-image carousel_img" src="./assets/img/banner3.jpg" alt="Third slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h5>Lorem</h5>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores maxime aut fugit, deserunt porro eius natus quaerat recusandae reprehenderit eaque accusantium dicta voluptas similique adipisci quos eligendi blanditiis dignissimos quo.</p>
+  </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselMainControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselMainControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 
 <!--replace by OWL carousel-->
 <!--
@@ -51,20 +77,22 @@
 <div class="container mt-4">
     <div class="row">
        <? foreach($cosmetics as $cosmetic): ?>
-        <div class="col-auto mb-3">
-              <div class="card main_card">
+        <div class="col-md-4 mb-3 d-flex">
+              <div class="card main_card flex-fill">
                     <img src="<?= $cosmetic['image_url'] ?>" class="card-img-top main_card_img" alt="card-img">
                     <div class="card-body">
-                        <span class="card-text">
-                            <a href="<?= SITE_ROOT . 'cosmetics/view/' . $cosmetic['cosmetic_id'] ?>">
+                           <h6>
+                              <a href="<?= SITE_ROOT . 'cosmetics/view/' . $cosmetic['cosmetic_id'] ?>">
                                 <?= $cosmetic['cosmetic_name']; ?>
                             </a>
-                        </span>
+                           </h6>
+                            <p class="card-price">Цена: <?= $cosmetic['cosmetic_price']; ?> &#8381;</p>
                     </div>
                 </div>
         </div>
         <? endforeach; ?>
     </div>
 </div>
+
 
 <? include_once('./views/templates/footer.php'); ?>

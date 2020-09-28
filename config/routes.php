@@ -74,9 +74,17 @@
             "admin/servicesEditImg/([0-9]+)" => "servicesEditImg/$1",
             "admin/servicesDelete/([0-9]+)" => "servicesDelete/$1",
 
+            "admin/serviceItems" => "serviceItems",
+            "admin/serviceItemsAdd" => "serviceItemsAdd",
+            "admin/serviceItemsEdit/([0-9]+)" => "serviceItemsEdit/$1",
+            "admin/serviceItemsAddImg/([0-9]+)" => "serviceItemsAddImg/$1",
+            "admin/serviceItemsEditImg/([0-9]+)" => "serviceItemsEditImg/$1",
+            "admin/serviceItemsDelete/([0-9]+)" => "serviceItemsDelete/$1",
+
              "admin/images" => "images",//to do image crud&storage
 
-            "admin/orders" => "orders"
+            "admin/orders" => "orders",
+            "admin/timetable" => "timetable"
 		),
 		"CartsController" => array(
 			"cart" => "index"

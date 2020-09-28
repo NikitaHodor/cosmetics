@@ -12,18 +12,17 @@ body {
     font-size: 16px;
     line-height: 1.48;
 }
-.jumbo-banner {
-    background-image: url('../img/banner.jpg?82938952');
-    background-size: cover;
-    height: 100%;
-    min-height: 539px;
-    background-position: center;
-}
-.jumbo-text {
-    color: white;
-}
 .main_card {
     text-align: center;
+}
+.bdr {
+    border-radius: 0.25em;
+}
+.blue {
+    background-color: blue;
+}
+.carousel-inner {
+     box-shadow: 0 0 10px #343a40;
 }
 
 #wrap {
@@ -33,16 +32,16 @@ body {
 
 #main {
 overflow:auto;
-  padding-bottom:10em; /* this needs to be bigger than footer height*/
+  padding-bottom:8em; /* this needs to be bigger than footer height*/
     padding-top: 4em;
 }
 
 .footer {
   position: relative;
-  margin-top: -100px; /* negative value of footer height */
-  height: 100px;
+  margin-top: -78px; /* negative value of footer height */
+/*  height: 100px;*/
   clear:both;
-  padding-top:20px;
+/*  padding-top:20px;*/
 }
 a {
     text-decoration: none;
@@ -62,11 +61,17 @@ a:hover {
     background-color: #343a40;
 }
 .auth-form, .reg-form, .cart-form{
+    border-radius: 0.25em;
     margin: 0 auto;
     padding: 20px;
-background-color: white;
-    box-shadow: 0 0 10px #ccc;
+    background-color: white;
+    box-shadow: 0 0 10px #343a40;
+}
+.scroll {
+    width: 100%;
+    overflow-x: auto;
 }
 .card {
-    background-color: white;
+    box-shadow: 0 0 10px #343a40;
+/*    background-color: white;*/
 }

@@ -42,4 +42,15 @@
 			$db->query($query);
 			return;
         }
+
+        public function getServiceItemsById($id) {
+			$db = DB::connect();
+			$query = (new Select('service_items'))
+                        ->joins([['LEFT', 'service_items_images', 'id', 'image_service_item_id']])
+						->where("WHERE `is_deleted` = 0 AND `services_service_id` = $id")
+						->build();
+			$result = $db->query($query);
+			$service_items = $result->fetchAll();
+			return $service_items;
+		}
 	}

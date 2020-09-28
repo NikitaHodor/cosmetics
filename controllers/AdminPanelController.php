@@ -495,7 +495,7 @@
         }
 
         public function services() {//read
-            $title = 'Услуги салона';
+            $title = 'Категории салона';
             $servicesModel = new Service();
 			$services = $servicesModel->getAll();
 
@@ -619,6 +619,143 @@
             }
         }
 
+        public function serviceItems() {//read
+            $title = 'Услуги';
+            $serviceItemsModel = new AdminPanel();
+			$serviceItems = $serviceItemsModel->getServiceItems();
+
+            $serviceModel = new Service();
+            $services = $serviceModel->getAll();
+            include_once('./views/admin/serviceItems/index.php');
+}
+        public function serviceItemsAdd(){
+            if (isset($_POST['add_submit'])) {//add
+                $serviceItem_name = $_POST['name'];
+                $serviceItem_service = $_POST['service'];
+                $serviceItem_price = $_POST['price'];
+                $serviceItem_description = $_POST['description'];
+                $Info = array(
+                    'name' => $serviceItem_name,
+                    'service' => $serviceItem_service,
+                    'price' => $serviceItem_price,
+                    'description' => $serviceItem_description,
+                    );
+                $serviceItemModel = new AdminPanel();
+			     $serviceitem = $serviceItemModel->addServiceItem($Info);
+
+                 header('Location: ' . SITE_ROOT . 'admin/serviceItems');
+                return;
+            }
+        }
+        public function serviceItemsEdit($parameters = []) {
+            $id = $parameters[0];
+             if (isset($_POST['edit-submit'])) {//edit
+                $edit_name = $_POST['edit_name'];
+                 $edit_service = $_POST['edit_service'];
+                 $edit_price = $_POST['edit_price'];
+                 $edit_description = $_POST['edit_description'];
+                $Info = array(
+                    'name' => $edit_name,
+                    'service' => $edit_service,
+                    'price' => $edit_price,
+                    'description' => $edit_description,
+                         'id' => $id
+                    );
+                 $serviceItemEditModel = new AdminPanel();
+			     $serviceItemEditModel->editServiceItem($Info);
+                 header('Location: ' . SITE_ROOT . 'admin/serviceItems');
+                return;
+            }
+        }
+        public function serviceItemsAddImg($parameters = []) {
+            $id = $parameters[0];
+            if (isset($_POST['image_add_submit'])) {//IMAGE
+            $target_dir = 'assets/img/serviceItems/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = time() . ".{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'id' => $id
+                    );
+                 $serviceItemImageModel = new AdminPanel();
+			     $serviceItemImage = $serviceItemImageModel->addServiceItemImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/serviceItems');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
+            }
+        }
+        public function serviceItemsEditImg($parameters = []){
+            $id = $parameters[0];
+             if (isset($_POST['image_edit_submit'])) {//IMAGE
+            $target_dir = 'assets/img/serviceItems/';
+            $filesArr = $_FILES["upload_image"];
+            $upload_file_name =  basename($filesArr["name"]);// upload name
+            $imageFileType = strtolower(pathinfo($upload_file_name,PATHINFO_EXTENSION));
+            $new_file_name = time() . ".{$imageFileType}";
+            $imgUrl = ROOT . $target_dir . $new_file_name;// url for DB
+//$delUrl = 'C:/xampp/htdocs'.$imgUrl;
+                $validation = new Validation();
+                    $errors = array();
+                if(!$validation->checkImage($filesArr)){
+                        $errors[] = 'Файл не является изображением!';
+                    }
+                if(!$validation->checkImageSize($filesArr)){
+                        $errors[] = 'Файл слишком большой!';
+                    }
+                if(!$validation->checkImageType($imageFileType)){
+                        $errors[] = 'Допустимые разрешения: jpg, jpeg, png, gif';
+                    }
+                $delUrlModel = new AdminPanel();
+			    $delUrl = $delUrlModel->getServiceItemImagesUrlById($id);
+
+                if(file_exists('C:/xampp/htdocs' . $delUrl[0]['image_url'])){//delete old file(TODO:make it clean, not shit-code)
+                        unlink('C:/xampp/htdocs' . $delUrl[0]['image_url']);
+//                    $errors[] = $delUrl[0]['image_url'];
+                    }
+                // Check  error
+                if (empty($errors) && move_uploaded_file($filesArr["tmp_name"],$target_dir . $new_file_name)){
+                $imageInfo = array(
+                        'image_url' => $imgUrl,
+                         'id' => $id
+                    );
+                $serviceItemImageModel = new AdminPanel();
+			     $serviceItemImage = $serviceItemImageModel->editServiceItemImage($imageInfo);
+                    header('Location: ' . SITE_ROOT . 'admin/serviceItems');
+                    return;
+                } else {
+                    $errors[] = 'Произошла ошибка при загрузке файла!';
+                }
+            }
+        }
+        public function serviceItemsDelete($parameters = []) {
+             $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
+                 $serviceItemDeleteModel = new AdminPanel();
+			     $serviceItemDeleteModel->deleteServiceItem($id);
+                 header('Location: ' . SITE_ROOT . 'admin/serviceItems');
+                return;
+            }
+         }
+
         public function images() {//read img from folder
             $title = 'Изображения';
 
@@ -652,5 +789,22 @@
 			$orders = $ordersModel->getOrders();
 
             include_once('./views/admin/orders/index.php');
+        }
+
+        public function timetable() {
+             $title = 'Записи';
+
+            $timetableModel = new AdminPanel();
+			$timetable = $timetableModel->getTimetable();
+
+            include_once('./views/admin/timetable/index.php');
+        }
+        public function timetableAdd() {
+
+            $timetableModel = new AdminPanel();
+			$timetable = $timetableModel->addTimetable();
+
+             header('Location: ' . SITE_ROOT . 'admin/timetable');
+                return;
         }
     }

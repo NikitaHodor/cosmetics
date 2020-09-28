@@ -7,9 +7,9 @@
     </div>
     <div class="col-md-8 my-auto">
       <div class="card-body">
-        <h5 class="card-title"><?= $cosmetic['cosmetic_name']; ?></h5>
-	    <p class="card-text"><?= $cosmetic['cosmetic_description']; ?></p>
-	    <hr>
+        <h5 class="card-title text-center"><?= $cosmetic['cosmetic_name']; ?></h5>
+	    <p class="card-desc"><?= $cosmetic['cosmetic_description']; ?></p>
+	    <hr class="card_hr">
 	    <p class="card-brand">Бренд: <?= $cosmetic['brand_name']; ?></p>
 	    <p class="card-country">Страна: <?= $cosmetic['country_name']; ?></p>
 	    <p class="card-volume">Объём: <?= $cosmetic['cosmetic_volume']; ?> &#13206;</p>
