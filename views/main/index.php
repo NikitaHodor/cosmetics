@@ -74,7 +74,8 @@
 -->
 
 
-<div class="container mt-4">
+<div id="Pag" class="container mt-4 main-cosmetic-container">
+
     <div class="row">
        <? foreach($cosmetics as $cosmetic): ?>
         <div class="col-md-4 mb-3 d-flex">
@@ -91,6 +92,11 @@
                 </div>
         </div>
         <? endforeach; ?>
+    </div>
+    <div class="pag">
+        <? for($page = 1; $page<= $number_of_page; $page++): ?>
+        <a class="pageNum" href="" onclick="mainCosmeticGet(event, <?= $page ?>)"><?= $page ?></a>
+        <? endfor; ?>
     </div>
 </div>
 

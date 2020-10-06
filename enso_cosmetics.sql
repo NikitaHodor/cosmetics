@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 23 2020 г., 09:40
+-- Время создания: Окт 06 2020 г., 17:03
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.2.27
 
@@ -53,7 +53,7 @@ INSERT INTO `adresses` (`adress_id`, `adress_name`) VALUES
 CREATE TABLE `brands` (
   `brand_id` int(10) UNSIGNED NOT NULL,
   `brand_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `brand_is_deleted` tinyint(1) UNSIGNED NOT NULL
+  `brand_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `carts` (
   `cart_id` int(10) UNSIGNED NOT NULL,
   `cart_cosmetic_id` int(10) UNSIGNED DEFAULT NULL,
   `cart_order_id` int(10) UNSIGNED DEFAULT NULL,
-  `cart_count` int(10) UNSIGNED DEFAULT NULL
+  `cart_count` int(3) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -123,7 +123,8 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`cart_id`, `cart_cosmetic_id`, `cart_order_id`, `cart_count`) VALUES
-(57, 2, 49, 66);
+(57, 2, 49, 66),
+(58, 31, 50, 6);
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,7 @@ INSERT INTO `carts` (`cart_id`, `cart_cosmetic_id`, `cart_order_id`, `cart_count
 CREATE TABLE `categories` (
   `category_id` int(10) UNSIGNED NOT NULL,
   `category_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `category_is_deleted` tinyint(3) UNSIGNED NOT NULL
+  `category_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -214,11 +215,11 @@ CREATE TABLE `cosmetics` (
   `cosmetic_type_id` int(10) UNSIGNED DEFAULT NULL,
   `cosmetic_category_id` int(10) UNSIGNED DEFAULT NULL,
   `cosmetic_brand_id` int(10) UNSIGNED DEFAULT NULL,
-  `cosmetic_price` int(5) DEFAULT NULL,
-  `cosmetic_volume` int(5) DEFAULT NULL,
+  `cosmetic_price` int(5) UNSIGNED DEFAULT NULL,
+  `cosmetic_volume` int(5) UNSIGNED DEFAULT NULL,
   `cosmetic_country_id` int(10) UNSIGNED DEFAULT NULL,
   `cosmetic_description` text CHARACTER SET utf8 DEFAULT NULL,
-  `cosmetic_is_deleted` tinyint(1) UNSIGNED NOT NULL
+  `cosmetic_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -265,7 +266,7 @@ INSERT INTO `cosmetics` (`cosmetic_id`, `cosmetic_name`, `cosmetic_type_id`, `co
 CREATE TABLE `countries` (
   `country_id` int(10) UNSIGNED NOT NULL,
   `country_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `country_is_deleted` tinyint(3) UNSIGNED NOT NULL
+  `country_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -371,7 +372,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_user_id`, `order_status_id`, `order_info`) VALUES
-(49, 36, NULL, 'имя: Johnny Sins, телефон: 222222222222222, email: brazzers@mail.com');
+(49, 36, NULL, 'имя: Johnny Sins, телефон: 222222222222222, email: brazzers@mail.com'),
+(50, 36, NULL, 'имя: lolkekcheburek, телефон: 89112231488, email: bolt@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -382,22 +384,25 @@ INSERT INTO `orders` (`order_id`, `order_user_id`, `order_status_id`, `order_inf
 CREATE TABLE `services` (
   `service_id` int(10) UNSIGNED NOT NULL,
   `service_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `service_is_deleted` tinyint(3) UNSIGNED NOT NULL
+  `service_specialist_id` int(10) UNSIGNED DEFAULT NULL,
+  `service_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- ССЫЛКИ ТАБЛИЦЫ `services`:
+--   `service_specialist_id`
+--       `specialists` -> `specialist_id`
 --
 
 --
 -- Дамп данных таблицы `services`
 --
 
-INSERT INTO `services` (`service_id`, `service_name`, `service_is_deleted`) VALUES
-(1, 'Услуги косметолога', 0),
-(2, 'Услуги массажиста', 0),
-(3, 'Услуги мастера перманентного макияжа', 0),
-(4, 'Тестим добавление/обновление в админке.', 0);
+INSERT INTO `services` (`service_id`, `service_name`, `service_specialist_id`, `service_is_deleted`) VALUES
+(1, 'Услуги косметолога', 1, 0),
+(2, 'Услуги массажиста', 2, 0),
+(3, 'Услуги мастера перманентного макияжа', 3, 0),
+(4, 'Тестим добавление/обновление в админке.', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -425,6 +430,93 @@ INSERT INTO `service_images` (`image_id`, `image_url`, `image_service_id`) VALUE
 (6, '/enso_cosmetics/assets/img/services/65547.jpg', 1),
 (7, '/enso_cosmetics/assets/img/services/24845.jpg', 2),
 (8, '/enso_cosmetics/assets/img/services/66604.jpg', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `service_items`
+--
+
+CREATE TABLE `service_items` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `services_service_id` int(10) UNSIGNED DEFAULT NULL,
+  `price` int(5) DEFAULT NULL,
+  `description` text CHARACTER SET utf8 DEFAULT NULL,
+  `is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `service_items`:
+--   `services_service_id`
+--       `services` -> `service_id`
+--
+
+--
+-- Дамп данных таблицы `service_items`
+--
+
+INSERT INTO `service_items` (`id`, `name`, `services_service_id`, `price`, `description`, `is_deleted`) VALUES
+(1, 'Спортивный массаж', 2, 2000, 'Повышает мышечный тонус.', 0),
+(5, 'Дренажный массаж', 2, 1500, 'Обеспечивает дренаж лимфатической жидкости.', 0),
+(6, 'Нитевая подтяжка лица', 1, 12000, 'Изменение контура лица.', 0),
+(7, 'Перманентное окрашивание бровей.', 3, 8000, 'Перманентный макияж, обеспечивающий улучшение контура бровей.', 0),
+(8, 'Тестовое добавление/ред', 4, 2000, 'тест ред', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `service_items_images`
+--
+
+CREATE TABLE `service_items_images` (
+  `image_id` int(10) UNSIGNED NOT NULL,
+  `image_url` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `image_service_item_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `service_items_images`:
+--   `image_service_item_id`
+--       `service_items` -> `id`
+--
+
+--
+-- Дамп данных таблицы `service_items_images`
+--
+
+INSERT INTO `service_items_images` (`image_id`, `image_url`, `image_service_item_id`) VALUES
+(1, '/enso_cosmetics/assets/img/serviceItems/1601038535.jpg', 8),
+(2, '/enso_cosmetics/assets/img/serviceItems/1601039498.jpg', 7),
+(3, '/enso_cosmetics/assets/img/serviceItems/1601039797.jpg', 1),
+(4, '/enso_cosmetics/assets/img/serviceItems/1601040087.jpg', 5),
+(5, '/enso_cosmetics/assets/img/serviceItems/1601040120.jpg', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `specialists`
+--
+
+CREATE TABLE `specialists` (
+  `specialist_id` int(10) UNSIGNED NOT NULL,
+  `specialist_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `specialist_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- ССЫЛКИ ТАБЛИЦЫ `specialists`:
+--
+
+--
+-- Дамп данных таблицы `specialists`
+--
+
+INSERT INTO `specialists` (`specialist_id`, `specialist_name`, `specialist_is_deleted`) VALUES
+(1, 'Косметолог', 0),
+(2, 'Массажист', 0),
+(3, 'Мастер перманентного макияжа', 0),
+(4, 'Админ', 0);
 
 -- --------------------------------------------------------
 
@@ -459,15 +551,30 @@ INSERT INTO `statuses` (`status_id`, `status_name`) VALUES
 
 CREATE TABLE `timetable` (
   `timetable_id` int(10) UNSIGNED NOT NULL,
-  `timetable_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `timetable_time` datetime NOT NULL,
+  `timetable_service_items_id` int(10) UNSIGNED DEFAULT NULL,
+  `timetable_location` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `timetable_start_date` datetime DEFAULT NULL,
+  `timetable_end_date` datetime DEFAULT NULL,
   `timetable_status` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `timetable_specialist` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+  `timetable_specialist_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- ССЫЛКИ ТАБЛИЦЫ `timetable`:
+--   `timetable_specialist_id`
+--       `specialists` -> `specialist_id`
+--   `timetable_service_items_id`
+--       `service_items` -> `id`
 --
+
+--
+-- Дамп данных таблицы `timetable`
+--
+
+INSERT INTO `timetable` (`timetable_id`, `timetable_service_items_id`, `timetable_location`, `timetable_start_date`, `timetable_end_date`, `timetable_status`, `timetable_specialist_id`) VALUES
+(174, 7, '11-10-2020', '2020-10-05 09:00:00', '2020-10-05 10:30:00', NULL, 3),
+(175, 1, '6-10-2020', '2020-10-05 09:00:00', '2020-10-05 10:30:00', NULL, 2),
+(177, 5, '5-10-2020', '2020-10-05 09:00:00', '2020-10-05 10:30:00', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -478,7 +585,7 @@ CREATE TABLE `timetable` (
 CREATE TABLE `types` (
   `type_id` int(10) UNSIGNED NOT NULL,
   `type_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `type_is_deleted` tinyint(1) UNSIGNED NOT NULL
+  `type_is_deleted` tinyint(1) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -631,7 +738,8 @@ ALTER TABLE `orders`
 -- Индексы таблицы `services`
 --
 ALTER TABLE `services`
-  ADD PRIMARY KEY (`service_id`);
+  ADD PRIMARY KEY (`service_id`),
+  ADD KEY `service_specialist_id` (`service_specialist_id`);
 
 --
 -- Индексы таблицы `service_images`
@@ -639,6 +747,26 @@ ALTER TABLE `services`
 ALTER TABLE `service_images`
   ADD PRIMARY KEY (`image_id`),
   ADD UNIQUE KEY `image_service_id` (`image_service_id`);
+
+--
+-- Индексы таблицы `service_items`
+--
+ALTER TABLE `service_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `service_id` (`services_service_id`) USING BTREE;
+
+--
+-- Индексы таблицы `service_items_images`
+--
+ALTER TABLE `service_items_images`
+  ADD PRIMARY KEY (`image_id`),
+  ADD KEY `image_service_item_id` (`image_service_item_id`);
+
+--
+-- Индексы таблицы `specialists`
+--
+ALTER TABLE `specialists`
+  ADD PRIMARY KEY (`specialist_id`);
 
 --
 -- Индексы таблицы `statuses`
@@ -650,7 +778,9 @@ ALTER TABLE `statuses`
 -- Индексы таблицы `timetable`
 --
 ALTER TABLE `timetable`
-  ADD PRIMARY KEY (`timetable_id`);
+  ADD PRIMARY KEY (`timetable_id`),
+  ADD KEY `timetable_specialist_id` (`timetable_specialist_id`),
+  ADD KEY `timetable_service_items_id` (`timetable_service_items_id`);
 
 --
 -- Индексы таблицы `types`
@@ -692,7 +822,7 @@ ALTER TABLE `brand_images`
 -- AUTO_INCREMENT для таблицы `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `cart_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT для таблицы `categories`
@@ -710,7 +840,7 @@ ALTER TABLE `category_images`
 -- AUTO_INCREMENT для таблицы `connects`
 --
 ALTER TABLE `connects`
-  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
+  MODIFY `connect_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT для таблицы `cosmetics`
@@ -740,7 +870,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT для таблицы `services`
@@ -755,6 +885,24 @@ ALTER TABLE `service_images`
   MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT для таблицы `service_items`
+--
+ALTER TABLE `service_items`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT для таблицы `service_items_images`
+--
+ALTER TABLE `service_items_images`
+  MODIFY `image_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `specialists`
+--
+ALTER TABLE `specialists`
+  MODIFY `specialist_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT для таблицы `statuses`
 --
 ALTER TABLE `statuses`
@@ -764,7 +912,7 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT для таблицы `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `timetable_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `timetable_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
 
 --
 -- AUTO_INCREMENT для таблицы `types`
@@ -830,10 +978,35 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`order_status_id`) REFERENCES `statuses` (`status_id`);
 
 --
+-- Ограничения внешнего ключа таблицы `services`
+--
+ALTER TABLE `services`
+  ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`service_specialist_id`) REFERENCES `specialists` (`specialist_id`);
+
+--
 -- Ограничения внешнего ключа таблицы `service_images`
 --
 ALTER TABLE `service_images`
   ADD CONSTRAINT `service_images_ibfk_1` FOREIGN KEY (`image_service_id`) REFERENCES `services` (`service_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `service_items`
+--
+ALTER TABLE `service_items`
+  ADD CONSTRAINT `service_items_ibfk_1` FOREIGN KEY (`services_service_id`) REFERENCES `services` (`service_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `service_items_images`
+--
+ALTER TABLE `service_items_images`
+  ADD CONSTRAINT `service_items_images_ibfk_1` FOREIGN KEY (`image_service_item_id`) REFERENCES `service_items` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `timetable`
+--
+ALTER TABLE `timetable`
+  ADD CONSTRAINT `timetable_ibfk_1` FOREIGN KEY (`timetable_specialist_id`) REFERENCES `specialists` (`specialist_id`),
+  ADD CONSTRAINT `timetable_ibfk_2` FOREIGN KEY (`timetable_service_items_id`) REFERENCES `service_items` (`id`);
 
 --
 -- Ограничения внешнего ключа таблицы `users`

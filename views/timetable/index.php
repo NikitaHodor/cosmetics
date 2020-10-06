@@ -1,16 +1,9 @@
 <? include_once('./views/templates/header.php'); ?>
 <div class="container">
-   <div class="spec-list">
-       <ul>
-           <? foreach ($specialists as $spec): ?>
-           <li><a href="<?= SITE_ROOT . 'admin/timetable/' . $spec['specialist_id'] ?>"><?= $spec['specialist_name']; ?></a></li>
-           <? endforeach; ?>
-       </ul>
-   </div>
-    <div class="container panel-timetable-container">
+    <div class="container timetable-container">
         <div class="timetable"></div>
     </div>
-    <!--костыль тк проблема с передачей через аякс-->
+<!--костыль тк проблема с передачей через аякс-->
     <script type="text/javascript">
    var php_var = (<?php echo $dataJson; ?>);
 </script>

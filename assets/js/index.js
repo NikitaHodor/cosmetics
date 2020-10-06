@@ -95,3 +95,18 @@ function sendAjax(event, categoryName) {
     url = 'http:?//brands/add',
         data = {}
 }
+
+function mainCosmeticGet(event, page) {
+    event.preventDefault();
+    let url = 'http://localhost/enso_cosmetics/home';
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: {page: page},
+        success: function(response){
+         if($(response).find('#Pag')){
+             $('#Pag').replaceWith($(response).find('#Pag'));
+         };
+        }
+    });
+}

@@ -791,20 +791,50 @@
             include_once('./views/admin/orders/index.php');
         }
 
-        public function timetable() {
+        public function timetable($parameters = []) {
              $title = 'Записи';
-
+            $specId = $parameters[0];
+            $data = [];
             $timetableModel = new AdminPanel();
-			$timetable = $timetableModel->getTimetable();
+//			$timetable = $timetableModel->getTimetable();
+            $specModel = new AdminPanel();
+			$specialists = $specModel->getSpec();
+
+            $this->data = $timetableModel->getTimetable($specId);
+            $dataJson = json_encode($this, JSON_UNESCAPED_UNICODE);
+            echo $dataJson;
+
+
+//              if(isset($_POST['day']) && isset($_POST['date'])){
+//                  $timetableAddModel = new AdminPanel();
+//                  $day = $_POST['day'];
+//                  $date = $_POST['date'];
+//                  $Info = array(
+//                    'day' => $day,
+//                    'date' => $date
+//                    );
+//
+//			 $timetableAddModel->addTimetable($Info);
+//                header('Location: ' . SITE_ROOT . 'admin/timetable');
+//                return;
+//              }
+
+
+
 
             include_once('./views/admin/timetable/index.php');
         }
         public function timetableAdd() {
-
+//            if(isset($_POST['data'])) {
+//               $data = $_POST['data'];
+//            json_decode($data);
+//            print_r($data);
+//            }
             $timetableModel = new AdminPanel();
-			$timetable = $timetableModel->addTimetable();
-
+			$timetable = $timetableModel->addTimetable($Info);
              header('Location: ' . SITE_ROOT . 'admin/timetable');
                 return;
+
+
         }
     }

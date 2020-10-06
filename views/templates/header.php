@@ -34,7 +34,7 @@
                             <a class="dropdown-item <?= ($title == 'Услуги') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/serviceItems'; ?>">Услуги</a>
                             <a class="dropdown-item <?= ($title == 'Изображения') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/images'; ?>">Изображения</a>
                             <a class="dropdown-item <?= ($title == 'Заказы') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/orders'; ?>">Заказы</a>
-                            <a class="dropdown-item <?= ($title == 'Записи') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/timetable'; ?>">Записи</a>
+                            <a class="dropdown-item <?= ($title == 'Записи') ? 'active' : '' ?>" href="<?= SITE_ROOT . 'admin/timetable/4'; ?>">Записи</a>
                         </div>
                     </li>
                     <? endif; ?>

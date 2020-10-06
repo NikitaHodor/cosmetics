@@ -13,7 +13,7 @@
 	    <p class="card-price">Цена от: <?= $service_item['price']; ?> &#8381;</p>
 	    <? if (User::checkIfUserAuthorized()) : ?>
 	    <div class="row">
-	    	<a class="btn btn-secondary" data-toggle="modal" data-target="#Modal">запись к специалисту </a>
+	    	<a class="btn btn-secondary" href="<?= SITE_ROOT . 'timetable/' . $service_item['id'] . '/' . $service_item['services_service_id'] ?>">запись к специалисту </a>
 	    </div>
 	    <? endif; ?>
       </div>
@@ -23,8 +23,9 @@
 <? endforeach; ?>
 
 <!-- Modal -->
+<!--
 	<div class="modal fade" tabindex="-1" role="dialog" id="Modal">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 	    <div class="modal-content shadow">
 	      <div class="modal-header">
 	        <h5 class="modal-title">Расписание</h5>
@@ -33,14 +34,13 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-
-
 	        		<div class="timetable"></div>
-
 	    </div>
 	  </div>
 	</div>
 
 </div>
+-->
+
 
 <? include_once('./views/templates/footer.php'); ?>

@@ -27,6 +27,10 @@
 			"services/list" => "index",
 			"services/view/([0-9]+)" => "view/$1"
 		),
+        "TimetableController" => array(
+            "timetable/([0-9]+)" => "index/$1",
+            "timetable/add/([0-9]+)" => "addTimetable/$1"
+        ),
         "TypesController" => array(
 			"types/list" => "index",
 //			"types/add" => "add"
@@ -84,7 +88,8 @@
              "admin/images" => "images",//to do image crud&storage
 
             "admin/orders" => "orders",
-            "admin/timetable" => "timetable"
+            "admin/timetable/([0-9]+)" => "timetable/$1"
+//            "admin/timetableAdd" => "timetableAdd"
 		),
 		"CartsController" => array(
 			"cart" => "index"

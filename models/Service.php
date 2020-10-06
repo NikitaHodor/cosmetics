@@ -13,6 +13,16 @@
 			$services = $result->fetchAll();
 			return $services;
 		}
+        public function getById($id) {
+			$db = DB::connect();
+			$query = (new Select('services'))
+                        ->joins([['LEFT', 'specialists', 'service_specialist_id', 'specialist_id']])
+                        ->where("WHERE `service_is_deleted` = 0 AND `service_id` = $id")
+						->build();
+			$result = $db->query($query);
+			$service = $result->fetchAll();
+			return $service[0];
+		}
         public function addService($serviceInfo) {
 			$db = DB::connect();
 			$query = "
