@@ -74,9 +74,9 @@
 -->
 
 
-<div id="Pag" class="container mt-4 main-cosmetic-container">
+<div class="container mt-4 main-cosmetic-container">
 
-    <div class="row">
+    <div id="Pag" class="row">
        <? foreach($cosmetics as $cosmetic): ?>
         <div class="col-md-4 mb-3 d-flex">
               <div class="card main_card flex-fill">
@@ -93,11 +93,17 @@
         </div>
         <? endforeach; ?>
     </div>
-    <div class="pag">
-        <? for($page = 1; $page<= $number_of_page; $page++): ?>
-        <a class="pageNum" href="" onclick="mainCosmeticGet(event, <?= $page ?>)"><?= $page ?></a>
-        <? endfor; ?>
-    </div>
+    <nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <? for($page = 1; $page<= $number_of_page; $page++): ?>
+    <li class="page-item">
+    <a class="page-link" href="#" onclick="mainCosmeticGet(event, <?= $page ?>)">
+    <?= $page ?>
+    </a>
+    </li>
+    <? endfor; ?>
+  </ul>
+</nav>
 </div>
 
 

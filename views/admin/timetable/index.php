@@ -1,12 +1,19 @@
 <? include_once('./views/templates/header.php'); ?>
 <div class="container">
-   <div class="spec-list">
-       <ul>
-           <? foreach ($specialists as $spec): ?>
-           <li><a href="<?= SITE_ROOT . 'admin/timetable/' . $spec['specialist_id'] ?>"><?= $spec['specialist_name']; ?></a></li>
-           <? endforeach; ?>
-       </ul>
-   </div>
+<!--   <div class="spec-list">-->
+       <nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    <? foreach ($specialists as $spec): ?>
+    <li class="page-item">
+    <a class="page-link" href="<?= SITE_ROOT . 'admin/timetable/' . $spec['specialist_id'] ?>"><?= $spec['specialist_name']; ?></a>
+    </li>
+    <? endforeach; ?>
+  </ul>
+</nav>
+<!--   </div>-->
+
+
+
     <div class="container panel-timetable-container">
         <div class="timetable"></div>
     </div>
