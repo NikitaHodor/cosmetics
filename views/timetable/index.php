@@ -31,5 +31,6 @@
 
 </div>
 </div>
-
+<script src="<?= LIBS; ?>timetable/scripts/timetable.js"></script>
+<script src="<?= JS; ?>table.js"></script>
 <? include_once('./views/templates/footer.php'); ?>

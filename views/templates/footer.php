@@ -18,8 +18,6 @@
 <!-- Footer -->
 <script src="<?= LIBS; ?>jquery/jquery.js"></script>
 <script src="<?= LIBS; ?>bootstrap/js/bootstrap.js"></script>
-<script src="<?= LIBS; ?>timetable/scripts/timetable.js"></script>
-<script src="<?= JS; ?>table.js"></script>
 <script src="<?= JS; ?>cookie.js"></script>
 <script src="<?= JS; ?>index.js"></script>
 </body>

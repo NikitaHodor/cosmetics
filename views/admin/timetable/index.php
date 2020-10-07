@@ -1,6 +1,6 @@
 <? include_once('./views/templates/header.php'); ?>
 <div class="container">
-<!--   <div class="spec-list">-->
+   <div class="spec-list container">
        <nav aria-label="Page navigation">
   <ul class="pagination justify-content-center">
     <? foreach ($specialists as $spec): ?>
@@ -10,7 +10,7 @@
     <? endforeach; ?>
   </ul>
 </nav>
-<!--   </div>-->
+   </div>
 
 
 
@@ -45,5 +45,6 @@
 
 </div>
 </div>
-
+<script src="<?= LIBS; ?>timetable/scripts/timetable.js"></script>
+<script src="<?= JS; ?>table.js"></script>
 <? include_once('./views/templates/footer.php'); ?>
