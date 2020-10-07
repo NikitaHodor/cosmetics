@@ -25,12 +25,15 @@
     <input required type="password" class="form-control" name="user_password_repeat"
     value="<?= isset($_POST['user_password_repeat']) ? $_POST['user_password_repeat'] : ""; ?>">
   </div>
-  <div class="form-group">
-    <label for="terms_of_usage">Согласие на обработку данных</label>
+  <div class="form-group text-center">
+    <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
+  </div>
+  <div class="form-group text-center">
+    <label for="terms_of_usage"><small>Согласие на обработку данных</small></label>
     <input required type="checkbox" name="terms_of_usage">
   </div>
   
-  <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
+
 </form>
 </div>
 

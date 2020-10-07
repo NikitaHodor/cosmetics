@@ -20,7 +20,9 @@
 		    <input type="password" class="form-control" name="user_password" 
 		    	value="<?= isset($_POST['user_password']) ? $_POST['user_password']: ""; ?>">
 		</div>
+    <div class="form-group text-center">
 	    <button type="submit" class="btn btn-secondary">Авторизироваться</button>
+        </div>
 	</form>
 	</div>
 
