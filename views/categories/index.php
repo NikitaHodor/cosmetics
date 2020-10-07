@@ -4,7 +4,7 @@
   <div class="card mb-3">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="<?= $category['image_url'] ?>" class="card-img" alt="card-img">
+      <img src="<?= $category['image_url'] ?>" class="card-img" alt="<?= $category['category_name']; ?>">
     </div>
     <div class="col-md-8 my-auto">
       <div class="card-body">
