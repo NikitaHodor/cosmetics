@@ -6,7 +6,10 @@
 
 			$title = 'Поиск';
 
-            $search = $_POST["inputQ"];
+            $helper = new Helper();
+            $search = $helper->escape($_POST["inputQ"]);
+
+//            $search = $_POST["inputQ"];
                 $searchModel = new Search();
 			    $searchResults = $searchModel->getAll($search);
 //                echo $search;

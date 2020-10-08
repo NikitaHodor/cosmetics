@@ -29,7 +29,7 @@
                         $errors[] = "Поле почты не заполнено!";
                     }
                     if(empty($errors)){
-                        $orderInfo = "имя: $user_name, телефон: $user_phone, email: $user_email";
+                    $orderInfo = "имя: $user_name, телефон: $user_phone, email: $user_email";
 					$cartModel = new Cart();
 					$cartModel->addNewOrder($cart, $orderInfo); 
 					setcookie('cart', '', 1, '/');

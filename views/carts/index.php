@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label>Телефон</label>
-                <input required type="text" class="form-control" name="user_phone" value="<?= isset($_POST['user_phone']) ? $_POST['user_phone']: ""; ?>">
+                <input required type="tel" pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" class="form-control" name="user_phone" value="<?= isset($_POST['user_phone']) ? $_POST['user_phone']: ""; ?>">
             </div>
             <div class="form-group">
                 <label>Email</label>

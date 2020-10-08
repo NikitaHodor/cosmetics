@@ -48,4 +48,20 @@
                     return true;
                 }
         }
+
+        public function checkEmail($email) {
+            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+//        public function checkNumber($num) {
+//            if(preg_match('^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$', $num)){
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
     }
