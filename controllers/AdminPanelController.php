@@ -769,15 +769,16 @@
                     $siteRootImages = substr_replace($fileRootItem, SITE_ROOT, 0, $len);
                     $images[] = $siteRootImages;
 //                    echo $fileRootItem;
-                } elseif(!is_file($fileRootItem)) {
-//                    echo $fileRootItem;
-                    $fileRootItems2 = glob($fileRootItem.'/*');
-//                    print_r($fileRootItems2);
-                    foreach($fileRootItems2 as $fileRootItem2){
-                        $siteRootImages2 = substr_replace($fileRootItem2, SITE_ROOT, 0, $len);
-                    $images[] = $siteRootImages2;
-                    }
-                  }
+                }
+//                elseif(!is_file($fileRootItem)) {
+////                    echo $fileRootItem;
+//                    $fileRootItems2 = glob($fileRootItem.'/*');
+////                    print_r($fileRootItems2);
+//                    foreach($fileRootItems2 as $fileRootItem2){
+//                        $siteRootImages2 = substr_replace($fileRootItem2, SITE_ROOT, 0, $len);
+//                    $images[] = $siteRootImages2;
+//                    }
+//                  }
             }
             include_once('./views/admin/images/index.php');
         }

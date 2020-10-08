@@ -2,8 +2,15 @@
     box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+*:before,
+*:after {
+ box-sizing: border-box;
+}
+
+html,
+body {
+ height: 100%;
+ position: relative;
 }
 
 body {
@@ -26,22 +33,23 @@ body {
 }
 
 #wrap {
-  min-height: 100%;
+     min-height: 100vh;
+     overflow: hidden;
+     display: block;
+     position: relative;
     background-color: darkgray;
 }
 
 #main {
-overflow:auto;
-  padding-bottom:8em; /* this needs to be bigger than footer height*/
+    overflow:auto;
+    padding-bottom:3.5em;
     padding-top: 4em;
 }
 
 .footer {
-  position: relative;
-  margin-top: -78px; /* negative value of footer height */
-/*  height: 100px;*/
-  clear:both;
-/*  padding-top:20px;*/
+     position: relative;
+     bottom: 0;
+     width: 100%;
 }
 a {
     text-decoration: none;
