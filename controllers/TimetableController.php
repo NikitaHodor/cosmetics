@@ -18,7 +18,7 @@
 //                }
 //                $jsonTable = json_encode($timetable, JSON_UNESCAPED_UNICODE);
 
-
+//ACTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //            if(isset($_GET)){
                 $this->data = $timetableModel->getTimetable($serviceId);
 //               header('Content-type: application/json');

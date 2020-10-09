@@ -51,7 +51,7 @@
                         <a class="nav-link" href="<?= SITE_ROOT . 'faq' ?>">FAQs</a>
                     </li>
                     <li class="nav-item <?= ($title == 'Корзина') ? 'active' : '' ?>">
-                        <a class="nav-link" href="<?= SITE_ROOT . 'cart' ?>"><i class="fa fa-shopping-cart"></i></a>
+                        <a class="nav-link" href="<?= SITE_ROOT . 'cart' ?>"><i class="fa fa-shopping-cart"></i> <span id="cartItems"></span></a>
                     </li>
                     <? if (User::checkIfUserAuthorized()) : ?>
                     <li class="nav-item">

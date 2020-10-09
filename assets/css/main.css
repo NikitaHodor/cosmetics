@@ -91,3 +91,8 @@ a:hover {
     background-color: #6c757d;
     border: 1px solid darkgray;
 }
+#cartItems {
+    font-size: 12px;
+    vertical-align: super;
+
+}

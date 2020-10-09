@@ -106,5 +106,17 @@
 </nav>
 </div>
 
+<div class="dialogContent">
+        <img width="50" class="avatar" src="https://designmodo.com/wp-content/themes/designmodo/assets/img/misc/cookie.png" alt="Cookie Icon">
+          <div class="text"><p class="p smaller cropBottom">We use cookies to ensure that we give you the best experience on our&nbsp;website. <a class="text-primary underline" href="https://designmodo.com/privacy-statement/" data-wpel-link="internal">Privacy&nbsp;Statement</a>.</p></div>
+          <ul class="flex tinySpaces">
+            <li class="col-6-12 tablet-col-1-2">
+              <div class="button small passive hover-red wide cropSides" data-dialog-action="hide">I disagree</div>
+            </li>
+            <li class="col-6-12 tablet-col-1-2">
+              <div class="button small passive hover-green wide cropSides" data-dialog-action="close">I agree</div>
+            </li>
+          </ul>
+      </div>
 
 <? include_once('./views/templates/footer.php'); ?>

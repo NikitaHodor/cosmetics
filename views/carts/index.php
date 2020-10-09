@@ -2,11 +2,11 @@
 
 
 <? if (!User::checkIfUserAuthorized()) : ?>
-   <h3> Пожалуйста авторизуйтесь или зарегистрируйтесь! </h3>
-   <? else: ?>
-    <? if (!$cart): ?>
-    <h3> Ваша корзина пуста</h3>
-    <? else: ?>
+<h3> Пожалуйста авторизуйтесь или зарегистрируйтесь! </h3>
+<? else: ?>
+<? if (!$cart): ?>
+<h3> Ваша корзина пуста</h3>
+<? else: ?>
 <!--
     <? if (isset($errors) && !empty($errors)): ?>
     <div>
@@ -16,8 +16,8 @@
     </div>
     <? endif; ?>
 -->
-    <div class="row">
-       <div class="container cart-container col-md-8">
+<div class="row">
+    <div class="container cart-container col-md-8">
         <form method="POST" class="cart-form">
             <div class="form-group">
                 <label>Имя</label>
@@ -32,43 +32,43 @@
                 <input required type="email" class="form-control" name="user_email" value="<?= isset($_POST['user_email']) ? $_POST['user_email']: ""; ?>">
             </div>
             <div class="scroll">
-               <h3> Детали заказа: </h3>
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>
-                            Название
-                        </th>
-                        <th>
-                            Цена
-                        </th>
-                        <th>
-                            Количество
-                        </th>
-                        <th>
-                            Сумма
-                        </th>
-                    </tr>
-                </thead>
-                <tbody id="cartCont">
-                    <? foreach ($cosmeticList as $cosmetic): ?>
-                    <tr>
-                        <td> <?= $cosmetic['cosmetic_name']; ?></td>
-                        <td> <?= $cosmetic['cosmetic_price']; ?></td>
-                        <td><a class="btn btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">-</a> <?= $cart[$cosmetic['cosmetic_id']]; ?> <a class="btn btn-sm" onclick="addToCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">+</a></td>
-                        <td> <?= $cosmetic['cosmetic_price'] * $cart[$cosmetic['cosmetic_id']]; ?></td>
-                    </tr>
-                    <? endforeach; ?>
-                </tbody>
-            </table>
+                <h3> Детали заказа: </h3>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                Название
+                            </th>
+                            <th>
+                                Цена
+                            </th>
+                            <th>
+                                Количество
+                            </th>
+                            <th>
+                                Сумма
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartCont">
+                        <? foreach ($cosmeticList as $cosmetic): ?>
+                        <tr>
+                            <td> <?= $cosmetic['cosmetic_name']; ?></td>
+                            <td> <?= $cosmetic['cosmetic_price']; ?></td>
+                            <td><a class="btn btn-sm" onclick="delFromCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">-</a> <?= $cart[$cosmetic['cosmetic_id']]; ?> <a class="btn btn-sm" onclick="addToCart(<?= $cosmetic['cosmetic_id'] ?> , '<?= SITE_ROOT; ?>')">+</a></td>
+                            <td> <?= $cosmetic['cosmetic_price'] * $cart[$cosmetic['cosmetic_id']]; ?></td>
+                        </tr>
+                        <? endforeach; ?>
+                    </tbody>
+                </table>
             </div>
 
-
+            <div class="form-group text-center">
                 <button name="submit" type="submit" class="btn btn-secondary">Заказать</button>
-
+            </div>
         </form>
-        </div>
     </div>
+</div>
 
 <? endif; ?>
 <? endif; ?>

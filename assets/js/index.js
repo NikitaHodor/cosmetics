@@ -8,11 +8,14 @@ function addToCart(id, site_root) {
     let cart = (getCookie('cart') === "") ? {} : JSON.parse(getCookie('cart'));
     if (cart.hasOwnProperty(id)) {
         cart[id]++;
+
 //                console.log(getCookie('cart'));//отладка
     } else {
         cart[id] = 1;
 //                console.log(getCookie('cart'));//отладка
     }
+    CartItems(cart);
+
     setCookie('cart', JSON.stringify(cart), {
         'expires': 2 * 24 * 60 * 60,
         'path': '/'
@@ -27,6 +30,9 @@ function addToCart(id, site_root) {
         if (responseObj.getElementById("cartCont")){
             document.getElementById("cartCont").innerHTML = responseObj.getElementById("cartCont").innerHTML;
         }
+//        if (responseObj.getElementById("cartItems")){
+//            document.getElementById("cartItems").innerHTML = responseObj.getElementById("cartItems").innerHTML;
+//        }
 
     };
 };
@@ -40,6 +46,7 @@ function delFromCart(id, site_root) {
         if (cart[id] > 1) {
             cart[id]--;
 
+
         } else {
             delete(cart[id]);
         }
@@ -50,6 +57,8 @@ function delFromCart(id, site_root) {
     } else {
         deleteCookie('cart');
     }
+    CartItems(cart);
+
 
     let xhr = new XMLHttpRequest();
     xhr.open('GET', `${site_root}cart`);
@@ -64,8 +73,22 @@ function delFromCart(id, site_root) {
             window.location.href = `${site_root}cart`; //пока колхозный вариант обновления корзины
         }
 
+
     };
 }
+
+function CartItems(cart) {
+
+    let CartItems = 0;
+    if (!cart){
+        cart = (getCookie('cart') === "") ? {} : JSON.parse(getCookie('cart'));
+    }
+    Object.values(cart).forEach(function(e){
+        CartItems += e;
+        document.getElementById("cartItems").innerHTML = CartItems;
+    });
+        console.log("cart items = " + CartItems);
+}; CartItems();
 
 function sendAjax(event, categoryName) {
     event.preventDefault();
