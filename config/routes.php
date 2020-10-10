@@ -110,6 +110,9 @@
 			"search/list" => "index", //TODO: validation & filters
 //            "search/view/([0-9]+)" => "view/$1"
 		),
+        "CookieController" => array(
+			"cookie" => "index"
+		),
         "ErrorsController" => array(
 			"error" => "index"
 		)
