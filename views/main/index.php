@@ -106,7 +106,7 @@
 </nav>
 </div>
 
-<div class="cookie-banner col-md-8" style="display: none">
+<div class="cookie-banner col-md-3" style="display: none">
 <p>
     Пользуясь нашим сайтом, вы принимаете
     <a href="cookie">политику использования cookie</a>
