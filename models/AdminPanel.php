@@ -258,23 +258,24 @@
 			return $orders;
         }
 
-         public function getTimetable($specId) {
+//         public function getTimetable($specId) {
+//             $db = DB::connect();
+//			$query = (new Select('timetable'))
+//						->joins([['LEFT', 'service_items', 'timetable_service_items_id', 'id'], ['LEFT', 'specialists', 'timetable_specialist_id', 'specialist_id']])
+//                        ->where("WHERE `timetable_specialist_id` = $specId")
+//						->build();
+//			$result = $db->query($query);
+//			$timetable = $result->fetchAll();
+//			return $timetable;
+//		}
+        public function getServ() {
              $db = DB::connect();
-			$query = (new Select('timetable'))
-						->joins([['LEFT', 'service_items', 'timetable_service_items_id', 'id'], ['LEFT', 'specialists', 'timetable_specialist_id', 'specialist_id']])
-                        ->where("WHERE `timetable_specialist_id` = $specId")
+			$query = (new Select('services'))
+                        ->joins([['LEFT', 'specialists', 'service_specialist_id', 'specialist_id']])
 						->build();
 			$result = $db->query($query);
-			$timetable = $result->fetchAll();
-			return $timetable;
-		}
-        public function getSpec() {
-             $db = DB::connect();
-			$query = (new Select('specialists'))
-						->build();
-			$result = $db->query($query);
-			$specialists = $result->fetchAll();
-			return $specialists;
+			$services = $result->fetchAll();
+			return $services;
 		}
         public function addEmptyTimetable($Info) {
              $db = DB::connect();

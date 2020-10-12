@@ -792,49 +792,34 @@
             include_once('./views/admin/orders/index.php');
         }
 
-        public function timetable($parameters = []) {
+        public function timetable() {
              $title = 'Записи';
-            $specId = $parameters[0];
-            $data = [];
-            $timetableModel = new AdminPanel();
-//			$timetable = $timetableModel->getTimetable();
-            $specModel = new AdminPanel();
-			$specialists = $specModel->getSpec();
 
-            $this->data = $timetableModel->getTimetable($specId);
-            $dataJson = json_encode($this, JSON_UNESCAPED_UNICODE);
-            echo $dataJson;
-
-
-//              if(isset($_POST['day']) && isset($_POST['date'])){
-//                  $timetableAddModel = new AdminPanel();
-//                  $day = $_POST['day'];
-//                  $date = $_POST['date'];
-//                  $Info = array(
-//                    'day' => $day,
-//                    'date' => $date
-//                    );
-//
-//			 $timetableAddModel->addTimetable($Info);
-//                header('Location: ' . SITE_ROOT . 'admin/timetable');
-//                return;
-//              }
-
-
-
+            $serviceModel = new AdminPanel();
+			$services = $serviceModel->getServ();
 
             include_once('./views/admin/timetable/index.php');
         }
+
         public function timetableAdd() {
-//            if(isset($_POST['data'])) {
-//               $data = $_POST['data'];
-//            json_decode($data);
-//            print_r($data);
-//            }
-            $timetableModel = new AdminPanel();
-			$timetable = $timetableModel->addTimetable($Info);
-             header('Location: ' . SITE_ROOT . 'admin/timetable');
+            if (isset($_POST['add_submit'])) {//add
+                $spec = $_POST['spec'];
+                $day = $_POST['day'];
+                $sTime = $_POST['start-time'];
+                $eTime = $_POST['end-time'];
+                $Info = array(
+                    'specialist_id' => $spec,
+                        'location' => $day,
+                        'start_time' => $sTime,
+                    'end_time' => $eTime
+                    );
+                print_r($Info);
+//              $timetableModel = new AdminPanel();
+//			$timetable = $timetableModel->addTimetable($Info);
+//             header('Location: ' . SITE_ROOT . 'admin/timetable');
                 return;
+
+            }
 
 
         }

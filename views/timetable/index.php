@@ -4,9 +4,11 @@
         <div class="timetable"></div>
     </div>
 <!--костыль тк проблема с передачей через аякс-->
+<!--
     <script type="text/javascript">
    var php_var = (<?php echo $dataJson; ?>);
 </script>
+-->
 
     <!-- Modal -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="Modal">
@@ -31,6 +33,5 @@
 
 </div>
 </div>
-<script src="<?= LIBS; ?>timetable/scripts/timetable.js"></script>
-<script src="<?= JS; ?>table.js"></script>
+
 <? include_once('./views/templates/footer.php'); ?>

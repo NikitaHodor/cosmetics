@@ -13,7 +13,7 @@
 	    <p class="card-price">Цена от: <?= $service_item['price']; ?> &#8381;</p>
 	    <? if (User::checkIfUserAuthorized()) : ?>
 	    <div class="row">
-	    	<a class="btn btn-secondary" href="<?= SITE_ROOT . 'timetable/' . $service_item['id'] . '/' . $service_item['services_service_id'] ?>">запись к специалисту </a>
+	    	<a class="btn btn-secondary" href="<?= SITE_ROOT . 'timetable/' . $service_item['services_service_id']  . '/' . $service_item['id'] ?>">запись к специалисту </a>
 	    </div>
 	    <? endif; ?>
       </div>

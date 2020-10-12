@@ -7,9 +7,13 @@
             public function index($parameters = []) {
 
             $title = 'Запись на приём';
-            $data = [];
-            $serviceItemId = $parameters[0];
-            $serviceId = $parameters[1];
+
+
+                include_once('./views/timetable/index.php');
+        }
+        public function tableData($parameters = []) {
+//            $serviceItemId = $parameters[1];
+            $serviceId = $parameters[0];
             $timetableModel = new Timetable();
 
 
@@ -19,21 +23,19 @@
 //                $jsonTable = json_encode($timetable, JSON_UNESCAPED_UNICODE);
 
 //ACTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//            if(isset($_GET)){
-                $this->data = $timetableModel->getTimetable($serviceId);
-//               header('Content-type: application/json');
-                $dataJson = json_encode($this, JSON_UNESCAPED_UNICODE);
+            if(isset($_GET)){
+                $table = $timetableModel->getTimetable($serviceId);
+                $dataJson = json_encode($table, JSON_UNESCAPED_UNICODE);
                 echo $dataJson;
-//            }
-
-
-                include_once('./views/timetable/index.php');
+                header('Content-type: application/json');
+                exit();
+            }
         }
 
         public function addTimetable($parameters = []) {
                 if(isset($_POST['location']) && isset($_POST['date_start'])&& isset($_POST['date_end'])){
-                  $serviceItemId = $parameters[0];
-                  $serviceId = $parameters[1];
+                  $serviceItemId = $parameters[1];
+                  $serviceId = $parameters[0];
 
 
                   $serviceModel = new Service();

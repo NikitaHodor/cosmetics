@@ -1,43 +1,34 @@
 (function drawTable() {
     'use strict';
+    const path = 'http://localhost/enso_cosmetics/timetable/';
+    const strtipLength = path.length;
+    const windLoc = window.location.href;
+    const parameters = windLoc.substring(strtipLength, );
+    const url = 'http://localhost/enso_cosmetics/timetable/data/' + parameters;
 
-    let timetable = new Timetable();
-    timetable.setScope(9, 23); //hours line
-    timetable.addLocations(calendarMaker());//массив locations из дней недели
-    //Add your events using addEvent(name, location, startDate, endDate[, options])
-    //ПРОТОТИП СВОБОДНОЙ ЯЧЕЙКИ С ВОЗМОЖНОСТЬЮ ЗАПИСИ
-//    timetable.addEvent('свободно', calendarMaker()[3], new Date(2020, 9, 5, 12, 0), new Date(2020, 9, 5, 13, 30), {
-//        url: '#',
-//        onClick: function (event) {
-//            callModal(event);
-//            sendModalData(event.name, event.location, event.startDate, event.endDate);
-//        }
-//    });
-    //    let parsedPHP = JSON.parse(php_var["data"]);
+    $.getJSON(url, function (data) {
+        let timetable = new Timetable();
+        timetable.setScope(9, 23); //hours line
+        timetable.addLocations(calendarMaker()); //массив locations из дней недели
+        data.forEach(function (item) { //ЗАНЯТАЯ ЯЧЕЙКА ДЛЯ КАЖДОЙ ЗАПИСИ
+            if (timetable.locations.includes(item['timetable_location'])) { //проверка на вхождение в locations
+                timetable.addEvent(item['name'], item['timetable_location'], datetimeToJSdate(item['timetable_start_date']), datetimeToJSdate(item['timetable_end_date']));
 
-    php_var['data'].forEach(function (item) { //ЗАНЯТАЯ ЯЧЕЙКА ДЛЯ КАЖДОЙ ЗАПИСИ
-        if(timetable.locations.includes(item['timetable_location'])){//проверка на вхождение в locations
-            timetable.addEvent(item['name'], item['timetable_location'], datetimeToJSdate(item['timetable_start_date']), datetimeToJSdate(item['timetable_end_date']));
+                if (item['timetable_status'] == 'свободно') {
+                    timetable.addEvent('свободно', item['timetable_location'], datetimeToJSdate(item['timetable_start_date']), datetimeToJSdate(item['timetable_end_date']), {
+                        url: '#',
+                        onClick: function (event) {
+                            callModal(event);
+                            sendModalData(event.name, event.location, event.startDate, event.endDate);
+                        }
+                    });
+                }
 
-            if(item['timetable_status'] == 'свободно'){
-                timetable.addEvent('свободно', item['timetable_location'], datetimeToJSdate(item['timetable_start_date']), datetimeToJSdate(item['timetable_end_date']), {
-        url: '#',
-        onClick: function (event) {
-            callModal(event);
-            sendModalData(event.name, event.location, event.startDate, event.endDate);
-        }
+            };
+        });
+        let renderer = new Timetable.Renderer(timetable);
+        renderer.draw('.timetable'); // any css selector
     });
-            }
-
-        };
-
-
-    });
-    //    console.log(php_var["data"][0]['id']);
-
-
-    let renderer = new Timetable.Renderer(timetable);
-    renderer.draw('.timetable'); // any css selector
 })();
 
 function callModal(eventInfo) {
@@ -110,22 +101,8 @@ function calendarMaker(dateArr = []) {
     getSevenDays(date);
 
     dateArr.forEach(function (element, index) {
-        dateArr[index] = `${element}-${month+1}-${year}`;
+        dateArr[index] = `${year}-${month+1}-${element}`;
     });
 
     return dateArr;
 }
-//alert(calendarMaker());
-
-//$(document).ready(function(){
-//    let url = window.location.href;
-//    $.ajax({
-//        url: url,
-//        type: 'get',
-//        dataType: 'json',
-//        success: function(response){
-////         let result = $(response).filter('data');
-//            console.log(response);
-//        }
-//    });
-//});

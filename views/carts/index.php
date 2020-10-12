@@ -32,9 +32,9 @@
                 <input required type="email" class="form-control" name="user_email" value="<?= isset($_POST['user_email']) ? $_POST['user_email']: ""; ?>">
             </div>
             <div class="scroll">
-                <h3> Детали заказа: </h3>
-                <table class="table table-sm">
-                    <thead>
+                <h3> Корзина: </h3>
+                <table class="table table-sm table-hover">
+                    <thead class="thead-dark">
                         <tr>
                             <th>
                                 Название
