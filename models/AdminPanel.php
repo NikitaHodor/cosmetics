@@ -281,11 +281,11 @@
              $db = DB::connect();
 			$query = "
                 INSERT INTO `timetable`
-					SET `timetable_service_items_id` = '$Info[service_item_id]',
-                        `timetable_location` = '$Info[location]',
-                        `timetable_start_date` = '$Info[date_start]',
-                        `timetable_end_date` = '$Info[date_end]',
-                        `timetable_specialist_id` = '$Info[specialist_id]'
+					SET `timetable_location` = '$Info[location]',
+                        `timetable_start_date` = '$Info[start_date]',
+                        `timetable_end_date` = '$Info[end_date]',
+                        `timetable_specialist_id` = '$Info[specialist_id]',
+                        `timetable_status` = '$Info[status]'
 			";
 			$result = $db->query($query);
             return;

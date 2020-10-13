@@ -807,16 +807,18 @@
                 $day = $_POST['day'];
                 $sTime = $_POST['start-time'];
                 $eTime = $_POST['end-time'];
+                $status = "свободно";
                 $Info = array(
                     'specialist_id' => $spec,
                         'location' => $day,
-                        'start_time' => $sTime,
-                    'end_time' => $eTime
+                        'start_date' => $day .' '. $sTime,
+                    'end_date' => $day .' '. $eTime,
+                    'status' => $status
                     );
-                print_r($Info);
-//              $timetableModel = new AdminPanel();
-//			$timetable = $timetableModel->addTimetable($Info);
-//             header('Location: ' . SITE_ROOT . 'admin/timetable');
+//                print_r($Info); //отладка
+              $timetableModel = new AdminPanel();
+			$timetable = $timetableModel->addEmptyTimetable($Info);
+             header('Location: ' . SITE_ROOT . 'admin/timetable');
                 return;
 
             }
