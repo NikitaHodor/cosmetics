@@ -17,12 +17,13 @@
         public function addTimetable($Info) {
             $db = DB::connect();
 			$query = "
-                INSERT INTO `timetable`
-					SET `timetable_service_items_id` = '$Info[service_item_id]',
-                        `timetable_location` = '$Info[location]',
-                        `timetable_start_date` = '$Info[date_start]',
-                        `timetable_end_date` = '$Info[date_end]',
-                        `timetable_specialist_id` = '$Info[specialist_id]'
+                UPDATE `timetable`
+					SET `timetable_status` = '$Info[status]'
+                  WHERE `timetable_service_items_id` = '$Info[service_item_id]'
+                    AND `timetable_location` = '$Info[location]'
+                    AND `timetable_start_date` = '$Info[date_start]'
+                    AND `timetable_end_date` = '$Info[date_end]'
+                    AND `timetable_specialist_id` = '$Info[specialist_id]'
 			";
 			$result = $db->query($query);
             return;

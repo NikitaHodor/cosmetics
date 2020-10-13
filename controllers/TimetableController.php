@@ -45,16 +45,18 @@
                   $location = $_POST['location'];
                   $dateStart = $_POST['date_start'];
                   $dateEnd = $_POST['date_end'];
+                  $status = 'запись';
                   $Info = array(
                     'service_item_id' => $serviceItemId,
                     'location' => $location,
                     'date_start' => $dateStart,
                       'date_end' => $dateEnd,
-                      'specialist_id' => $service['service_specialist_id']
+                      'specialist_id' => $service['service_specialist_id'],
+                      'status' => $status
                     );
 
 			 $timetableAddModel->addTimetable($Info);
-                header('Location: ' . SITE_ROOT . 'timetable/add/' . $serviceItemId . '/' . $serviceId);
+                header('Location: ' . SITE_ROOT . 'timetable/add/'  .  $serviceId . '/' . $serviceItemId);
                 return;
               }
             }
