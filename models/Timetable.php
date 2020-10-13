@@ -3,7 +3,6 @@
     class Timetable
     {
 
-
         public function getTimetable($specID) {
 			$db = DB::connect();
 			$query = (new Select('timetable'))
@@ -19,7 +18,8 @@
 			$query = "
                 UPDATE `timetable`
 					SET `timetable_status` = '$Info[status]',
-                        `timetable_service_items_id` = '$Info[service_item_id]'
+                        `timetable_service_items_id` = '$Info[service_item_id]',
+                        `timetable_user_id` = '$Info[user_id]'
                   WHERE `timetable_location` = '$Info[location]'
                     AND `timetable_start_date` = '$Info[date_start]'
                     AND `timetable_end_date` = '$Info[date_end]'

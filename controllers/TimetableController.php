@@ -43,6 +43,7 @@
                   $location = $_POST['location'];
                   $dateStart = $_POST['date_start'];
                   $dateEnd = $_POST['date_end'];
+                  $userId = $_POST['user_id'];
                   $status = 'запись';
                   $Info = array(
                     'service_item_id' => $serviceItemId,
@@ -50,6 +51,7 @@
                     'date_start' => $dateStart,
                       'date_end' => $dateEnd,
                       'specialist_id' => $service['service_specialist_id'],
+                      'user_id' => $userId,
                       'status' => $status
                     );
 

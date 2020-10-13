@@ -277,6 +277,15 @@
 			$services = $result->fetchAll();
 			return $services;
 		}
+        public function getAllTimetables() {
+			$db = DB::connect();
+			$query = (new Select('timetable'))
+						->joins([['LEFT', 'users', 'timetable_user_id', 'user_id'], ['LEFT', 'specialists', 'timetable_specialist_id', 'specialist_id'], ['LEFT', 'service_items', 'timetable_service_items_id', 'id']])
+						->build();
+			$result = $db->query($query);
+			$timetables = $result->fetchAll();
+			return $timetables;
+		}
         public function addEmptyTimetable($Info) {
              $db = DB::connect();
 			$query = "

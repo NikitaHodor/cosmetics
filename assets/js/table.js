@@ -50,7 +50,8 @@ function sendModalData(name, location, dateStart, dateEnd) { //ОТПРАВКА 
         name: name,
         location: location,
         date_start: dateStartSQL,
-        date_end: dateEndSQL
+        date_end: dateEndSQL,
+        user_id: getCookie('user_id')
     };
     $("#Modal").submit(function (event) {
         event.preventDefault();

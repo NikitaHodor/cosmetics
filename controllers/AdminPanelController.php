@@ -797,6 +797,8 @@
 
             $serviceModel = new AdminPanel();
 			$services = $serviceModel->getServ();
+            $timetablesModel = new AdminPanel();
+            $timetables = $timetablesModel->getAllTimetables();
 
             include_once('./views/admin/timetable/index.php');
         }

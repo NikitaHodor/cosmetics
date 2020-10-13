@@ -3,12 +3,6 @@
     <div class="container timetable-container">
         <div class="timetable"></div>
     </div>
-<!--костыль тк проблема с передачей через аякс-->
-<!--
-    <script type="text/javascript">
-   var php_var = (<?php echo $dataJson; ?>);
-</script>
--->
 
     <!-- Modal -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="Modal">

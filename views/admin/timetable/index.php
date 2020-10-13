@@ -15,11 +15,30 @@
 </nav>
    </div>
 
-<!--
-    <div class="container panel-timetable-container">
-        <div class="timetable"></div>
+    <div class="container panel-timetableList-container">
+        <table class="table shadow">
+					<thead class="thead-dark">
+						<tr>
+							<th>№</th>
+							<th>Специалист</th>
+							<th>Начало</th>
+							<th>Конец</th>
+							<th>Пользователь</th>
+							<th>Статус</th>
+						</tr>
+						<?php foreach ($timetables as $timetable): ?>
+						<tr>
+							<td><?=$timetable['timetable_id'] ?></td>
+							<td><?=$timetable['specialist_name'] ?></td>
+							<td><?=$timetable['timetable_start_date'] ?></td>
+							<td><?=$timetable['timetable_end_date'] ?></td>
+							<td><?=$timetable['user_login'] ?></td>
+							<td><?=$timetable['timetable_status'] ?></td>
+						</tr>
+						<? endforeach; ?>
+					</thead>
+				</table>
     </div>
--->
 
 
     <!-- Modal -->
