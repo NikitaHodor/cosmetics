@@ -797,6 +797,8 @@
 
             $serviceModel = new AdminPanel();
 			$services = $serviceModel->getServ();
+            $serviceItemsModel = new AdminPanel();
+			$serviceItems = $serviceItemsModel->getServiceItems();
             $timetablesModel = new AdminPanel();
             $timetables = $timetablesModel->getAllTimetables();
 
@@ -824,7 +826,35 @@
                 return;
 
             }
-
-
         }
+
+        public function timetableEdit($parameters = []) {
+            $id = $parameters[0];
+            if (isset($_POST['edit-submit'])) {//edit
+                $specId = $_POST['spec'];
+                $status = $_POST['status'];
+                $servItem = $_POST['servItem'];
+                $Info = array(
+                    'spec' => $specId,
+                        'status' => $status,
+                    'servItem' => $servItem,
+                        'id' => $id
+                    );
+                 $timetableEditModel = new AdminPanel();
+			     $timetableEdit = $timetableEditModel->editTimetable($Info);
+                 header('Location: ' . SITE_ROOT . 'admin/timetable');
+                return;
+            }
+        }
+
+        public function timetableDelete($parameters = []) {
+            $id = $parameters[0];
+             if (isset($_POST['delete_submit'])) {//delete
+                 $timetableDeleteModel = new AdminPanel();
+			     $timetableDeleteModel->deleteTimetable($id);
+                 header('Location: ' . SITE_ROOT . 'admin/timetable');
+                return;
+            }
+        }
+
     }

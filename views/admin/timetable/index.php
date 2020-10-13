@@ -21,19 +21,27 @@
 						<tr>
 							<th>№</th>
 							<th>Специалист</th>
+							<th>Услуга</th>
 							<th>Начало</th>
 							<th>Конец</th>
 							<th>Пользователь</th>
 							<th>Статус</th>
+							<th>Действие</th>
 						</tr>
 						<?php foreach ($timetables as $timetable): ?>
 						<tr>
 							<td><?=$timetable['timetable_id'] ?></td>
 							<td><?=$timetable['specialist_name'] ?></td>
+							<td><?=$timetable['name'] ?></td>
 							<td><?=$timetable['timetable_start_date'] ?></td>
 							<td><?=$timetable['timetable_end_date'] ?></td>
 							<td><?=$timetable['user_login'] ?></td>
 							<td><?=$timetable['timetable_status'] ?></td>
+				            <td>
+								<a href="<?= SITE_ROOT . 'admin/timetableEdit/' . $timetable['timetable_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#editModal<?=$timetable['timetable_id'] ?>"><i class="fa fa-edit"></i></a>
+								<a href="<?= SITE_ROOT . 'admin/timetableDelete/' . $timetable['timetable_id'] ?>" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#deleteModal<?=$timetable['timetable_id'] ?>"><i class="fa fa-trash"></i></a>
+                                <?php require 'modal.php'; ?>
+							</td>
 						</tr>
 						<? endforeach; ?>
 					</thead>
@@ -62,6 +70,7 @@
                    </select>
 
                 </div>
+
 	        	<div class="form-group">
 	        	<label for="day">День недели</label>
 	        	<select name="day" id="datesArr"></select>

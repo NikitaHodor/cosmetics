@@ -299,4 +299,28 @@
 			$result = $db->query($query);
             return;
 		}
+
+        public function editTimetable($Info) {
+			$db = DB::connect();
+			$query = "
+				UPDATE `timetable`
+					SET `timetable_specialist_id` = '$Info[spec]',
+                    `timetable_service_items_id` = '$Info[servItem]',
+                        `timetable_status` = '$Info[status]'
+                    WHERE `timetable_id` = '$Info[id]'
+			";
+			$result = $db->query($query);
+            return;
+		}
+
+        public function deleteTimetable($id) {
+			$db = DB::connect();
+			$query = "
+				DELETE FROM `timetable`
+                    WHERE `timetable_id` = '$id'
+			";
+			$result = $db->query($query);
+            return;
+		}
+
     }

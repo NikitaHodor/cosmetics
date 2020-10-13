@@ -90,8 +90,9 @@
 
             "admin/orders" => "orders",
             "admin/timetable" => "timetable",
-             "admin/timetableAdd" => "timetableAdd"
-//            "admin/timetableAdd" => "timetableAdd"
+             "admin/timetableAdd" => "timetableAdd",
+            "admin/timetableEdit/([0-9]+)" => "timetableEdit/$1",
+            "admin/timetableDelete/([0-9]+)" => "timetableDelete/$1"
 		),
 		"CartsController" => array(
 			"cart" => "index"
