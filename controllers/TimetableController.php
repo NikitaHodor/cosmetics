@@ -14,17 +14,15 @@
         public function tableData($parameters = []) {
 //            $serviceItemId = $parameters[1];
             $serviceId = $parameters[0];
+
+            $serviceModel = new Service();
+            $service = $serviceModel->getById($serviceId);
+            $specID = $service['service_specialist_id'];
+
             $timetableModel = new Timetable();
 
-
-//                foreach($timetable as $table) {
-//                    $timetableArr[] = $table;
-//                }
-//                $jsonTable = json_encode($timetable, JSON_UNESCAPED_UNICODE);
-
-//ACTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             if(isset($_GET)){
-                $table = $timetableModel->getTimetable($serviceId);
+                $table = $timetableModel->getTimetable($specID);
                 $dataJson = json_encode($table, JSON_UNESCAPED_UNICODE);
                 echo $dataJson;
                 header('Content-type: application/json');
